@@ -3,12 +3,16 @@
 <head>
 <meta charset="UTF-8">
 <title>新規会員登録</title>
-<script type="text/javascript" src="newmemberRegistration.js"></script>
-<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+<link rel="stylesheet" href="./newMemberRegist.css" type="text/css">
+<script type="text/javascript" src="../jquery-1.10.2.js"></script>
+<script type="text/javascript" src="newMemberRegistration.js"></script>
+
 </head>
 <body>
 <header></header>
 <div id = "box">
+<nav></nav>
+<main>
 <p>登録するユーザー情報を入力してください</p>
 <form name="registEmployee">
 <input type="text" id="registEmployeeId" placeholder="社員ID" maxlength="4" required>
@@ -17,7 +21,8 @@
 <input type="text" id="registEmployeeEmail" placeholder="mail" required>
 <input type="password" id="registLoginPassword" placeholder="ログインパスワード" maxlength="10" required>
 </form>
-<button>ユーザー登録</button>
+<button id="newMemberRegistrationButton">ユーザー登録</button>
+</main>
 </div>
 </body>
 </html>
