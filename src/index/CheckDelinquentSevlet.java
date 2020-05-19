@@ -1,6 +1,7 @@
 package index;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -16,7 +17,8 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
+
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 import connectDB.ConnectDb;
 
@@ -40,19 +42,22 @@ public class CheckDelinquentSevlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+
 
 		Map<String, String> conInfo = ConnectDb.loadDB();
 		Date date = new Date();
         System.out.println(date.toString());
 
-        HttpSession session = request.getSession();
-		String employeeId = (String) session.getAttribute("employeeId");
+//        HttpSession session = request.getSession();
+//		String employeeId = (String) session.getAttribute("employeeId");
+        String employeeId="0002";
 
         Calendar cal = Calendar.getInstance();
         SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd");
         String createDay = sdf.format(cal.getTime());
 
+        PrintWriter pw = response.getWriter();
+        String isDelinquent;
 
 		try (
 				// データベースへ接続します
@@ -63,11 +68,14 @@ public class CheckDelinquentSevlet extends HttpServlet {
 				ResultSet rs1 = stmt.executeQuery();) {
 
 			System.out.println("checkDelinquetできた");
+			isDelinquent="Delinquent";
+
+
 
 		} catch (Exception e) {
 			throw new RuntimeException(String.format("検索処理の実施中にエラーが発生しました。詳細：[%s]", e.getMessage()), e);
 		}
-
+		pw.append(new ObjectMapper().writeValueAsString(isDelinquent));
 	}
 
 	private PreparedStatement createPreparedStatement(Connection con,String employeeId,String createDay) throws SQLException {
@@ -77,8 +85,8 @@ public class CheckDelinquentSevlet extends HttpServlet {
 				"from \n" +
 				"BORROWING_BOOKS \n" +
 				"where 1=1 \n" +
-				"and RETURN_DUE_DATE>"+createDay+
-				"and EMPLOYEE_ID='"+employeeId+"' \n";
+				"and RETURN_DUE_DATE>"+createDay+" "+
+				"and EMPLOYEE_ID='"+employeeId+"' ";
 
 		PreparedStatement stmt = con.prepareStatement(sql);
 		return stmt;
