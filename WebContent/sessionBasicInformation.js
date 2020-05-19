@@ -20,7 +20,7 @@ function getSessionInfomation() {
 			console.log(USER);
 			console.log(ROLL);
 			console.log(NAME);
-
+			return (USER,ROLL,NAME);
 		},
 		error : function(XMLHttpRequest, textStatus, errorThrown) {
 			// サーバーとの通信に失敗した時の処理
