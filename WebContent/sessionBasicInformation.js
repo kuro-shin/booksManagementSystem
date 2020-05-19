@@ -1,10 +1,7 @@
-var USER;
-var ROLL;
-var NAME;
-
 function getSessionInfomation() {
 	 'use strict';
 	 var requestQuery = 1;
+	 var session = new Object();
 	$.ajax({
 		type : 'GET',
 		dataType : 'json',
@@ -14,12 +11,17 @@ function getSessionInfomation() {
 		success : function(json) {
 			// サーバーとの通信に成功した時の処理
 			// 確認のために返却値を出力
-			USER = json.user;
-			ROLL = json.roll;
-			NAME = json.name;
-			console.log(USER);
-			console.log(ROLL);
-			console.log(NAME);
+			if(json.employeeId=null){
+				alert('session情報が入っていません');
+			}else{
+			session.employeeId=json.employeeId;
+			session.employeeName=json.employeeName;
+			session.employeeRole=json.employeeRole;
+//			console.log(USER);
+//			console.log(ROLE);
+//			console.log(NAME);
+			return ;
+			}
 
 		},
 		error : function(XMLHttpRequest, textStatus, errorThrown) {
