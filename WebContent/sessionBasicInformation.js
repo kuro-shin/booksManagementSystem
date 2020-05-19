@@ -3,23 +3,26 @@ function getSessionInfomation() {
 	 var requestQuery = 1;
 	 var session = new Object();
 	$.ajax({
-		type : 'GET',
+		type : 'POST',
 		dataType : 'json',
-		url : '/booksManagementSystem/GetSessionInformationServlet',
+		url : '/booksManagementSystem/GetLoginInfoServlet',
 		data : requestQuery,
 		async: false,
 		success : function(json) {
 			// サーバーとの通信に成功した時の処理
 			// 確認のために返却値を出力
 			if(json.employeeId=null){
-				alert('session情報が入っていません');
+				alert('Session情報が入っていません');
 			}else{
-			session.employeeId=json.employeeId;
-			session.employeeName=json.employeeName;
-			session.employeeRole=json.employeeRole;
-//			console.log(USER);
-//			console.log(ROLE);
-//			console.log(NAME);
+			session.employeeId='0001';
+			session.employeeName='未来太郎';
+			session.employeeRole='manager';
+//			session.employeeId=json.employeeId;
+//			session.employeeName=json.employeeName;
+//			session.employeeRole=json.employeeRole;
+//			console.log(session.employeeId);
+//			console.log(json.employeeName);
+//			console.log(json.employeeRole);
 			return session;
 			}
 
@@ -34,3 +37,7 @@ function getSessionInfomation() {
 		}
 	});
 }
+
+//session情報は、以下を自分の使うjsの一番上に書けば取得できます
+
+//var session = getSessionInfomation();
