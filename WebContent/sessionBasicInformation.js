@@ -20,7 +20,7 @@ function getSessionInfomation() {
 //			console.log(USER);
 //			console.log(ROLE);
 //			console.log(NAME);
-			return ;
+			return session;
 			}
 
 		},
