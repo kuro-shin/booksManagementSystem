@@ -8,7 +8,7 @@ function getSessionInfomation() {
 	$.ajax({
 		type : 'GET',
 		dataType : 'json',
-		url : '/BasicCheck/GetSessionServlet',
+		url : '/booksManagementSystem/GetSessionInformationServlet',
 		data : requestQuery,
 		async: false,
 		success : function(json) {
