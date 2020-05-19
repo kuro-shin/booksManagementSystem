@@ -1,6 +1,7 @@
-var role;
-var name;
-var employeeId;
+var session = getSessionInfomation();
+var role = session.employeeIRole
+var name = session.employeeName;
+var employeeId = session.employeeId;
 var memberRegist = function() {
 	var registEmployeeId = $('#registEmployeeId').val();
 	var registEmployeeName = $('#registEmployeeName').val();
