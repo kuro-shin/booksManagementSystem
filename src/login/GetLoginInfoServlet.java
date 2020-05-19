@@ -54,12 +54,12 @@ public class GetLoginInfoServlet extends HttpServlet {
 			if (loginRequest != null && loginRequest.equals("logout")){
 				session.removeAttribute("employeeId");
 				session.removeAttribute("employeeName");
-				session.removeAttribute("employeeRoll");
+				session.removeAttribute("employeeRole");
 				responseData.put("json", "LOGOUT");
 			}else {
 				responseData.put("employeeId", (String) session.getAttribute("employeeId"));
 				responseData.put("employeeName", (String) session.getAttribute("employeeName"));
-				responseData.put("employeeRoll", (String) session.getAttribute("employeeRoll"));
+				responseData.put("employeeRole", (String) session.getAttribute("employeeRole"));
 			}
 		}
 		pw.append(new ObjectMapper().writeValueAsString(responseData));
