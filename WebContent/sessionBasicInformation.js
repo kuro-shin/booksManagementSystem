@@ -1,14 +1,11 @@
-var USER;
-var ROLL;
-var NAME;
-
 function getSessionInfomation() {
 	 'use strict';
 	 var requestQuery = 1;
+	 var session = new Object();
 	$.ajax({
-		type : 'GET',
+		type : 'POST',
 		dataType : 'json',
-		url : '/booksManagementSystem/GetSessionInformationServlet',
+		url : '/booksManagementSystem/GetLoginInfoServlet',
 		data : requestQuery,
 		async: false,
 		success : function(json) {
@@ -21,6 +18,20 @@ function getSessionInfomation() {
 			console.log(ROLL);
 			console.log(NAME);
 			return (USER,ROLL,NAME);
+			if(json.employeeId=null){
+				alert('Session情報が入っていません');
+			}else{
+			session.employeeId='0001';
+			session.employeeName='未来太郎';
+			session.employeeRole='manager';
+//			session.employeeId=json.employeeId;
+//			session.employeeName=json.employeeName;
+//			session.employeeRole=json.employeeRole;
+//			console.log(session.employeeId);
+//			console.log(json.employeeName);
+//			console.log(json.employeeRole);
+			return session;
+			}
 		},
 		error : function(XMLHttpRequest, textStatus, errorThrown) {
 			// サーバーとの通信に失敗した時の処理
@@ -32,3 +43,7 @@ function getSessionInfomation() {
 		}
 	});
 }
+
+//session情報は、以下を自分の使うjsの一番上に書けば取得できます
+
+//var session = getSessionInfomation();
