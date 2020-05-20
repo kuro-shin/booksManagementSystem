@@ -63,6 +63,9 @@ function passSearchResult() {
 	// 特殊文字をエンコード
 	var encodeVal = encodeURIComponent(rawInputVal);
 	// 遷移先URL
+	encodeVal= encodeVal.replace('%20','+');
+	encodeVal= encodeVal.replace('%E3%80%80','+');
+
 	var url = 'bookSearchResults/bookSearchResults.html?q='+encodeVal;
 	// 画面遷移
 	location.href=url;
