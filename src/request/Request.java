@@ -23,6 +23,29 @@ public String getRequestStatus() {
 	return requestStatus;
 }
 
+public static String requestId(String a){
+	return "select \n" +
+			"RE.REQUEST_BOOK_ID, \n" +
+			"RE.EMPLOYEE_ID, \n" +
+			"EM.NAME, \n" +
+			"RE.TITLE, \n" +
+			"RE.PUBLISHER, \n" +
+			"RE.AUTHER, \n" +
+			"RE.URL, \n" +
+			"RE.STATUS, \n" +
+			"RE.REJECTED_REASON, \n" +
+			"RE.REQUEST_DATE, \n" +
+			"RE.UPDATED_DATE, \n" +
+			"EMP.NAME as UPDATE_NAME \n" +
+			"from \n" +
+			"REQUEST_BOOKS RE, \n" +
+			"EMPLOYEES EM, \n" +
+			"EMPLOYEES EMP \n" +
+			"where 1=1 \n" +
+			"and RE.EMPLOYEE_ID=EM.EMPLOYEE_ID \n" +
+			"and RE.UPDATER_ID=EMP.EMPLOYEE_ID(+) \n" +
+			"and EM.REQUEST_BOOK_ID = '"+a+"' " ;
+}
 public void setRequestStatus(String requestStatus) {
 	this.requestStatus = requestStatus;
 }

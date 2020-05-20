@@ -1,15 +1,21 @@
 //var session = getSessionInfomation();
-var role; //= session.employeeRole;
+var role; // = session.employeeRole;
 var name; // session.employeeName;
-var employeeId; //= session.employeeId;
+var employeeId; // = session.employeeId;
+var page;
 var display = function() {
 	// サーバーからデータを取得する
 	if (role == "manager") {
 		employeeId = null;
 	}
+	var parameter = location.search.substring(1, location.search.length);
+	parameter = decodeURIComponent(parameter);
+	// ページ数を取得
+	page = parameter.split('/p')[1];
 	var requestQuery = {
-			requestStatus:requestStatus,
-			requestEmployeeId:employeeId
+		requestStatus : requestStatus,
+		requestEmployeeId : employeeId,
+		page : page
 	};
 
 	$
@@ -20,54 +26,33 @@ var display = function() {
 				data : requestQuery,
 				async : false,
 				success : function(json) {
-					//ここから
-					var a ='<a id = ""></a>'
-						if (role !== "manager") {
-							var tableElemnt = '';
-							for (var i = 0; i < json.length; i++) {
-								var display = json[i];
-								tableElemnt += '<tr> <td>' + display.syainId
-										+ '</td><td>' + display.syainName
-										+ '</td>';
-								count++;
-							}
-							var editElemnt = '<button id="edit1" value="'
-									+ userEmId + '">編集</button>';
-							$('#display').append(tableElemnt);
-							$('#editBoxMem').append(editElemnt);
-						} else {
+					var a = '';
+					if (page > 1) {
+						a += '<a href="requestDisplay.html/p' + (page - 1)
+								+ '">前へ</a>';
+					}
+					if (json.length == 21) {
+						a += '<a href="requestDisplay.html/p' + (page + 1)
+								+ '">次へ</a>';
+					}
+					$('#switch').append(a);
+					var tableElemnt = '<table> <thead><tr><th>本の名前</th><th>申請者名</th><th>申請日</th><th>更新者名</th><th>更新日</th><th>ステータス</th><th>詳細</th></tr></thead><tbody>';
+					for (var i = 0; i < json.length; i++) {
+						var request = json[i];
+						tableElemnt += '<tr> <td>' + request.requestTitle
+								+ '</td><td>' + request.requestTitle + '</td>'
+								+ '</td><td>' + request.requestApplicantName + '</td>'
+								+ '</td><td>' + request.requestApplicantDate + '</td>'
+								+ '</td><td>' + request.requestUpdaterName + '</td>'
+								+ '</td><td>' + request.requestUpdateDate + '</td>'
+								+ '</td><td>' + request.requestStatus + '</td>'
+								//ここから
+								+ '</td><td><button></button></td>'
+								;
+						count++;
+					}
 
-							// サーバーとの通信に成功した時の処理
-							// 確認のために返却値を出力
-							console.log('返却値', json);
-							// 取得したデータを画面に表示する
-							var tableElemnt = '';
-							for (var i = 0; i < json.length; i++) {
-								var display = json[i];
-								tableElemnt += '<tr> <td>' + display.syainId
-										+ '</td><td>' + display.syainName
-										+ '</td><td><button id="edit' + (i + 1)
-										+ '" value="' + display.syainId
-										+ '">編集</button></td>'
-										+ '<td><button id="delete' + (i + 1)
-										+ '" value="' + display.syainId
-										+ '">削除</button></td></tr>';
-								count++;
-
-							}
-							var createElement = '<input type="text"placeholder="EMP????" id="newId"></input>'
-									+ '<input type="text"placeholder="名前" id="newName"></input>'
-									+ '<input type="text"placeholder="年齢" id="newAge"></input>'
-									+ '<p><label><input type="radio"name="sex" value="男">男</label>'
-									+ '<label><input type="radio"name="sex" value="女">女</label></p>'
-									+ '<input type="text"placeholder="P?????" id="newImgId"></input>'
-									+ '<input type="text"placeholder="〒〇〇〇-〇〇〇〇 住所" id="newAdress"></input>'
-									+ '<input type="text"placeholder="部署Id" id="newDpId"></input>'
-									+ '<button id="create">新規作成</button>';
-							// HTMLに挿入
-							$('#display').append(tableElemnt);
-							$('#createbox').append(createElement);
-						}
+					$('#createbox').append(createElement);
 				},
 				error : function(XMLHttpRequest, textStatus, errorThrown) {
 					// サーバーとの通信に失敗した時の処理
@@ -82,5 +67,5 @@ var display = function() {
 	$('#search').click(pull);
 }
 $(document).ready(function() {
-
+	display();
 });

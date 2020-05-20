@@ -44,22 +44,30 @@ public class RequestDisplayServlet extends HttpServlet {
 		// TODO Auto-generated method stub
 		String requestStatus = request.getParameter("requestStatus");
 		String requestEmployeeId = request.getParameter("requestEmployeeId");
-
+		String requestId = request.getParameter("requestId");
+		int page = 1;
+		System.out.println(page);
+		int displayPage = 20;
+		int getCountEnd = page*displayPage+1;
+		int getCountStart = getCountEnd-20;
 		String sql;
 		// 実行するSQL文
+		if (requestId != null) {
+			sql = Request.requestId(requestId);
+		}
 		if (requestStatus == null) {
 			if (requestEmployeeId == null) {
 				sql = "select \n" + "RE.REQUEST_BOOK_ID, \n" + "RE.EMPLOYEE_ID, \n" + "EM.NAME, \n" + "RE.TITLE, \n"
 						+ "RE.PUBLISHER, \n" + "RE.AUTHER, \n" + "RE.URL, \n" + "RE.STATUS, \n" + "RE.REJECTED_REASON, \n"
 						+ "RE.REQUEST_DATE, \n" + "RE.UPDATED_DATE, \n" + "EMP.NAME as UPDATE_NAME \n" + "from \n" + "REQUEST_BOOKS RE, \n"
-						+ "EMPLOYEES EM, \n" + "EMPLOYEES EMP \n" + "where 1=1 \n" + "and RE.EMPLOYEE_ID=EM.EMPLOYEE_ID \n"
-						+ "and RE.UPDATER_ID=EMP.EMPLOYEE_ID(+) \n";
+						+ "EMPLOYEES EM, \n" + "EMPLOYEES EMP \n" + "where 1=1 \n" + "and RE.EMPLOYEE_ID=EM.EMPLOYEE_ID(+) \n"
+						+ "and RE.UPDATER_ID=EMP.EMPLOYEE_ID(+)  and rownum between "+getCountStart+" and "+getCountEnd+" ";
 			}else{
 				sql = "select \n" + "RE.REQUEST_BOOK_ID, \n" + "RE.EMPLOYEE_ID, \n" + "EM.NAME, \n" + "RE.TITLE, \n"
 						+ "RE.PUBLISHER, \n" + "RE.AUTHER, \n" + "RE.URL, \n" + "RE.STATUS, \n" + "RE.REJECTED_REASON, \n"
 						+ "RE.REQUEST_DATE, \n" + "RE.UPDATED_DATE, \n" + "EMP.NAME as UPDATE_NAME \n" + "from \n" + "REQUEST_BOOKS RE, \n"
 						+ "EMPLOYEES EM, \n" + "EMPLOYEES EMP \n" + "where 1=1 \n" + "and RE.EMPLOYEE_ID=EM.EMPLOYEE_ID \n"
-						+ "and RE.UPDATER_ID=EMP.EMPLOYEE_ID(+) \n" + "and EM.EMPLOYEE_ID = '"+requestEmployeeId+"'";
+						+ "and RE.UPDATER_ID=EMP.EMPLOYEE_ID(+) \n" + "and EM.EMPLOYEE_ID = '"+requestEmployeeId+"'  and rownum between "+getCountStart+" and "+getCountEnd+"";
 			}
 
 		} else {
@@ -69,16 +77,17 @@ public class RequestDisplayServlet extends HttpServlet {
 						+ "RE.REQUEST_DATE, \n" + "RE.UPDATED_DATE, \n" + "EMP.NAME as UPDATE_NAME \n" + "from \n" + "REQUEST_BOOKS RE, \n"
 						+ "EMPLOYEES EM, \n" + "EMPLOYEES EMP \n" + "where 1=1 \n" + "and RE.EMPLOYEE_ID=EM.EMPLOYEE_ID \n"
 						+ "and RE.UPDATER_ID=EMP.EMPLOYEE_ID(+) \n"
-						+ "and RE.STATUS = '"+requestStatus+"' ";
+						+ "and RE.STATUS = '"+requestStatus+"'  and rownum between "+getCountStart+" and "+getCountEnd+"";
 			} else {
 				sql = "select \n" + "RE.REQUEST_BOOK_ID, \n" + "RE.EMPLOYEE_ID, \n" + "EM.NAME, \n" + "RE.TITLE, \n"
 						+ "RE.PUBLISHER, \n" + "RE.AUTHER, \n" + "RE.URL, \n" + "RE.STATUS, \n" + "RE.REJECTED_REASON, \n"
 						+ "RE.REQUEST_DATE, \n" + "RE.UPDATED_DATE, \n" + "EMP.NAME as UPDATE_NAME \n" + "from \n" + "REQUEST_BOOKS RE, \n"
 						+ "EMPLOYEES EM, \n" + "EMPLOYEES EMP \n" + "where 1=1 \n" + "and RE.EMPLOYEE_ID=EM.EMPLOYEE_ID \n"
 						+ "and RE.UPDATER_ID=EMP.EMPLOYEE_ID(+) \n" + "and EM.EMPLOYEE_ID = '"+requestEmployeeId+"' \n"
-						+ "and RE.STATUS = '"+requestStatus+"' ";
+						+ "and RE.STATUS = '"+requestStatus+"'  and rownum between "+getCountStart+" and "+getCountEnd+"";
 			}
 		}
+		System.out.println(sql);
 
 		// 趣味リスト（Hobby型のリスト）
 		List<Request> requestList = new ArrayList<>();
@@ -101,7 +110,9 @@ public class RequestDisplayServlet extends HttpServlet {
 				// 一つ分の成績情報を入れるためReSScordインスタンスを生成
 				Request Request = new Request();
 				// SQLの取得結果をインスタンスに代入
+				System.out.println(rs1.getString("REQUEST_BOOK_ID"));
 				Request.setRequestId(rs1.getString("REQUEST_BOOK_ID"));
+				System.out.println(Request.getRequestId());
 				Request.setRequestEmployeeId(rs1.getString("EMPLOYEE_ID"));
 				Request.setRequestTitle(rs1.getString("TITLE"));
 				Request.setRequestPublisher(rs1.getString("PUBLISHER"));
@@ -116,6 +127,7 @@ public class RequestDisplayServlet extends HttpServlet {
 
 				// 値を格納したHobbyインスタンスをリストに追加
 				requestList.add(Request);
+
 			}
 		} catch (Exception e) {
 			throw new RuntimeException(String.format("検索処理の実施中にエラーが発生しました。詳細：[%s]", e.getMessage()), e);
@@ -124,6 +136,7 @@ public class RequestDisplayServlet extends HttpServlet {
 		// アクセスした人に応答するためのJSONを用意する
 
 		// JSONで出力する
+		System.out.println(requestList.get(0));
 		PrintWriter pw = response.getWriter();
 		pw.append(new ObjectMapper().writeValueAsString(requestList));
 	}
