@@ -27,7 +27,7 @@ function getSearchData () {
 		data :requestQuery,
 		success : function (json) {
 			// DOM操作
-			console.log("OK");
+			console.log(json);
 		}
 	});
 }
