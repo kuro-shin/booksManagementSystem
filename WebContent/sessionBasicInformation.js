@@ -11,6 +11,13 @@ function getSessionInfomation() {
 		success : function(json) {
 			// サーバーとの通信に成功した時の処理
 			// 確認のために返却値を出力
+			USER = json.user;
+			ROLL = json.roll;
+			NAME = json.name;
+			console.log(USER);
+			console.log(ROLL);
+			console.log(NAME);
+			return (USER,ROLL,NAME);
 			if(json.employeeId=null){
 				alert('Session情報が入っていません');
 			}else{
@@ -25,7 +32,6 @@ function getSessionInfomation() {
 //			console.log(json.employeeRole);
 			return session;
 			}
-
 		},
 		error : function(XMLHttpRequest, textStatus, errorThrown) {
 			// サーバーとの通信に失敗した時の処理

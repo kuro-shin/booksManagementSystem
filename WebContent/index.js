@@ -56,6 +56,7 @@ function checkDelinquent() {
 	});
 }
 
+
 function passSearchResult() {
 
 	// 入力フォーム䛾値を取得
@@ -71,6 +72,7 @@ function passSearchResult() {
 	location.href=url;
 
 }
+
 
 $(document).ready(function() {
 	// 初期表示用
