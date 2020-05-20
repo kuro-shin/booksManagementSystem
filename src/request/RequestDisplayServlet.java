@@ -27,35 +27,53 @@ import connectDB.ConnectDb;
 public class RequestDisplayServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public RequestDisplayServlet() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
+	/**
+	 * @see HttpServlet#HttpServlet()
+	 */
+	public RequestDisplayServlet() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
 
 	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
+	 *      response)
 	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		String requestStatus = request.getParameter("requestStatus");
 		String requestEmployeeId = request.getParameter("requestEmployeeId");
 
-
-
+		String sql;
 		// 実行するSQL文
-		String sql = "select SHAIN_ID, SHAIN_NAME from SYAIN_ZYOUHOU order by SHAIN_ID";
+		if (requestStatus == null) {
+			if (requestEmployeeId == null) {
+
+			}
+
+		} else {
+			if (requestEmployeeId == null) {
+
+			} else {
+				sql = "select \n" + "RE.REQUEST_BOOK_ID, \n" + "RE.EMPLOYEE_ID, \n" + "EM.NAME, \n" + "RE.TITLE, \n"
+						+ "RE.PUBLISHER, \n" + "RE.AUTHER, \n" + "RE.URL, \n" + "RE.STATUS, \n" + "RE.REJECTED_REASON, \n"
+						+ "RE.REQUEST_DATE, \n" + "RE.UPDATED_DATE, \n" + "EMP.NAME \n" + "from \n" + "REQUEST_BOOKS RE, \n"
+						+ "EMPLOYEES EM, \n" + "EMPLOYEES EMP \n" + "where 1=1 \n" + "and RE.EMPLOYEE_ID=EM.EMPLOYEE_ID \n"
+						+ "and RE.UPDATER_ID=EMP.EMPLOYEE_ID(+) \n" + "and EM.EMPLOYEE_ID = '0001' \n"
+						+ "and RE.STATUS = '0' ";
+			}
+		}
 
 		// 趣味リスト（Hobby型のリスト）
 		List<Request> requestList = new ArrayList<>();
 
-				Map<String, String> conInfo = ConnectDb.loadDB();
-				// DBへ接続してSQLを実行
-				try (
-						// データベースへ接続します
-				Connection con = DriverManager.getConnection(conInfo.get("url"), conInfo.get("user"),conInfo.get("pass"));
+		Map<String, String> conInfo = ConnectDb.loadDB();
+		// DBへ接続してSQLを実行
+		try (
+				// データベースへ接続します
+				Connection con = DriverManager.getConnection(conInfo.get("url"), conInfo.get("user"),
+						conInfo.get("pass"));
 				// SQLの命令文を実行するための準備をおこないます
 				Statement stmt = con.createStatement();
 
@@ -86,9 +104,11 @@ public class RequestDisplayServlet extends HttpServlet {
 	}
 
 	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
+	 *      response)
 	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		doGet(request, response);
 	}
