@@ -5,8 +5,8 @@ import java.io.PrintWriter;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.Statement;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Map;
 
 import javax.servlet.ServletException;
@@ -14,6 +14,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 
@@ -47,27 +48,33 @@ public class BookRegistrationServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		response.setContentType("text/html; charset=UTF-8");
+		HttpSession session = request.getSession(true);
+		String employeeName = (String) session.getAttribute("employeeName");
 		//一覧表示、追加、編集、削除のどのリクエストかを判断
-		String Title = request.getParameter("Title");
-		String Payee = request.getParameter("Payee");
-		String Amount = request.getParameter("Amount");
-		String Reason = request.getParameter("Reason");
-		String userName = request.getParameter("userName");
-
+		String bookTitle = request.getParameter("bookTitle");
+		String bookAuther = request.getParameter("bookAuther");
+		String bookPublisher = request.getParameter("bookPublisher");
+		String bookGenre = request.getParameter("bookGenre");
+		String bookId = GenreRegistration.Registration(bookGenre);
+		Calendar cal = Calendar.getInstance();
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd");
+        String createDay = sdf.format(cal.getTime());
 		//String jsRequest = "depttable";
 		String sql = "";
 		String excute_message = "";
-		String time = toStr(LocalDateTime.now(), "yyyy-MM-dd");
 
-
-			sql = "insert into TR_EXPENSE \n" +
-					"(EXPENSE_ID, REQ_DATE, APP_NAME, TITLE, PAYEE, AMOUNT, UPDATE_DATE,  \n" +
-					"	UPDATE_NAME, STATUS, REASON, DENY_REASON) \n" +
+			sql = "insert into BOOKS \n" +
+					"(BOOK_ID, TITLE, PUBLISHER, AUTHER, GENRE_ID, PURCHASE_DATE, PURCHASER, IS_BORROWING) \n" +
 					"select \n" +
-					"LPAD(count(*)+1,8,'0'), '"+time+"', '"+userName+"', '"+Title+"', '"+Payee+"', '"+Amount+"', '"+time+"',  \n" +
-					"	'"+userName+"', '0', '"+Reason+"', '' \n" +
-					"from \n" +
-					"TR_EXPENSE \n";
+					"'BK'||lpad(MAX(SUBSTR(BOOK_ID,3))+1,6,0), \n" +
+					"'"+bookTitle+"', \n" +
+					"'"+bookPublisher+"', \n" +
+					"'"+bookAuther+"', \n" +
+					"'"+bookId+"', \n" +
+					"'"+createDay+"', \n" +
+					"'"+employeeName+"', \n" +
+					"'0' \n" +
+					"from BOOKS \n";
 
 		//DBのURL,ID,PASSを取得
 		Map<String, String> conInfo = ConnectDb.loadDB();
@@ -85,6 +92,8 @@ public class BookRegistrationServlet extends HttpServlet {
 			@SuppressWarnings("unused")
 			int rs1 = stmt.executeUpdate(sql);
 
+
+
 			// アクセスした人に応答するためのJSONを用意する
 			PrintWriter pw = response.getWriter();
 
@@ -94,11 +103,6 @@ public class BookRegistrationServlet extends HttpServlet {
 		} catch (Exception e) {
 			throw new RuntimeException(String.format("検索処理の実施中にエラーが発生しました。詳細：[%s]", e.getMessage()), e);
 		}
-	}
-
-	private String toStr(LocalDateTime localDateTime, String format) {
-		DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern(format);
-        return localDateTime.format(dateTimeFormatter);
 	}
 }
 
