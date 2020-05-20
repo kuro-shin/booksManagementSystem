@@ -5,6 +5,8 @@ import java.io.PrintWriter;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.Statement;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Map;
 
 import javax.servlet.ServletException;
@@ -16,6 +18,7 @@ import javax.servlet.http.HttpServletResponse;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import connectDB.ConnectDb;
+import login.Hmac;
 
 /**
  * Servlet implementation class NewMemberRegistrationServlet
@@ -24,43 +27,56 @@ import connectDB.ConnectDb;
 public class NewMemberRegistrationServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public NewMemberRegistrationServlet() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
+	/**
+	 * @see HttpServlet#HttpServlet()
+	 */
+	public NewMemberRegistrationServlet() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
 
 	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
+	 *      response)
 	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		response.getWriter().append("Served at: ").append(request.getContextPath());
 	}
 
 	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
+	 *      response)
 	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		doGet(request, response);
-		String  registEmployeeId= request.getParameter("registEmployeeId");
-		String  registEmployeeName= request.getParameter("registEmployeeName");
-		String  registEmployeeNameKana= request.getParameter("registEmployeeNameKana");
-		String  registEmployeeEmail= request.getParameter("registEmployeeEmail");
-		String  registLoginPassword= request.getParameter("registLoginPassword");
-
+		Calendar cal = Calendar.getInstance();
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd");
+		String registEmployeeId = request.getParameter("registEmployeeId");
+		String registEmployeeName = request.getParameter("registEmployeeName");
+		String registEmployeeNameKana = request.getParameter("registEmployeeNameKana");
+		String registEmployeeEmail = request.getParameter("registEmployeeEmail");
+		String registLoginPassword = Hmac.getHmac(request.getParameter("registLoginPassword"));
+		String registLoginRole = request.getParameter("registLoginRole");
+		String createDay = sdf.format(cal.getTime());
+		System.out.println(registLoginPassword);
+		if (registLoginRole == "" || registLoginRole == null) {
+			registLoginRole = "user";
+		}
 		// 実行するSQL文
-		String sql = "";
+		String sql = "insert into EMPLOYEES  \n"
+				+ "(EMPLOYEE_ID, NAME, NAME_KANA, MAIL,PASSWORD,EMPLOYEE_ROLE,CREATED_DATE) \n" + "values \n" +
+				"('"+registEmployeeId+"','"+registEmployeeName+"','"+registEmployeeNameKana+"','"+registEmployeeEmail+"','"+registLoginPassword+"','"+registLoginRole+"','"+createDay+"')";
 		// エラーが発生するかもしれない処理はtry-catchで囲みます
 		// この場合はDBサーバへの接続に失敗する可能性があります
 		Map<String, String> conInfo = ConnectDb.loadDB();
 		// DBへ接続してSQLを実行
-         try (
-		// データベースへ接続します
-Connection con = DriverManager.getConnection(conInfo.get("url"), conInfo.get("user"), conInfo.get("pass"));
+		try (
+				// データベースへ接続します
+				Connection con = DriverManager.getConnection(conInfo.get("url"), conInfo.get("user"),
+						conInfo.get("pass"));
 				// SQLの命令文を実行するための準備をおこないます
 				Statement stmt = con.createStatement();) {
 			// SQLの命令文を実行し、その件数をint型のresultCountに代入します
@@ -74,6 +90,4 @@ Connection con = DriverManager.getConnection(conInfo.get("url"), conInfo.get("us
 		pw.append(new ObjectMapper().writeValueAsString("ok"));
 
 	}
-	}
-
-
+}
