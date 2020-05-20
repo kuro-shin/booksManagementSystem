@@ -1,7 +1,7 @@
-var session = getSessionInfomation();
-var role = session.employeeRole;
-var name = session.employeeName;
-var employeeId = session.employeeId;
+//var session = getSessionInfomation();
+var role; //= session.employeeRole;
+var name; // session.employeeName;
+var employeeId; //= session.employeeId;
 var requesutapplication = function() {
 	var requesutEmployeeId = employeeId
 	var requestTitle = $('#requestTitle').val();
