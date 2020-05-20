@@ -64,9 +64,8 @@ function checkDelinquent() {
 		success : function(json) {
 			// サーバーとの通信に成功した時の処理
 			// 確認のために返却値を出力
-			var result = $.isEmptyObject(json);
-			console.log(result);
-			if(!result)
+
+			if(json=='Delinquent')
 			$('#checkDelinquent').append('返却期限を過ぎている本があります。速やかに返却してください。');
 
 		},
