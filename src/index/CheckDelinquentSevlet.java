@@ -48,16 +48,16 @@ public class CheckDelinquentSevlet extends HttpServlet {
 		Date date = new Date();
         System.out.println(date.toString());
 
-//        HttpSession session = request.getSession();
+//      HttpSession session = request.getSession();
 //		String employeeId = (String) session.getAttribute("employeeId");
-        String employeeId="0002";
+        String employeeId="0001"; //
 
         Calendar cal = Calendar.getInstance();
         SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd");
         String createDay = sdf.format(cal.getTime());
 
         PrintWriter pw = response.getWriter();
-        String isDelinquent;
+        String isDelinquent="";
 
 		try (
 				// データベースへ接続します
@@ -66,11 +66,9 @@ public class CheckDelinquentSevlet extends HttpServlet {
 				// SQLの命令文を実行するための準備をおこないます
 				PreparedStatement stmt = createPreparedStatement(con,employeeId,createDay);
 				ResultSet rs1 = stmt.executeQuery();) {
-
-			System.out.println("checkDelinquetできた");
+			if(rs1.next()){
 			isDelinquent="Delinquent";
-
-
+			}
 
 		} catch (Exception e) {
 			throw new RuntimeException(String.format("検索処理の実施中にエラーが発生しました。詳細：[%s]", e.getMessage()), e);
@@ -85,9 +83,9 @@ public class CheckDelinquentSevlet extends HttpServlet {
 				"from \n" +
 				"BORROWING_BOOKS \n" +
 				"where 1=1 \n" +
-				"and RETURN_DUE_DATE>"+createDay+" "+
+				"and RETURN_DUE_DATE<"+createDay+" "+
 				"and EMPLOYEE_ID='"+employeeId+"' ";
-
+		System.out.println(sql);
 		PreparedStatement stmt = con.prepareStatement(sql);
 		return stmt;
 	}
