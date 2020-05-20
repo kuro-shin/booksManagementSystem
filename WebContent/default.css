@@ -13,6 +13,16 @@ header {
     background:#51a1a2;
 }
 
+#userInformation{
+	font-size:15px;
+}
+
+#logoutButton{
+	float:right;
+}
+
+
+
 header a{
 	margin:0 auto;
 }
@@ -25,6 +35,7 @@ main {
 }
 nav {
     width: 150px;
+    height: 500px;
     border-right: 1px solid #000000;
     background:#51a1a2;
 }
