@@ -66,7 +66,7 @@ function passSearchResult() {
 	encodeVal= encodeVal.replace('%20','+');
 	encodeVal= encodeVal.replace('%E3%80%80','+');
 
-	var url = 'bookSearchResults/bookSearchResults.html?q='+encodeVal;
+	var url = 'bookSearchResults/bookSearchResults.html?q='+encodeVal+'/p1';
 	// 画面遷移
 	location.href=url;
 
