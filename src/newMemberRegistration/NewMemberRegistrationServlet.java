@@ -17,6 +17,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+import connectDB.ConnectDb;
 import login.Hmac;
 
 /**
@@ -70,7 +71,7 @@ public class NewMemberRegistrationServlet extends HttpServlet {
 				"('"+registEmployeeId+"','"+registEmployeeName+"','"+registEmployeeNameKana+"','"+registEmployeeEmail+"','"+registLoginPassword+"','"+registLoginRole+"','"+createDay+"')";
 		// エラーが発生するかもしれない処理はtry-catchで囲みます
 		// この場合はDBサーバへの接続に失敗する可能性があります
-		Map<String, String> conInfo = connectDb.loadDB();
+		Map<String, String> conInfo = ConnectDb.loadDB();
 		// DBへ接続してSQLを実行
 		try (
 				// データベースへ接続します
