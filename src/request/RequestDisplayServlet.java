@@ -49,19 +49,34 @@ public class RequestDisplayServlet extends HttpServlet {
 		// 実行するSQL文
 		if (requestStatus == null) {
 			if (requestEmployeeId == null) {
-
+				sql = "select \n" + "RE.REQUEST_BOOK_ID, \n" + "RE.EMPLOYEE_ID, \n" + "EM.NAME, \n" + "RE.TITLE, \n"
+						+ "RE.PUBLISHER, \n" + "RE.AUTHER, \n" + "RE.URL, \n" + "RE.STATUS, \n" + "RE.REJECTED_REASON, \n"
+						+ "RE.REQUEST_DATE, \n" + "RE.UPDATED_DATE, \n" + "EMP.NAME as UPDATE_NAME \n" + "from \n" + "REQUEST_BOOKS RE, \n"
+						+ "EMPLOYEES EM, \n" + "EMPLOYEES EMP \n" + "where 1=1 \n" + "and RE.EMPLOYEE_ID=EM.EMPLOYEE_ID \n"
+						+ "and RE.UPDATER_ID=EMP.EMPLOYEE_ID(+) \n";
+			}else{
+				sql = "select \n" + "RE.REQUEST_BOOK_ID, \n" + "RE.EMPLOYEE_ID, \n" + "EM.NAME, \n" + "RE.TITLE, \n"
+						+ "RE.PUBLISHER, \n" + "RE.AUTHER, \n" + "RE.URL, \n" + "RE.STATUS, \n" + "RE.REJECTED_REASON, \n"
+						+ "RE.REQUEST_DATE, \n" + "RE.UPDATED_DATE, \n" + "EMP.NAME as UPDATE_NAME \n" + "from \n" + "REQUEST_BOOKS RE, \n"
+						+ "EMPLOYEES EM, \n" + "EMPLOYEES EMP \n" + "where 1=1 \n" + "and RE.EMPLOYEE_ID=EM.EMPLOYEE_ID \n"
+						+ "and RE.UPDATER_ID=EMP.EMPLOYEE_ID(+) \n" + "and EM.EMPLOYEE_ID = '"+requestEmployeeId+"'";
 			}
 
 		} else {
 			if (requestEmployeeId == null) {
-
+				sql = "select \n" + "RE.REQUEST_BOOK_ID, \n" + "RE.EMPLOYEE_ID, \n" + "EM.NAME, \n" + "RE.TITLE, \n"
+						+ "RE.PUBLISHER, \n" + "RE.AUTHER, \n" + "RE.URL, \n" + "RE.STATUS, \n" + "RE.REJECTED_REASON, \n"
+						+ "RE.REQUEST_DATE, \n" + "RE.UPDATED_DATE, \n" + "EMP.NAME as UPDATE_NAME \n" + "from \n" + "REQUEST_BOOKS RE, \n"
+						+ "EMPLOYEES EM, \n" + "EMPLOYEES EMP \n" + "where 1=1 \n" + "and RE.EMPLOYEE_ID=EM.EMPLOYEE_ID \n"
+						+ "and RE.UPDATER_ID=EMP.EMPLOYEE_ID(+) \n"
+						+ "and RE.STATUS = '"+requestStatus+"' ";
 			} else {
 				sql = "select \n" + "RE.REQUEST_BOOK_ID, \n" + "RE.EMPLOYEE_ID, \n" + "EM.NAME, \n" + "RE.TITLE, \n"
 						+ "RE.PUBLISHER, \n" + "RE.AUTHER, \n" + "RE.URL, \n" + "RE.STATUS, \n" + "RE.REJECTED_REASON, \n"
-						+ "RE.REQUEST_DATE, \n" + "RE.UPDATED_DATE, \n" + "EMP.NAME \n" + "from \n" + "REQUEST_BOOKS RE, \n"
+						+ "RE.REQUEST_DATE, \n" + "RE.UPDATED_DATE, \n" + "EMP.NAME as UPDATE_NAME \n" + "from \n" + "REQUEST_BOOKS RE, \n"
 						+ "EMPLOYEES EM, \n" + "EMPLOYEES EMP \n" + "where 1=1 \n" + "and RE.EMPLOYEE_ID=EM.EMPLOYEE_ID \n"
-						+ "and RE.UPDATER_ID=EMP.EMPLOYEE_ID(+) \n" + "and EM.EMPLOYEE_ID = '0001' \n"
-						+ "and RE.STATUS = '0' ";
+						+ "and RE.UPDATER_ID=EMP.EMPLOYEE_ID(+) \n" + "and EM.EMPLOYEE_ID = '"+requestEmployeeId+"' \n"
+						+ "and RE.STATUS = '"+requestStatus+"' ";
 			}
 		}
 
@@ -86,11 +101,21 @@ public class RequestDisplayServlet extends HttpServlet {
 				// 一つ分の成績情報を入れるためReSScordインスタンスを生成
 				Request Request = new Request();
 				// SQLの取得結果をインスタンスに代入
-				display.setSyainId(rs1.getString("SHAIN_ID"));
-				display.setSyainName(rs1.getString("SHAIN_NAME"));
+				Request.setRequestId(rs1.getString("REQUEST_BOOK_ID"));
+				Request.setRequestEmployeeId(rs1.getString("EMPLOYEE_ID"));
+				Request.setRequestTitle(rs1.getString("TITLE"));
+				Request.setRequestPublisher(rs1.getString("PUBLISHER"));
+				Request.setRequestAuthor(rs1.getString("AUTHER"));
+				Request.setRequestApplicantName(rs1.getString("NAME"));
+				Request.setRequestApplicantDate(rs1.getString("REQUEST_DATE"));
+				Request.setRequestUrl(rs1.getString("URL"));
+				Request.setRequestStatus(rs1.getString("STATUS"));
+				Request.setRequestRejectReason(rs1.getString("REJECTED_REASON"));
+				Request.setRequestUpdaterName(rs1.getString("UPDATE_NAME"));
+				Request.setRequestId(rs1.getString("UPDATED_DATE"));
 
 				// 値を格納したHobbyインスタンスをリストに追加
-				displaylist.add(display);
+				requestList.add(Request);
 			}
 		} catch (Exception e) {
 			throw new RuntimeException(String.format("検索処理の実施中にエラーが発生しました。詳細：[%s]", e.getMessage()), e);
