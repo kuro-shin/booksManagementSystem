@@ -55,14 +55,15 @@ public class RequestApplicationServlet extends HttpServlet {
 		String requestAuthor = request.getParameter("requestAuthor");
 		String requestUrl = request.getParameter("requestUrl");
 		String requestDate = sdf.format(cal.getTime());
-		String requestBookId = "0";//ここがまだ
 		// 実行するSQL文
-		String sql = "insert into REQUEST_BOOKS  \n" +
-				"(REQUEST_BOOK_ID, EMPLOYEE_ID, TITLE, PUBLISHER,AUTHER,URL,STATUS,CREATED_DATE) \n" +
-				"values \n" +
-				"('"+requestBookId+"', '"+requestEmployeeId+"','"+requestTitle+"','"+requestPublisher+"','"+requestAuthor+"','"+requestUrl+"','0','"+requestDate+"') ";
-		// エラーが発生するかもしれない処理はtry-catchで囲みます
-		// この場合はDBサーバへの接続に失敗する可能性があります
+		String sql = "insert into REQUEST_BOOKS   \n" +
+				"(REQUEST_BOOK_ID, EMPLOYEE_ID, TITLE, PUBLISHER,AUTHER,URL,STATUS,REQUEST_DATE)  \n" +
+				"select  \n" +
+				"'RQ'||lpad(MAX(SUBSTR(REQUEST_BOOK_ID,3))+1,6,0), '"+requestEmployeeId+"','"+requestTitle+"','"+requestPublisher+"','"+requestAuthor+"','"+requestUrl+"','0','"+requestDate+"'  \n" +
+				"from \n" +
+				"REQUEST_BOOKS " ;
+				// エラーが発生するかもしれない処理はtry-catchで囲みます
+		System.out.println(sql);
 		Map<String, String> conInfo = ConnectDb.loadDB();
 		// DBへ接続してSQLを実行
 		try (
