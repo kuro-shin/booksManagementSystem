@@ -8,7 +8,6 @@ public class Book {
 	private String bookGenreName;
 	private String bookIsBorrowing;
 	private String returnDueDate;
-	private String nextPage;
 
 	public String getBookId() {
 		return bookId;
@@ -52,10 +51,5 @@ public class Book {
 	public void setReturnDueDate(String returnDueDate) {
 		this.returnDueDate = returnDueDate;
 	}
-	public String getNextPage() {
-		return nextPage;
-	}
-	public void setNextPage(String nextPage) {
-		this.nextPage = nextPage;
-	}
+
 }

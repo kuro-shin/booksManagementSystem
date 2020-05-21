@@ -1,3 +1,21 @@
+function Borrow(bookId){
+	console.log(bookId)
+
+	'use strict';
+	var requestQuery = {
+			"bookId":bookId
+	};
+	$.ajax({
+		type : 'GET',
+		url : '/booksManagementSystem/BookSearchResults',
+		dataType : 'json',
+		data :requestQuery,
+		success : function (json) {
+			alert("貸出が完了しました");
+		}
+	});
+
+}
 function getSearchData () {
 
 	var parameter  = location.search.substring( 1, location.search.length );
@@ -28,13 +46,54 @@ function getSearchData () {
 		success : function (json) {
 			// DOM操作
 			var bookLength = json.length;
+			if(page!=1){
+				$('#pageButtonBack').append('<a href=\'bookSearchResults.html?q=/p'+(parseInt(page)-1)+'\'>前のページ</a>')
+			}
+
 			if(bookLength==21){
-				$('#pageButton').append('<a href=\'bookSearchResults.html?q=/p'+(parseInt(page)+1)+'\'>次のページ</a>')
+				$('#pageButtonNext').append('<a href=\'bookSearchResults.html?q=/p'+(parseInt(page)+1)+'\'>次のページ</a>')
 			}
+			var Element = '<table id="booksData">'
+				+'<th>書籍名</th>'
+				+'<th>著者名</th>'
+				+'<th>出版社名</th>'
+				+'<th>ジャンル</th>'
+				+'<th>貸出状況</th>'
+				+'<th>貸出</th>'
+				+'<th>返却予定日</th>'
 			for(var i=0;bookLength-1>i;i++){
-				console.log(i)
+				console.log(json[i])
+				bookId = json[i].bookId
+				bookTitle = json[i].bookTitle
+				bookAuther = json[i].bookAuther
+				bookGenreName = json[i].bookGenreName
+				bookIsBorrowing = json[i].bookIsBorrowing
+				bookPublisher = json[i].bookPublisher
+				bookReturnDueDate = json[i].returnDueDate
+				if(bookIsBorrowing==0){
+					Borrowing = "<font color=\"green\">配架中</font>"
+				}else if(bookIsBorrowing==1){
+					Borrowing = "<font color=\"red\">貸出中</font>"
+				}
+				Element += '<tr>'
+						+'<td id="Title">'+bookTitle+'</td>'
+						if(bookAuther=="none"){
+							bookAuther="";
+						}
+						Element += '<td id="Auther">'+bookAuther+'</td>'
+						+'<td id="Publisher">'+bookPublisher+'</td>'
+						+'<td>'+bookGenreName+'</td>'
+						+'<td>'+Borrowing+'</td>'
+						+'<td><input type="button" value="借りる" id="'+bookId+'" onclick=\"Borrow(this.id)\"></td>'
+						if(bookIsBorrowing==1){
+							Element += '<td>'+bookReturnDueDate+'</td>'
+						}
+
+						Element+='</tr>'
 			}
-			//console.log(bookLength);
+			Element += '</table>'
+				$('#userInput').append(Element);
+
 			console.log(json);
 		}
 	});
