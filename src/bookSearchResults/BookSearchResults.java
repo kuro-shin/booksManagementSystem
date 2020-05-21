@@ -53,18 +53,54 @@ public class BookSearchResults extends HttpServlet {
 		System.out.println(page);
 		int displayPage = 20;
 		int getCountEnd = page*displayPage+1;
-		int getCountStart = getCountEnd-21;
+		int getCountStart = getCountEnd-20;
 		System.out.println(getCountStart+""+getCountEnd);
+
+//		String sql = "select * from ( \n" +
+//				" \n" +
+//				"select ROWNUM as rn, BK.BOOK_ID, BK.TITLE, BK.PUBLISHER, BK.AUTHER, GE.GENRE_NAME, BK.IS_BORROWING, BB.RETURN_DUE_DATE \n" +
+//				"from BOOKS BK, \n" +
+//				"GENRES GE, \n" +
+//				"BORROWING_BOOKS BB \n" +
+//				"where 1=1 \n" +
+//				"and GE.GENRE_ID = BK.GENRE_ID \n" +
+//				"and BB.BOOK_ID(+)=BK.BOOK_ID \n";
+//		String searchWord = null;
+//		for(int i=0;i<searchWordLength;i++){
+//			searchWord = searchWordList.get(i);
+//			sql += "and( \n" +
+//					"BK.TITLE LIKE '%"+searchWord+"%' \n" +
+//					"or BK.AUTHER LIKE '%"+searchWord+"%' \n" +
+//					"or BK.PUBLISHER LIKE '%"+searchWord+"%' \n" +
+//					"or GE.GENRE_NAME LIKE '%"+searchWord+"%' \n" +
+//					") \n";
+//		}
+//		sql+="order by BK.BOOK_ID\n" +
+//				") \n" +
+//				"where rn between "+getCountStart+" and "+getCountEnd+" \n";
 
 		String sql = "select * from ( \n" +
 				" \n" +
 				"select ROWNUM as rn, BK.BOOK_ID, BK.TITLE, BK.PUBLISHER, BK.AUTHER, GE.GENRE_NAME, BK.IS_BORROWING, BB.RETURN_DUE_DATE \n" +
-				"from BOOKS BK, \n" +
-				"GENRES GE, \n" +
-				"BORROWING_BOOKS BB \n" +
-				"where 1=1 \n" +
-				"and GE.GENRE_ID = BK.GENRE_ID \n" +
-				"and BB.BOOK_ID(+)=BK.BOOK_ID \n";
+				"from \n" +
+				"	( \n" +
+				"	select BK.BOOK_ID from \n" +
+				"	BOOKS BK, \n" +
+				"	GENRES GE, \n" +
+				"	BORROWING_BOOKS BB \n" +
+				"	where 1=1 \n" +
+				"	and GE.GENRE_ID = BK.GENRE_ID \n" +
+				"	and BB.BOOK_ID(+)=BK.BOOK_ID \n" +
+				"	 \n" +
+				"	order by BK.BOOK_ID \n" +
+				"	) BKS, \n" +
+				"	BOOKS BK, \n" +
+				"	GENRES GE, \n" +
+				"	BORROWING_BOOKS BB \n" +
+				"	where 1=1 \n" +
+				"	and BKS.BOOK_ID = BK.BOOK_ID \n" +
+				"	and GE.GENRE_ID = BK.GENRE_ID \n" +
+				"	and BB.BOOK_ID(+)=BK.BOOK_ID \n";
 		String searchWord = null;
 		for(int i=0;i<searchWordLength;i++){
 			searchWord = searchWordList.get(i);
@@ -75,14 +111,13 @@ public class BookSearchResults extends HttpServlet {
 					"or GE.GENRE_NAME LIKE '%"+searchWord+"%' \n" +
 					") \n";
 		}
-		sql+=" \n" +
-				") \n" +
-				"where rn between "+getCountStart+" and "+getCountEnd+" \n";
+
+		sql+=") \n"
+			+ "where rn between "+getCountStart+" and "+getCountEnd+" \n";
 		System.out.println(sql);
 
 		//		//DBのURL,ID,PASSを取得
 		Map<String, String> conInfo = ConnectDb.loadDB();
-
 
 		try (
 			// データベースへ接続します

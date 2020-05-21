@@ -3,7 +3,7 @@ function getSearchData () {
 	var parameter  = location.search.substring( 1, location.search.length );
 	parameter = decodeURIComponent( parameter );
 	//ページ数を取得
-	page = parameter.split('/p')[1];
+	var page = parameter.split('/p')[1];
 
 	//サーチワードを取得
 	search = parameter.split('/p')[0];
@@ -13,7 +13,7 @@ function getSearchData () {
 	for(var i=0; i<q.split('+').length;i++){
 		searchWord.push(q.split('+')[i])
 	}
-	console.log(searchWord.length)
+	//console.log(searchWord.length)
 	'use strict';
 	var requestQuery = {
 			"searchWordLength":searchWord.length,
@@ -27,6 +27,14 @@ function getSearchData () {
 		data :requestQuery,
 		success : function (json) {
 			// DOM操作
+			var bookLength = json.length;
+			if(bookLength==21){
+				$('#pageButton').append('<a href=\'bookSearchResults.html?q=/p'+(parseInt(page)+1)+'\'>次のページ</a>')
+			}
+			for(var i=0;bookLength-1>i;i++){
+				console.log(i)
+			}
+			//console.log(bookLength);
 			console.log(json);
 		}
 	});
