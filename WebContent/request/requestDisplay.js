@@ -58,13 +58,13 @@ var display = function() {
 						}else{
 							request.requestStatus = "申請中";
 						}
-						tableElemnt += '<tr> <td>' + request.requestTitle
-								+ '</td><td>' + request.requestApplicantName + '</td>'
-								+ '</td><td>' + request.requestApplicantDate + '</td>'
-								+ '</td><td>' + request.requestUpdaterName + '</td>'
-								+ '</td><td>' + request.requestUpdateDate + '</td>'
-								+ '</td><td>' + request.requestStatus + '</td>'
-								+ '</td><td><button id="detail'+ i+'" value="'+request.requestId+'">詳細</button></td>'
+						tableElemnt += '<tr> <td><a href="'+request.requestUrl+'">' + request.requestTitle
+								+ '</a></td><td>' + request.requestApplicantName + '</td>'
+								+ '<td>' + request.requestApplicantDate + '</td>'
+								+ '<td>' + request.requestUpdaterName + '</td>'
+								+ '<td>' + request.requestUpdateDate + '</td>'
+								+ '<td>' + request.requestStatus + '</td>'
+								+ '<td><button id="detail'+ i+'" value="'+request.requestId+'">詳細</button></td></tr>'
 								;
 						count++;
 					}
@@ -77,14 +77,14 @@ var display = function() {
 					console.log(errorThrown)
 				}
 			});
-	for (var i = 1; i <= count; i++) {
+	for (var i = 0; i <= count; i++) {
 		$('#detail' + i).click(detail);
 	}
 }
 var detail = function(){
 	var id =$(this).attr("id");
 	var requestId = $('#'+id+'').val();
-	location.href = './expenseDetail.html?q=' + requestId;
+	location.href = './requestDetailDisplay.html?q=' + requestId;
 }
 var search = function(){
 	getStatus = document.form.requestStatus;
