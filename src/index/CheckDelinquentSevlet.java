@@ -66,6 +66,7 @@ public class CheckDelinquentSevlet extends HttpServlet {
 				// SQLの命令文を実行するための準備をおこないます
 				PreparedStatement stmt = createPreparedStatement(con,employeeId,createDay);
 				ResultSet rs1 = stmt.executeQuery();) {
+
 			if(rs1.next()){
 			isDelinquent="Delinquent";
 			}
