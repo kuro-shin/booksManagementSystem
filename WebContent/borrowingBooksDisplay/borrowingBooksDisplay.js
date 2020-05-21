@@ -38,8 +38,11 @@ function display() {
 						$('#bb_list'+(i+1)).append('<td>'+bb.title+'</td><td>'+bb.author+'</td><td>'
 								+bb.publisher+'</td><td>'+bb.return_due_date+'</td>'+
 								'<td><button id="returnBookButton'+(i+1)+'">返却</button></td></tr>');
-
 						}
+
+
+						$('#shain_list'+(i+1)).append('<input type="button" value="削除" id="delete'+(i+1)+'" onclick="deleteShain(\''+s.shain_id+'\')" >');
+					}
 
 
 					},
@@ -88,11 +91,13 @@ function checkDelinquent() {
 }
 
 
+
 $(document).ready(function() {
 	// 初期表示用
 	//getSessionInfomation();
 	//executeAjax();
 	display();
 	checkDelinquent();
+
 
 });

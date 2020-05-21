@@ -6,6 +6,7 @@ public class BorrowingBook {
 	private String publisher;
 	private String author;
 	private String return_due_date;
+	//bb.BORROWING_BOOK_ID
 
 	public String getTitle() {
 		return title;
