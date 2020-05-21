@@ -76,8 +76,8 @@ public class EditBookServlet extends HttpServlet {
 	private PreparedStatement createPreparedStatement(Connection con, String book_id,String bookTitle,String bookAuther,String bookPublisher,String bookGenre) throws SQLException {
 		// 実行するSQL文
 		String sql = "UPDATE BOOKS \n" +
-				"SET TITLE =?, AUTHER =?, PUBLISHER=?,GENRE=? " +
-				"WHERE id = ?" ;
+				"SET TITLE =?, AUTHER =?, PUBLISHER=?,GENRE_ID=? " +
+				"WHERE BOOK_ID = ?" ;
 
 		PreparedStatement stmt = con.prepareStatement(sql);
 		stmt.setString(1, bookTitle);

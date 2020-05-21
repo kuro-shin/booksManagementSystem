@@ -67,12 +67,9 @@ function display() {
 }
 
 function deleteBook(book_id){
+
 	var requestQuery = {
-			book_id : book_id,
-			bookTitle : $('#bookTitle').val(),
-			bookAuther : $('#bookAuther').val(),
-			bookPublisher : $('#bookPublisher').val(),
-			bookGenre : $('#bookGenre').val()
+			book_id : book_id
 };
 	$.ajax({
 		type : 'POST',
@@ -95,13 +92,22 @@ function deleteBook(book_id){
 			console.log(errorThrown)
 		}
 	});
+	$('#isUser').empty();
+	$('#isManager').empty();
+	$('#editBookTitle').empty();
+	$('#editOrDelete').empty();
 	display();// 再表示
 }
 
 
 function editBook(book_id){
+
 	var requestQuery = {
-			book_id : book_id
+			book_id : book_id,
+			bookTitle : $('#bookTitle').val(),
+			bookAuther : $('#bookAuther').val(),
+			bookPublisher : $('#bookPublisher').val(),
+			bookGenre : $('#bookGenre').val()
 
 };
 	$.ajax({
@@ -125,6 +131,10 @@ function editBook(book_id){
 			console.log(errorThrown)
 		}
 	});
+	$('#isUser').empty();
+	$('#isManager').empty();
+	$('#editBookTitle').empty();
+	$('#editOrDelete').empty();
 	display();// 再表示
 }
 

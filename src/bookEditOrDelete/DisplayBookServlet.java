@@ -42,7 +42,8 @@ public class DisplayBookServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());	response.setContentType("text/html; charset=UTF-8");
+		//response.getWriter().append("Served at: ").append(request.getContextPath());
+		response.setContentType("text/html; charset=UTF-8");
 		// TODO 必須機能「趣味参照機能」
 		// JDBCドライバの準備
 
@@ -67,14 +68,14 @@ public class DisplayBookServlet extends HttpServlet {
 				ResultSet rs1 = stmt.executeQuery();) {
 
 			if(rs1.next()){
-//				Book b = new Book();
-//				b.setBookTitle(rs1.getString("TITLE"));
-//				b.setBookAuther(rs1.getString("AUTHER"));
-//				b.setBookPublisher(rs1.getString("PUBLISHER"));
-//				b.setBookGenreName(rs1.getString("GENRE_NAME"));
-//				System.out.println("DisplayBookServletのrs1.next()までは通ってるよ");
-//				books.add(b);
-//				 System.out.println(b);
+				Book b = new Book();
+				b.setBookTitle(rs1.getString("TITLE"));
+				b.setBookAuther(rs1.getString("AUTHER"));
+				b.setBookPublisher(rs1.getString("PUBLISHER"));
+				b.setBookGenreName(rs1.getString("GENRE_NAME"));
+				System.out.println("DisplayBookServletのrs1.next()までは通ってるよ");
+				books.add(b);
+				 System.out.println(b);
 
 			}
 
@@ -83,13 +84,13 @@ public class DisplayBookServlet extends HttpServlet {
 			throw new RuntimeException(String.format("検索処理の実施中にエラーが発生しました。詳細：[%s]", e.getMessage()), e);
 		}
 		//pw.append(new ObjectMapper().writeValueAsString(books));
-		pw.append(new ObjectMapper().writeValueAsString("ok"));
+		pw.append(new ObjectMapper().writeValueAsString(books));
 
 	}
 
 	private PreparedStatement createPreparedStatement(Connection con,String book_id) throws SQLException {
 		// 実行するSQL文
-		String sql ="select \n" +
+		String sql= "select \n" +
 				"b.TITLE, \n" +
 				"b.PUBLISHER, \n" +
 				"b.AUTHER, \n" +
@@ -98,11 +99,14 @@ public class DisplayBookServlet extends HttpServlet {
 				"BOOKS b, \n" +
 				"GENRES g \n" +
 				"where 1=1 \n" +
-				"and BOOK_ID='"+book_id+"' \n" +
+				"and BOOK_ID=? \n" +
 				"and b.GENRE_ID=g.GENRE_ID \n" ;
-		System.out.println(sql);
+
+
 
 		PreparedStatement stmt = con.prepareStatement(sql);
+		stmt.setString(1, book_id);
+		System.out.println(sql);
 		return stmt;
 	}
 
