@@ -44,7 +44,7 @@ public static String requestId(String a){
 			"where 1=1 \n" +
 			"and RE.EMPLOYEE_ID=EM.EMPLOYEE_ID \n" +
 			"and RE.UPDATER_ID=EMP.EMPLOYEE_ID(+) \n" +
-			"and EM.REQUEST_BOOK_ID = '"+a+"' " ;
+			"and RE.REQUEST_BOOK_ID = '"+a+"' " ;
 }
 public void setRequestStatus(String requestStatus) {
 	this.requestStatus = requestStatus;
