@@ -59,12 +59,12 @@ var display = function() {
 							request.requestStatus = "申請中";
 						}
 						tableElemnt += '<tr> <td>' + request.requestTitle
-								+ '</td><td>' + request.requestApplicantName + '</td>'
+								+ '</td><td><a href="'+request.requestUrl+'">' + request.requestApplicantName + '</a></td>'
 								+ '</td><td>' + request.requestApplicantDate + '</td>'
 								+ '</td><td>' + request.requestUpdaterName + '</td>'
 								+ '</td><td>' + request.requestUpdateDate + '</td>'
 								+ '</td><td>' + request.requestStatus + '</td>'
-								+ '</td><td><button id="detail'+ i+'" value="'+request.requestId+'">詳細</button></td>'
+								+ '</td><td><button id="detail'+ i+'" value="'+request.requestId+'">詳細</button></td></tr>'
 								;
 						count++;
 					}
@@ -77,7 +77,7 @@ var display = function() {
 					console.log(errorThrown)
 				}
 			});
-	for (var i = 1; i <= count; i++) {
+	for (var i = 0; i <= count; i++) {
 		$('#detail' + i).click(detail);
 	}
 }
