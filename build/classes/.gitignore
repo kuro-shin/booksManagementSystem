@@ -1,7 +1,3 @@
-/borrowingBooksDisplay/
-/deliquentPersonDisplay/
-/index/
 /mail/
-/SendMail$1.class
-/SendMail$MailDataset.class
-/SendMail.class
+/changePassword/
+/userAuth/

@@ -21,12 +21,12 @@ import connectDB.ConnectDb;
 /**
  * メールに関するユーティリティクラス.
  */
-public class SendMail {
+public class SendMailTest {
 
 	/**
 	 * コンストラクタ.
 	 */
-	private SendMail() {
+	private SendMailTest() {
 	}
 
 	public static Map<String, String> getUserInfo(){
@@ -73,7 +73,7 @@ public class SendMail {
 		mailDataset.subject = subject;
 		mailDataset.content = content;
 
-		boolean ret =SendMail.send(mailDataset);
+		boolean ret =SendMailTest.send(mailDataset);
 	}
 
 	/**
