@@ -84,7 +84,7 @@ var display = function() {
 var detail = function(){
 	var id =$(this).attr("id");
 	var requestId = $('#'+id+'').val();
-	location.href = './expenseDetail.html?q=' + requestId;
+	location.href = './requestDetailDisplay.html?q=' + requestId;
 }
 var search = function(){
 	getStatus = document.form.requestStatus;
