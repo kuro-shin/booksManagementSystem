@@ -8,7 +8,6 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -47,12 +46,12 @@ public class DisplayBorrowingBooksServlet extends HttpServlet {
 		// JDBCドライバの準備
 
 		Map<String, String> conInfo = ConnectDb.loadDB();
-		Date date = new Date();
-        System.out.println(date.toString());
+//		Date date = new Date();
+//        System.out.println(date.toString());
 
 //        HttpSession session = request.getSession();
 //		String employeeId = (String) session.getAttribute("employeeId");
-        String employeeId="0002";
+        String employeeId="0001";//sessionの情報持ってこれるようになったら消す
 
         PrintWriter pw = response.getWriter();
         List<BorrowingBook> BorrowingBooksList = new ArrayList<>();
@@ -71,6 +70,7 @@ public class DisplayBorrowingBooksServlet extends HttpServlet {
 				bb.setPublisher(rs1.getString("PUBLISHER"));
 				bb.setAuthor(rs1.getString("AUTHER"));
 				bb.setReturn_due_date(rs1.getString("RETURN_DUE_DATE"));
+				bb.setBorrowing_book_id(rs1.getString("BORROWING_BOOK_ID"));
 
 				BorrowingBooksList.add(bb);
 			}
@@ -89,6 +89,7 @@ public class DisplayBorrowingBooksServlet extends HttpServlet {
 				"b.TITLE, \n" +
 				"b.PUBLISHER, \n" +
 				"b.AUTHER, \n" +
+				"bb.BORROWING_BOOK_ID, \n" +
 				"bb.RETURN_DUE_DATE \n" +
 				"from \n" +
 				"BORROWING_BOOKS bb, \n" +
@@ -97,7 +98,8 @@ public class DisplayBorrowingBooksServlet extends HttpServlet {
 				"where 1=1 \n" +
 				"and bb.BOOK_ID=b.BOOK_ID \n" +
 				"and bb.EMPLOYEE_ID=e.EMPLOYEE_ID \n" +
-				"and e.EMPLOYEE_ID='"+employeeId+"'" ;
+				"and e.EMPLOYEE_ID='"+employeeId+"'"+
+				"and bb.IS_RETURNED=0";
 
 		PreparedStatement stmt = con.prepareStatement(sql);
 		return stmt;

@@ -1,11 +1,11 @@
 //var session = getSessionInfomation();
 var session = new Object();
-//session.employeeId='0001';
-//session.employeeName='未来太郎';
-//session.employeeRole='manager';
-session.employeeId='0002';
-session.employeeName='現在次郎';
-session.employeeRole='user';
+session.employeeId='0001';
+session.employeeName='未来太郎';
+session.employeeRole='manager';
+//session.employeeId='0002';
+//session.employeeName='現在次郎';
+//session.employeeRole='user';
 
 function display() {
 	 'use strict';
@@ -37,12 +37,12 @@ function display() {
 
 						$('#bb_list'+(i+1)).append('<td>'+bb.title+'</td><td>'+bb.author+'</td><td>'
 								+bb.publisher+'</td><td>'+bb.return_due_date+'</td>'+
-								'<td><button id="returnBookButton'+(i+1)+'">返却</button></td></tr>');
+								'<td><button onclick="returnBorrowingBook(\''+bb.borrowing_book_id+'\')">返却</button></td></tr>');
 						}
 
 
-						$('#shain_list'+(i+1)).append('<input type="button" value="削除" id="delete'+(i+1)+'" onclick="deleteShain(\''+s.shain_id+'\')" >');
-					}
+					//	$('#shain_list'+(i+1)).append('<input type="button" value="削除" id="delete'+(i+1)+'" onclick="deleteShain(\''+s.shain_id+'\')" >');
+
 
 
 					},
@@ -56,8 +56,35 @@ function display() {
 						console.log(errorThrown)
 					}
 				});
+}
 
+function returnBorrowingBook(id){
+	 $('#borrowingBooksBody').empty();
+	var requestQuery = {
+	q : id
+};
+	$.ajax({
+		type : 'POST',
+		dataType : 'json',
+		url : '/booksManagementSystem/ReturnBorrowingBookServlet',
+		data : requestQuery,
+		async: false,
+		success : function(json) {
+			// サーバーとの通信に成功した時の処理
+			// 確認のために返却値を出力
+			console.log("返却完了");
+		},
+		error : function(XMLHttpRequest, textStatus, errorThrown) {
+			// サーバーとの通信に失敗した時の処理
+			//alert('deleteするときにデータの通信に失敗しました');
 
+			console.log("XMLHttpRequest : " + XMLHttpRequest.status);
+			console.log("textStatus     : " + textStatus);
+			console.log("errorThrown    : " + errorThrown.message);
+			console.log(errorThrown)
+		}
+	});
+	display();// 再表示
 }
 
 function checkDelinquent() {
