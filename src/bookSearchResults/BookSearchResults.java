@@ -96,7 +96,7 @@ public class BookSearchResults extends HttpServlet {
 				"	) BKS, \n" +
 				"	BOOKS BK, \n" +
 				"	GENRES GE, \n" +
-				"	BORROWING_BOOKS BB \n" +
+				"	(select BOOK_ID,RETURN_DUE_DATE, MIN(IS_RETURNED) as IS_RETURNED from BORROWING_BOOKS group by book_id, RETURN_DUE_DATE) BB \n" +
 				"	where 1=1 \n" +
 				"	and BKS.BOOK_ID = BK.BOOK_ID \n" +
 				"	and GE.GENRE_ID = BK.GENRE_ID \n" +
