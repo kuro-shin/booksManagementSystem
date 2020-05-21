@@ -6,18 +6,19 @@ function Borrow(bookId){
 			"bookId":bookId
 	};
 	$.ajax({
-		type : 'GET',
-		url : '/booksManagementSystem/BookSearchResults',
+		type : 'POST',
+		url : '/booksManagementSystem/BorrowBookServlet',
 		dataType : 'json',
 		data :requestQuery,
 		success : function (json) {
 			alert("貸出が完了しました");
+			location.reload();
 		}
 	});
 
 }
 function getSearchData () {
-
+	$('#userInput').empty();
 	var parameter  = location.search.substring( 1, location.search.length );
 	parameter = decodeURIComponent( parameter );
 	//ページ数を取得
@@ -84,7 +85,11 @@ function getSearchData () {
 						+'<td id="Publisher">'+bookPublisher+'</td>'
 						+'<td>'+bookGenreName+'</td>'
 						+'<td>'+Borrowing+'</td>'
-						+'<td><input type="button" value="借りる" id="'+bookId+'" onclick=\"Borrow(this.id)\"></td>'
+						if(bookIsBorrowing==0){
+							Element+='<td><input type="button" value="借りる" id="'+bookId+'" onclick=\"Borrow(this.id)\"></td>'
+						}else{
+							Element+='<td></td>'
+						}
 						if(bookIsBorrowing==1){
 							Element += '<td>'+bookReturnDueDate+'</td>'
 						}
