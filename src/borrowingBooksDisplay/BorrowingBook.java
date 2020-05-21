@@ -6,7 +6,7 @@ public class BorrowingBook {
 	private String publisher;
 	private String author;
 	private String return_due_date;
-	//bb.BORROWING_BOOK_ID
+	private String borrowing_book_id;
 
 	public String getTitle() {
 		return title;
@@ -38,6 +38,14 @@ public class BorrowingBook {
 
 	public void setReturn_due_date(String return_due_date) {
 		this.return_due_date = return_due_date;
+	}
+
+	public String getBorrowing_book_id() {
+		return borrowing_book_id;
+	}
+
+	public void setBorrowing_book_id(String borrowing_book_id) {
+		this.borrowing_book_id = borrowing_book_id;
 	}
 
 }
