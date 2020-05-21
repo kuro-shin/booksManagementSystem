@@ -7,6 +7,7 @@ public class BorrowingBook {
 	private String author;
 	private String return_due_date;
 	private String borrowing_book_id;
+	private String name;
 
 	public String getTitle() {
 		return title;
@@ -46,6 +47,14 @@ public class BorrowingBook {
 
 	public void setBorrowing_book_id(String borrowing_book_id) {
 		this.borrowing_book_id = borrowing_book_id;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
 	}
 
 }
