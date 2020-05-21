@@ -67,7 +67,7 @@ public class CheckDelinquentSevlet extends HttpServlet {
 				PreparedStatement stmt = createPreparedStatement(con,employeeId,createDay);
 				ResultSet rs1 = stmt.executeQuery();) {
 
-			System.out.println("checkDelinquetできた");
+			//System.out.println("checkDelinquetできた");
 			isDelinquent="Delinquent";
 
 
