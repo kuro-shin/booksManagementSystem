@@ -1,32 +1,28 @@
 <!DOCTYPE html>
 <html lang="ja">
-    <head>
-        <meta charset="UTF-8" />
-        <title>Template</title>
-        <link rel="stylesheet" href="login.css" />
-        <script type="text/javascript" src="jquery-1.10.2.js"></script>
-		<script type="text/javascript" src="login.js"></script>
-    </head>
-    <body>
-        <header>header</header>
-        <div>
-            <nav>left</nav>
-            <main>
-	            <div class="contents">
-					<table>
-						<tr>
-							<th>ユーザーID:</th>
-							<th><input type="text"  placeholder="ユーザーID" id="js-login-id" class="login-id"></th>
-						</tr>
-						<tr>
-							<th>パスワード:</th>
-							<th><input type="password"  placeholder="パスワード" id="js-login-pass" class="login-pass"></th>
-						</tr>
-					</table>
-					<button id="js-login-button" class="login-button">ログイン</button>
-					<a href="./forgetpassword/forgetpassword.html">パスワードを忘れた方はこちら</a>
-				</div>
-			</main>
-        </div>
-    </body>
+<head>
+<meta charset="UTF-8" />
+<title>Template</title>
+<link rel="stylesheet" href="login.css" />
+ <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+<script type="text/javascript" src="jquery-1.10.2.js"></script>
+<script type="text/javascript" src="login.js"></script>
+</head>
+<body class="text-center">
+
+		<div class="container">
+			<form class="form-signin">
+				<h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
+				<input type="text" id="js-login-id" class="form-control"
+					placeholder="ユーザーID" required autofocus> <input
+					type="password" id="js-login-pass" class="form-control"
+					placeholder="パスワード" required>
+				<button id="js-login-button"
+					class="btn btn-lg btn-primary btn-block" type="submit">ログイン</button>
+			</form>
+			<a href="./forgetpassword/forgetpassword.html">パスワードを忘れた方はこちら</a>
+		</div>
+
+
+</body>
 </html>

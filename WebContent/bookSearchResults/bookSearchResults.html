@@ -1,22 +1,37 @@
 <!DOCTYPE html>
 <html lang="ja">
-    <head>
-        <meta charset="UTF-8" />
-        <title>Template</title>
-        <link rel="stylesheet" href="bookSearchResults.css" />
-        <script type="text/javascript" src="../jquery-1.10.2.js"></script>
-        <script type="text/javascript" src="bookSearchResults.js"></script>
+<head>
+<meta charset="UTF-8" />
+<title>Template</title>
+<link rel="stylesheet" href="bookSearchResults.css" />
+<link rel="stylesheet" href="../default.css" />
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css"
+	integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M"
+	crossorigin="anonymous">
+<script type="text/javascript" src="../jquery-1.10.2.js"></script>
+<script type="text/javascript" src="../default.js"></script>
+<script type="text/javascript" src="bookSearchResults.js"></script>
 
-    </head>
-    <body>
-        <header>header</header>
-        <div>
-            <nav>left</nav>
-            <main>
-            <div id="pageButtonBack"></div>
-            <div id="pageButtonNext"></div>
-            <div id="userInput"></div>
-            </main>
-        </div>
-    </body>
+</head>
+<body>
+	<header>
+		<div id="userInformation"></div>
+		<a>図書管理システム</a>
+		<button id="logoutButton" class="btn btn-primary">ログアウト</button>
+	</header>
+	<div>
+		<nav>
+			<div id="isUser"></div>
+			<div id="isManager"></div>
+		</nav>
+		<main>
+		<div class="navbar navbar-light bg-light">
+		<div id="pageButtonBack"></div>
+		<div id="pageButtonNext"></div>
+		</div>
+		<div id="userInput"></div>
+		</main>
+	</div>
+</body>
 </html>
