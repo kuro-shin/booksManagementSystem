@@ -1,13 +1,19 @@
 var session = getSessionInfomation();
-var role = session.employeeIRole
+var role = session.employeeIRole;
 var name = session.employeeName;
 var employeeId = session.employeeId;
+
+console.log(role);
+
 var memberRegist = function() {
 	var registEmployeeId = $('#registEmployeeId').val();
 	var registEmployeeName = $('#registEmployeeName').val();
 	var registEmployeeNameKana = $('#registEmployeeNameKana').val();
 	var registEmployeeEmail = $('#registEmployeeEmail').val();
 	var registLoginPassword = $('#registLoginPassword').val();
+
+
+
 	var requestQuery = {
 			registEmployeeId :registEmployeeId,
 			registEmployeeName :registEmployeeName,
@@ -17,8 +23,7 @@ var memberRegist = function() {
 			registLoginRole :role
 	};
 
-	$
-			.ajax({
+	$.ajax({
 				type : 'POST',
 				dataType : 'json',
 				url : '/booksManagementSystem/NewMemberRegistrationServlet',

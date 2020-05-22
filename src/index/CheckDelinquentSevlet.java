@@ -85,7 +85,7 @@ public class CheckDelinquentSevlet extends HttpServlet {
 				"where 1=1 \n" +
 				"and RETURN_DUE_DATE<"+createDay+" "+
 				"and EMPLOYEE_ID='"+employeeId+"' ";
-		System.out.println(sql);
+		//System.out.println(sql);
 		PreparedStatement stmt = con.prepareStatement(sql);
 		return stmt;
 	}
