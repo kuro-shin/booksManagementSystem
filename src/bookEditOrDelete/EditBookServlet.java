@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import bookRegistration.GenreRegistration;
 import connectDB.ConnectDb;
 
 /**
@@ -44,9 +45,13 @@ public class EditBookServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String book_id = request.getParameter("book_id");
 		String bookTitle = request.getParameter("bookTitle");
+
 		String bookAuther = request.getParameter("bookAuther");
 		String bookPublisher = request.getParameter("bookPublisher");
 		String bookGenre = request.getParameter("bookGenre");
+		String bookGenreId = GenreRegistration.Registration(bookGenre);
+
+
 		// JDBCドライバの準備
 		Map<String, String> conInfo = ConnectDb.loadDB();
 
@@ -63,9 +68,9 @@ public class EditBookServlet extends HttpServlet {
 						conInfo.get("pass"));
 
 				// SQLの命令文を実行するための準備をおこないます
-				PreparedStatement stmt = createPreparedStatement(con, book_id,bookTitle,bookAuther,bookPublisher,bookGenre);) {
-			int resultCount = stmt.executeUpdate();// 1つのSQL文しか実行できない
+				PreparedStatement stmt = createPreparedStatement(con, book_id,bookTitle,bookAuther,bookPublisher,bookGenreId);) {
 
+			int resultCount = stmt.executeUpdate();
 			System.out.println(resultCount + "件本を編集しました");
 
 		} catch (Exception e) {
@@ -73,17 +78,17 @@ public class EditBookServlet extends HttpServlet {
 		}
 	}
 
-	private PreparedStatement createPreparedStatement(Connection con, String book_id,String bookTitle,String bookAuther,String bookPublisher,String bookGenre) throws SQLException {
+	private PreparedStatement createPreparedStatement(Connection con, String book_id,String bookTitle,String bookAuther,String bookPublisher,String bookGenreId) throws SQLException {
 		// 実行するSQL文
 		String sql = "UPDATE BOOKS \n" +
-				"SET TITLE =?, AUTHER =?, PUBLISHER=?,GENRE=? " +
-				"WHERE id = ?" ;
+				"SET TITLE =?, AUTHER =?, PUBLISHER=?,GENRE_ID=? " +
+				"WHERE BOOK_ID = ?" ;
 
 		PreparedStatement stmt = con.prepareStatement(sql);
 		stmt.setString(1, bookTitle);
 		stmt.setString(2, bookAuther);
 		stmt.setString(3, bookPublisher);
-		stmt.setString(4, bookGenre);
+		stmt.setString(4, bookGenreId);
 		stmt.setString(5, book_id);
 		return stmt;
 

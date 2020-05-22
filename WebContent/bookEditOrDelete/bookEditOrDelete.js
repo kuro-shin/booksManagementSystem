@@ -7,6 +7,24 @@ session.employeeRole='manager';
 //session.employeeName='現在次郎';
 //session.employeeRole='user';
 
+
+function setGenreData(genre,bookGenreName){
+	console.log(genre)
+	var genreList = []
+	var genreTag = "ジャンル:<select name=\"genre\" id=\"Genre\">";
+	for(var i=0;i<genre.length;i++){
+		genreList.push(genre[i].genreName)
+		if(genre[i].genreName==bookGenreName){
+		genreTag += '<option value="'+genre[i].genreName+'" selected>'+genre[i].genreName+'</option>';
+	}else{
+		genreTag += '<option value="'+genre[i].genreName+'">'+genre[i].genreName+'</option>';
+	}
+
+	}
+	genreTag += '</select><br>'
+	return genreTag;
+}
+
 function display() {
 	 'use strict';
 
@@ -39,19 +57,31 @@ function display() {
 						console.log(json);
 						for (var i = 0; i < json.length; i++) {
 							var b = json[i];
+
+//							console.log("jsonからもらったb.book_id:"+b.bookId);
+//							console.log("jsonからもらったb.bookTitle:"+b.bookTitle);
+//							console.log("jsonからもらったb.bookAuther:"+b.bookAuther);
+//							console.log("jsonからもらったb.bookPublisher"+b.bookPublisher);
+//							console.log("jsonからもらったb.bookGenre:"+b.bookGenre);
+
 						if(session.employeeRole=='manager'){
 						$('#editBookTable').append('<p>タイトル：<input type="text" id="bookTitle" value="'+b.bookTitle+'"></p>');
 						$('#editBookTable').append('<p>著者：<input type="text" id="bookAuther" value="'+b.bookAuther+'"></p>');
 						$('#editBookTable').append('<p>出版社：<input type="text" id="bookPublisher" value="'+b.bookPublisher+'"></p>');
-						$('#editBookTable').append('<p>ジャンル：<input type="text" id="bookGenre" value="'+b.bookGenre+'"></p>');
+
+
+						$('#editBookTable').append('<p>ジャンル：<input type="text" id="bookGenre" value="'+b.bookGenreName+'"></p>');
+						//$('#editBookTable').append(setGenreData(genre,b.bookGenreName));//genre一覧をどこで持ってくるのか
+
 						}
 
 						//TO DO ジャンルをDBから持ってきて選択タブで表示できるようにする
 
-						}
 
-						$('#editOrDelete').append('<button onclick="editBook(\''+book_id+'\')">書籍編集</button');
-						$('#editOrDelete').append('<button onclick="deleteBook(\''+book_id+'\')">書籍削除</button');
+
+						$('#editOrDelete').append('<button onclick="editBook(\''+b.bookId+'\')">書籍編集</button');
+						$('#editOrDelete').append('<button onclick="deleteBook(\''+b.bookId+'\')">書籍削除</button');
+						}
 
 		},
 					error : function(XMLHttpRequest, textStatus, errorThrown) {
@@ -67,12 +97,9 @@ function display() {
 }
 
 function deleteBook(book_id){
+
 	var requestQuery = {
-			book_id : book_id,
-			bookTitle : $('#bookTitle').val(),
-			bookAuther : $('#bookAuther').val(),
-			bookPublisher : $('#bookPublisher').val(),
-			bookGenre : $('#bookGenre').val()
+			book_id : book_id
 };
 	$.ajax({
 		type : 'POST',
@@ -95,13 +122,24 @@ function deleteBook(book_id){
 			console.log(errorThrown)
 		}
 	});
+	$('#userInformation').empty();
+	$('#isUser').empty();
+	$('#isManager').empty();
+	$('#editBookTable').empty();
+	$('#editOrDelete').empty();
 	display();// 再表示
 }
 
 
 function editBook(book_id){
+
 	var requestQuery = {
-			book_id : book_id
+			book_id : book_id,
+			bookTitle : $('#bookTitle').val(),
+			bookAuther : $('#bookAuther').val(),
+			bookPublisher : $('#bookPublisher').val(),
+			bookGenre : $('#bookGenre').val()
+			//bookGenre : $('option[selected]').val()
 
 };
 	$.ajax({
@@ -125,6 +163,11 @@ function editBook(book_id){
 			console.log(errorThrown)
 		}
 	});
+	$('#userInformation').empty();
+	$('#isUser').empty();
+	$('#isManager').empty();
+	$('#editBookTable').empty();
+	$('#editOrDelete').empty();
 	display();// 再表示
 }
 
