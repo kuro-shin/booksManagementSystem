@@ -125,7 +125,7 @@ var update = function(){
 	$.ajax({
 		type : 'POST',
 		dataType : 'json',
-		url : '/booksManagementSystem/RequestUpdateServlet',
+		url : '/booksManagementSystem/RequestUpdateServlet2',
 		data : requestQuery,
 		async : false,
 		success : function(json) {
