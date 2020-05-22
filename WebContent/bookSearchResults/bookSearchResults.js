@@ -27,8 +27,14 @@ function Borrow(bookId){
 		dataType : 'json',
 		data :requestQuery,
 		success : function (json) {
-			alert("貸出が完了しました");
-			location.reload();
+			console.log(json)
+			if(json=="over"){
+				alert("1人が借りれる本は10冊までです。")
+			}else{
+				alert("貸出が完了しました");
+				location.reload();
+			}
+
 		}
 	});
 

@@ -64,46 +64,53 @@ public class BorrowBookServlet extends HttpServlet {
         String excute_message="";
 		//String jsRequest = "depttable";
         System.out.println("bookId"+bookId);
-		SetBookIsBorrowingFlag.SetBorrowingFlag(bookId);
+        if(borrowingNum>9){
+        	String errorMsg = "over";
+        	PrintWriter pw = response.getWriter();
+			pw.append(new ObjectMapper().writeValueAsString(errorMsg));
+        }else{
 
-		String sql = "insert into BORROWING_BOOKS \n" +
-				"(BORROWING_BOOK_ID, BOOK_ID, EMPLOYEE_ID, CHECK_OUT_DATE,  \n" +
-				"	RETURN_DUE_DATE, IS_RETURNED) \n" +
-				"select \n" +
-				"lpad(MAX(SUBSTR(BORROWING_BOOK_ID,0))+1,8,0), \n" +
-				"'"+bookId+"', \n" +
-				"'"+employeeId+"', \n" +
-				"'"+checkOutDate+"', \n" +
-				"'"+returnDueDate+"', \n" +
-				"'0' \n" +
-				"from BORROWING_BOOKS \n";
-		System.out.println(sql);
-		//DBのURL,ID,PASSを取得
-		Map<String, String> conInfo = ConnectDb.loadDB();
+    		SetBookIsBorrowingFlag.SetBorrowingFlag(bookId);
 
-
-		try (
-			// データベースへ接続します
-			Connection con = DriverManager.getConnection(conInfo.get("url"), conInfo.get("user"), conInfo.get("pass"));
-			// SQLの命令文を実行するための準備をおこないます
-			Statement stmt = con.createStatement();
-			// SQLの命令文を実行し、その結果をResultSet型のrsに代入します
-
-		) {
-
-			@SuppressWarnings("unused")
-			int rs1 = stmt.executeUpdate(sql);
+    		String sql = "insert into BORROWING_BOOKS \n" +
+    				"(BORROWING_BOOK_ID, BOOK_ID, EMPLOYEE_ID, CHECK_OUT_DATE,  \n" +
+    				"	RETURN_DUE_DATE, IS_RETURNED) \n" +
+    				"select \n" +
+    				"lpad(MAX(SUBSTR(BORROWING_BOOK_ID,0))+1,8,0), \n" +
+    				"'"+bookId+"', \n" +
+    				"'"+employeeId+"', \n" +
+    				"'"+checkOutDate+"', \n" +
+    				"'"+returnDueDate+"', \n" +
+    				"'0' \n" +
+    				"from BORROWING_BOOKS \n";
+    		System.out.println(sql);
+    		//DBのURL,ID,PASSを取得
+    		Map<String, String> conInfo = ConnectDb.loadDB();
 
 
-			// アクセスした人に応答するためのJSONを用意する
-			PrintWriter pw = response.getWriter();
+    		try (
+    			// データベースへ接続します
+    			Connection con = DriverManager.getConnection(conInfo.get("url"), conInfo.get("user"), conInfo.get("pass"));
+    			// SQLの命令文を実行するための準備をおこないます
+    			Statement stmt = con.createStatement();
+    			// SQLの命令文を実行し、その結果をResultSet型のrsに代入します
 
-			// JSONで出力する
-			pw.append(new ObjectMapper().writeValueAsString(excute_message));
+    		) {
 
-		} catch (Exception e) {
-			throw new RuntimeException(String.format("検索処理の実施中にエラーが発生しました。詳細：[%s]", e.getMessage()), e);
-		}
+    			@SuppressWarnings("unused")
+    			int rs1 = stmt.executeUpdate(sql);
+
+
+    			// アクセスした人に応答するためのJSONを用意する
+    			PrintWriter pw = response.getWriter();
+
+    			// JSONで出力する
+    			pw.append(new ObjectMapper().writeValueAsString(excute_message));
+
+    		} catch (Exception e) {
+    			throw new RuntimeException(String.format("検索処理の実施中にエラーが発生しました。詳細：[%s]", e.getMessage()), e);
+    		}
+        }
 	}
 
 }
