@@ -79,8 +79,12 @@ function getSearchData () {
 				+'<th class="col-xs-1" id="Publisher">出版社名</th>'
 				+'<th class="col-xs-1" id="Genre">ジャンル</th>'
 				+'<th class="col-xs-1" id="IsBorrowing">貸出状況</th>'
-
-				+'<th class="col-xs-1" id="ReturnDueDate">返却予定日</th></tr></thead>'
+				+'<th class="col-xs-1" id="ReturnDueDate">返却予定日</th>'
+				if(session.employeeRole=='manager'){
+					Element+='<th class="col-xs-1" id="edit">編集</th></tr></thead>';
+				}else{
+					Element += '</tr></thead>';
+				}
 			for(var i=0;bookLength>i;i++){
 				console.log(json[i])
 				bookId = json[i].bookId
@@ -121,8 +125,14 @@ function getSearchData () {
 
 						if(bookIsBorrowing==1){
 							Element += '<td class="ReturnDueDate align-middle">'+bookReturnDueDate+'</td>'
+						}else{
+							Element += '<td class="align-middle"></td>'
 						}
-
+						if(session.employeeRole=='manager'&&bookIsBorrowing!=1){
+							Element+='<td class="align-middle edit"><button id=edit_'+bookId+' class="editButton btn btn-lg btn-danger btn-block" onclick=\"location.href=\'../bookEditOrDelete/bookEditOrDelete.html?q='+bookId+'\'">編集</button></td>';
+						}else{
+							Element+='<td class="align-middle edit"></td>';
+						}
 						Element+='</tr>'
 			}
 			Element += '</table>'
