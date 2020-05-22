@@ -47,6 +47,11 @@ public class EditBookServlet extends HttpServlet {
 		String bookAuther = request.getParameter("bookAuther");
 		String bookPublisher = request.getParameter("bookPublisher");
 		String bookGenre = request.getParameter("bookGenre");
+
+		System.out.println("book_id:"+book_id);
+		System.out.println("bookTitle:"+bookTitle);
+		System.out.println("bookAuther:"+bookAuther);
+
 		// JDBCドライバの準備
 		Map<String, String> conInfo = ConnectDb.loadDB();
 
@@ -64,8 +69,8 @@ public class EditBookServlet extends HttpServlet {
 
 				// SQLの命令文を実行するための準備をおこないます
 				PreparedStatement stmt = createPreparedStatement(con, book_id,bookTitle,bookAuther,bookPublisher,bookGenre);) {
-			int resultCount = stmt.executeUpdate();// 1つのSQL文しか実行できない
 
+			int resultCount = stmt.executeUpdate();
 			System.out.println(resultCount + "件本を編集しました");
 
 		} catch (Exception e) {

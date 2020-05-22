@@ -58,7 +58,7 @@ public class DisplayBookServlet extends HttpServlet {
 
         PrintWriter pw = response.getWriter();
         List<Book>books = new ArrayList<>();
-        System.out.println("DisplayBookServletの57行目まではおｋ");
+
 		try (
 				// データベースへ接続します
 				Connection con = DriverManager.getConnection(conInfo.get("url"), conInfo.get("user"), conInfo.get("pass"));
@@ -69,13 +69,12 @@ public class DisplayBookServlet extends HttpServlet {
 
 			if(rs1.next()){
 				Book b = new Book();
+				b.setBookId(rs1.getString("BOOK_ID"));
 				b.setBookTitle(rs1.getString("TITLE"));
 				b.setBookAuther(rs1.getString("AUTHER"));
 				b.setBookPublisher(rs1.getString("PUBLISHER"));
 				b.setBookGenreName(rs1.getString("GENRE_NAME"));
-				System.out.println("DisplayBookServletのrs1.next()までは通ってるよ");
 				books.add(b);
-				 System.out.println(b);
 
 			}
 
@@ -94,7 +93,8 @@ public class DisplayBookServlet extends HttpServlet {
 				"b.TITLE, \n" +
 				"b.PUBLISHER, \n" +
 				"b.AUTHER, \n" +
-				"g.GENRE_NAME \n" +
+				"g.GENRE_NAME, \n" +
+				"b.BOOK_ID \n" +
 				"from \n" +
 				"BOOKS b, \n" +
 				"GENRES g \n" +
@@ -106,7 +106,6 @@ public class DisplayBookServlet extends HttpServlet {
 
 		PreparedStatement stmt = con.prepareStatement(sql);
 		stmt.setString(1, book_id);
-		System.out.println(sql);
 		return stmt;
 	}
 
