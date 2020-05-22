@@ -53,6 +53,7 @@ function getSearchData () {
 
 			if(bookLength==21){
 				$('#pageButtonNext').append('<a href=\'bookSearchResults.html?q=/p'+(parseInt(page)+1)+'\'>次のページ</a>')
+				bookLength=20;
 			}
 			var Element = '<table id="booksData">'
 				+'<th>書籍名</th>'
@@ -62,7 +63,7 @@ function getSearchData () {
 				+'<th>貸出状況</th>'
 				+'<th>貸出</th>'
 				+'<th>返却予定日</th>'
-			for(var i=0;bookLength-1>i;i++){
+			for(var i=0;bookLength>i;i++){
 				console.log(json[i])
 				bookId = json[i].bookId
 				bookTitle = json[i].bookTitle
