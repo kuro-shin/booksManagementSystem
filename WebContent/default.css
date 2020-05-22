@@ -1,6 +1,5 @@
 body {
     font-size: 2rem;
-    width: 900px;
     margin: 0 auto;
     min-height: 100vh;
     display: flex;
@@ -34,7 +33,7 @@ main {
     flex: 1;
 }
 nav {
-    width: 150px;
+    width: 200px;
     height: 1000px;
     border-right: 1px solid #000000;
     background:#51a1a2;
@@ -51,4 +50,7 @@ nav {
     div {
         flex-direction: column;
     }
+}
+button{
+	margin:20px;
 }
