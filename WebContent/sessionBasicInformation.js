@@ -1,4 +1,4 @@
-function getSessionInfomation() {
+function getSessionInformation() {
 	 'use strict';
 	 var requestQuery = 1;
 	 var session = new Object();

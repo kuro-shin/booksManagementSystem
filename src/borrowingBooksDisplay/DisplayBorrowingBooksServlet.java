@@ -16,6 +16,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 
@@ -49,9 +50,9 @@ public class DisplayBorrowingBooksServlet extends HttpServlet {
 //		Date date = new Date();
 //        System.out.println(date.toString());
 
-//        HttpSession session = request.getSession();
-//		String employeeId = (String) session.getAttribute("employeeId");
-        String employeeId="0001";//sessionの情報持ってこれるようになったら消す
+        HttpSession session = request.getSession();
+		String employeeId = (String) session.getAttribute("employeeId");
+        //String employeeId="0001";//sessionの情報持ってこれるようになったら消す
 
         PrintWriter pw = response.getWriter();
         List<BorrowingBook> BorrowingBooksList = new ArrayList<>();
