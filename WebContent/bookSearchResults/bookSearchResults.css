@@ -1,45 +1,114 @@
+html{
+
+}
 body {
-    width: auto 0;
-	min-width:900px;
+    width: 900px;
+	min-width:1400px;
     margin: 0 auto;
-    min-height: 100vh;
+	min-height:100vh;
     display: flex;
     flex-direction: column;
     border: 1px solid #000000;
+overflow-y:hidden;
 }
 header {
-    height: 150px;
+    height: 100px;
     border-bottom: 1px solid #000000;
 }
 div {
     display: flex;
-    flex: 1;
 }
 main {
     flex: 1;
 }
 nav {
-    width: 150px;
+    width: 250px;
     border-right: 1px solid #000000;
+    min-height: 100vh;
 }
-#Title,#Auther,#Publisher{
-	font-size:1.5vh;
+
+#Title{s
+	width:35%;
+
 }
+#Auther{
+	width:10%;
+}
+#Publisher{
+	width:10%;
+}
+#Genre{
+	width:8%;
+}
+#IsBorrowing{
+	width:8%;
+}
+#Borrow{
+	width:8%;
+}
+#ReturnDueDate{
+	width:12%;
+}
+#edit{
+	width:5%;
+}
+.IsBorrowing,.Genre,.ReturnDueDate,.title,.edit{
+	text-align:center;
+}
+.title{
+
+}
+.input-group{
+	flex:1;
+}
+
 #pageButtonNext{
 	float:right;
+	text-align:right;
+	width:200px;
 }
 #pageButtonBack{
 	float:left;
+	width:200px;
 }
 #userInput{
 	clear:both;
+    overflow-x: hidden;
+	overflow-y: scroll;
+    height: 85vh;
+    min-height: 85vh;
 }
 #booksData{
 	width:100%;
 }
+.borrowButton{
+	margin:0 auto;
+}
+.editbutton{
+	height:50px;
+	text-align:center;
+	margin:0 auto;
+}
+table{
+	vertical-align:bottom;
+}
+table th {
+	text-align:center;
+}
+table td {
+	align:center;
+	margin:0px 30px 0px 30px;
+}
+.findButton{
+	margin:0px;
+}
+#searchButton{
+	width:15vw;
+}
+
+/*
 table {
 	display:block;
-
 	border-collapse: collapse;
 	border-right: 1px solid #999;
 	text-align:center;
@@ -47,31 +116,21 @@ table {
 
 table th {
 	align:center;
-	/* 内部余白 */
 	padding: 10px;
-	/* 枠線 */
 	border-top: 1px solid #fff;
-	/* 文字色 */
 	color: #fff;
-	/* 文字表示 */
 	text-align: center;
 	vertical-align: top;
-	/* 背景色 */
 	background-color: #555;
 	font-size:calc(7px + .5vw);
-
-
 }
 
 table td {
 	align:center;
-	/* 内部余白 */
 	padding: 6px;
-	/* 枠線 */
 	border: 1px solid #999;
-	/* 背景色 */
-	/* background-color:rgba(242,245,245,0.8); */
 }
+*/
 
 /*フッター*/
 /*
@@ -80,17 +139,3 @@ footer {
     height: 300px;
 }
 */
-
-/*レスポンシブ対応*/
-@media screen and (max-width: 900px) {
-    body,
-    nav {
-        width: 100%;
-    }
-    nav {
-        border-bottom: 1px solid #000000;
-    }
-    div {
-        flex-direction: column;
-    }
-}

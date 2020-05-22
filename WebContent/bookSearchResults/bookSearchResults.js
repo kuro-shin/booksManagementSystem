@@ -1,3 +1,19 @@
+var session =  getSessionInformation();
+function passSearchResult() {
+
+	// 入力フォーム䛾値を取得
+	var rawInputVal = $('#searchWords').val();
+	// 特殊文字をエンコード
+	var encodeVal = encodeURIComponent(rawInputVal);
+	// 遷移先URL
+	encodeVal= encodeVal.replace('%20','+');
+	encodeVal= encodeVal.replace('%E3%80%80','+');
+
+	var url = 'bookSearchResults.html?q='+encodeVal+'/p1';
+	// 画面遷移
+	location.href=url;
+
+}
 function Borrow(bookId){
 	console.log(bookId)
 
@@ -11,8 +27,14 @@ function Borrow(bookId){
 		dataType : 'json',
 		data :requestQuery,
 		success : function (json) {
-			alert("貸出が完了しました");
-			location.reload();
+			console.log(json)
+			if(json=="over"){
+				alert("1人が借りれる本は10冊までです。")
+			}else{
+				alert("貸出が完了しました");
+				location.reload();
+			}
+
 		}
 	});
 
@@ -48,54 +70,75 @@ function getSearchData () {
 			// DOM操作
 			var bookLength = json.length;
 			if(page!=1){
-				$('#pageButtonBack').append('<a href=\'bookSearchResults.html?q=/p'+(parseInt(page)-1)+'\' class="nav-link">前のページ</a>')
+				$('#pageButtonBack').append('<a href=\'bookSearchResults.html?'+search+'/p'+(parseInt(page)-1)+'\' class="nav-link">前のページ</a>')
 			}
 
 			if(bookLength==21){
-				$('#pageButtonNext').append('<a href=\'bookSearchResults.html?q=/p'+(parseInt(page)+1)+'\'>次のページ</a>')
+				$('#pageButtonNext').append('<a style=\"display:block; margin:0 0 0 auto;\" align=\"right\" href=\'bookSearchResults.html?'+search+'/p'+(parseInt(page)+1)+'\' class="nav-link">次のページ</a>')
 				bookLength=20;
 
 			}
-			var Element = '<table id="booksData">'
-				+'<th>書籍名</th>'
-				+'<th>著者名</th>'
-				+'<th>出版社名</th>'
-				+'<th>ジャンル</th>'
-				+'<th>貸出状況</th>'
-				+'<th>貸出</th>'
-				+'<th>返却予定日</th>'
+			var Element = '<table id="booksData" class="table table-hover" ><thead class="thead-dark"><tr>'
+				+'<th class="col-xs-1" id="Borrow">貸出</th>'
+				+'<th class="col-xs-4" id="Title">書籍名</th>'
+				+'<th class="col-xs-3" id="Auther">著者名</th>'
+				+'<th class="col-xs-1" id="Publisher">出版社名</th>'
+				+'<th class="col-xs-1" id="Genre">ジャンル</th>'
+				+'<th class="col-xs-1" id="IsBorrowing">貸出状況</th>'
+				+'<th class="col-xs-1" id="ReturnDueDate">返却予定日</th>'
+				if(session.employeeRole=='manager'){
+					Element+='<th class="col-xs-1" id="edit">編集</th></tr></thead>';
+				}else{
+					Element += '</tr></thead>';
+				}
 			for(var i=0;bookLength>i;i++){
 				console.log(json[i])
 				bookId = json[i].bookId
 				bookTitle = json[i].bookTitle
+//				if(bookTitle.length>30){
+//					bookTitle = bookTitle.slice(0,50)+'......';
+//				}
 				bookAuther = json[i].bookAuther
+				if(bookAuther.length>20){
+					bookAuther = bookAuther.slice(0,20)+'......';
+				}
 				bookGenreName = json[i].bookGenreName
 				bookIsBorrowing = json[i].bookIsBorrowing
 				bookPublisher = json[i].bookPublisher
 				bookReturnDueDate = json[i].returnDueDate
 				if(bookIsBorrowing==0){
-					Borrowing = "<font color=\"green\">配架中</font>"
+					Borrowing = "<font color=\"green\" style=\"font-weight: bold;\">配架中</font>"
+					Element += '<tr>'
 				}else if(bookIsBorrowing==1){
-					Borrowing = "<font color=\"red\">貸出中</font>"
+					Borrowing = "<font color=\"red\" style=\"font-weight: bold;\">貸出中</font>"
+					Element += '<tr class="table-danger">'
 				}
-				Element += '<tr>'
-						+'<td id="Title">'+bookTitle+'</td>'
+
+					if(bookIsBorrowing==0){
+						//Element+='<td><input type="button" value="借りる" id="'+bookId+'" onclick=\"Borrow(this.id)\"></td>'
+						Element+='<td class="align-middle"><button id="'+bookId+'" class="borrowButton btn btn-lg btn-success btn-block" onclick=\"Borrow(this.id)\">貸出</button></td>'
+					}else{
+						Element+='<td class="align-middle"></td>'
+					}
+						Element +='<td class="align-middle title">'+bookTitle+'</td>'
 						if(bookAuther=="none"){
 							bookAuther="";
 						}
-						Element += '<td id="Auther">'+bookAuther+'</td>'
-						+'<td id="Publisher">'+bookPublisher+'</td>'
-						+'<td>'+bookGenreName+'</td>'
-						+'<td>'+Borrowing+'</td>'
-						if(bookIsBorrowing==0){
-							Element+='<td><input type="button" value="借りる" id="'+bookId+'" onclick=\"Borrow(this.id)\"></td>'
-						}else{
-							Element+='<td></td>'
-						}
-						if(bookIsBorrowing==1){
-							Element += '<td>'+bookReturnDueDate+'</td>'
-						}
+						Element += '<td class="align-middle">'+bookAuther+'</td>'
+						+'<td class="align-middle">'+bookPublisher+'</td>'
+						+'<td class="Genre align-middle">'+bookGenreName+'</td>'
+						+'<td class="IsBorrowing align-middle">'+Borrowing+'</td>'
 
+						if(bookIsBorrowing==1){
+							Element += '<td class="ReturnDueDate align-middle">'+bookReturnDueDate+'</td>'
+						}else{
+							Element += '<td class="align-middle"></td>'
+						}
+						if(session.employeeRole=='manager'&&bookIsBorrowing!=1){
+							Element+='<td class="align-middle edit"><button id=edit_'+bookId+' class="editButton btn btn-lg btn-danger btn-block" onclick=\"location.href=\'../bookEditOrDelete/bookEditOrDelete.html?q='+bookId+'\'">編集</button></td>';
+						}else{
+							Element+='<td class="align-middle edit"></td>';
+						}
 						Element+='</tr>'
 			}
 			Element += '</table>'

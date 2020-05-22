@@ -15,7 +15,8 @@ public class GetBorrowingBooksNumber {
 		Map<String, String> conInfo = ConnectDb.loadDB();
 		String sql = "select count(*) NUM \n" +
 				"from BORROWING_BOOKS \n" +
-				"where EMPLOYEE_ID = '"+employeeId+"' \n";
+				"where EMPLOYEE_ID = '"+employeeId+"' \n"
+						+ "and IS_RETURNED = '0' \n";
 
 		try (
 			// データベースへ接続します
