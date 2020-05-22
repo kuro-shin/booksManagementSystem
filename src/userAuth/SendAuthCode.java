@@ -21,6 +21,7 @@ import javax.servlet.http.HttpSession;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import connectDB.ConnectDb;
+import mail.SendMail;
 
 /**
  * Servlet implementation class SendAuthCode
@@ -98,12 +99,15 @@ public class SendAuthCode extends HttpServlet {
 				}else{
 					responseData.put("result", "NG");
 				}
-
+				SendMail sendMail = new SendMail();
+				sendMail.createMail(mailTo, subject, content);
+//				MailSender mailSender = new MailSender();
+//				mailSender.createMailBy(subject, content);
+//				mailSender.send(address);
 			} catch (Exception e) {
 				throw new RuntimeException(String.format("検索処理の実施中にエラーが発生しました。詳細：[%s]", e.getMessage()), e);
 			}
 		//Mailtest.send(employeeMail, subject, content);
-		//SendMail.main(null, mailTo, subject, content);
 
 		//SendMail(mailTo,subject,content);
 		pw.append(new ObjectMapper().writeValueAsString(responseData));

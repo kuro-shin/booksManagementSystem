@@ -2,7 +2,7 @@ empId = "";
 empName = "";
 function changePassword(){
 	if($('#newPasswordConfirm').val()===$('#newPassword').val()){
-		if($('#newPassword').val().length>=8){
+		if($('#newPassword').val().length>=8&&$('#newPassword').val().length<=18){
 			var requestQuery = {
 					newPassword : $('#newPasswordConfirm').val(),
 					newPasswordConfirm :$('#newPassword').val(),
@@ -64,7 +64,7 @@ function reSendAuthCode(){
 			dataType:'json',
 			url : '/booksManagementSystem/SendAuthCode',
 			data : requestQuery,
-			async:false,
+//			async:false,
 			success : function(json) {
 				console.log(json)
 				if(json.result==="OK"){
@@ -104,7 +104,7 @@ function sendAuthCode(){
 			dataType:'json',
 			url : '/booksManagementSystem/SendAuthCode',
 			data : requestQuery,
-			async:false,
+//			async:false,
 			success : function(json) {
 				console.log(json)
 				if(json.result==="OK"){
