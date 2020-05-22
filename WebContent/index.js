@@ -1,4 +1,4 @@
-var session;// = getSessionInfomation();
+var session = getSessionInformation();
 
 //var session = new Object();
 //session.employeeId='0001';
@@ -79,7 +79,7 @@ function passSearchResult() {
 
 $(document).ready(function() {
 
-	session = getSessionInfomation();
+	session = getSessionInformation();
 	display();
 	checkDelinquent();
 	 $('#passSearchResult').click(passSearchResult);
