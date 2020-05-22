@@ -64,7 +64,7 @@ public class RequestUpdateServlet extends HttpServlet {
 				"set \n" +
 				"STATUS = '"+requestStatus+"', \n" +
 				"REJECTED_REASON = '"+requestRejectReason+"', \n" +
-				"UPDATED_DATE ='"+requestUpdateDate+"', \n" +
+				"UPDATED_DATE ='"+requestUpdateDate+"' \n" +
 				"UPDATER_ID = '"+requestUpdaterId+"' \n" +
 				"where 1=1 \n" +
 				"and REQUEST_BOOK_ID = '"+requestId+"' "  ;
