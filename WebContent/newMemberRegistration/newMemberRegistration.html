@@ -16,11 +16,16 @@
 <div id = "box" class="main">
 <p>登録するユーザー情報を入力してください</p>
 <form name="registEmployee">
-<input type="text" id="registEmployeeId" placeholder="社員ID" maxlength="4" required>
-<input type="text" id="registEmployeeName" placeholder="名前" required>
-<input type="text" id="registEmployeeNameKana" placeholder="名前カナ" required>
-<input type="text" id="registEmployeeEmail" placeholder="mail" required>
-<input type="password" id="registLoginPassword" placeholder="ログインパスワード" maxlength="10" required>
+<label>社員ID:</label>
+<input type="text" id="registEmployeeId" placeholder="0001" maxlength="4" required>
+<label>名前:</label>
+<input type="text" id="registEmployeeName" placeholder="山田太郎" required>
+<label>名前カナ:</label>
+<input type="text" id="registEmployeeNameKana" placeholder="ヤマダタロウ" required>
+<label>mail:</label>
+<input type="text" id="registEmployeeEmail" placeholder="xxx@yyy.zz" required>
+<label>ログインパスワード:</label>
+<input type="password" id="registLoginPassword" placeholder="半角英数字" maxlength="10" required>
 </form>
 <button id="newMemberRegistrationButton">ユーザー登録</button>
 </div>
