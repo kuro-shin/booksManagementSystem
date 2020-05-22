@@ -1,13 +1,13 @@
-body {
+/* body {
     font-size: 2rem;
     margin: 0 auto;
     min-height: 100vh;
     display: flex;
     flex-direction: column;
     border: 1px solid #000000;
-}
+} */
 header {
-    height: 150px;
+    height: 100px;
     border-bottom: 1px solid #000000;
     background:#51a1a2;
 }
@@ -39,18 +39,3 @@ nav {
     background:#51a1a2;
 }
 
-@media screen and (max-width: 900px) {
-    body,
-    nav {
-        width: 100%;
-    }
-    nav {
-        border-bottom: 1px solid #000000;
-    }
-    div {
-        flex-direction: column;
-    }
-}
-button{
-	margin:20px;
-}
