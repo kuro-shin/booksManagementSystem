@@ -7,6 +7,26 @@ session.employeeRole='manager';
 //session.employeeName='現在次郎';
 //session.employeeRole='user';
 
+
+function isDeliquentYMD(return_due_date){
+  var dt = new Date();
+  var y = dt.getFullYear();
+  var m = ("00" + (dt.getMonth()+1)).slice(-2);
+  var d = ("00" + dt.getDate()).slice(-2);
+  var today = y + m + d ;
+
+  var result = "<p ";
+  if(return_due_date<today){
+	  result += "class=\"isisDeliquentYMD\">";
+  }else{
+	  result += "class=\"isSafeYMD\">";
+  }
+  result += return_due_date;
+  result += "</p>";
+  return result;
+}
+
+
 function display() {
 	 'use strict';
 
@@ -33,17 +53,16 @@ function display() {
 						// サーバーとの通信に成功した時の処理
 						for (var i = 0; i < json.length; i++) {
 						var bb = json[i];
-						$('#borrowingBooksBody').append('<tr id="bb_list'+(i+1)+'">');
 
+
+						$('#borrowingBooksBody').append('<tr id="bb_list'+(i+1)+'">');
 						$('#bb_list'+(i+1)).append('<td>'+bb.title+'</td><td>'+bb.author+'</td><td>'
+
 								+bb.publisher+'</td><td>'+bb.return_due_date+'</td>'+
+								//+bb.publisher+'</td><td>'+isDeliquentYMD(bb.return_due_date)+'</td>'+
+
 								'<td><button onclick="returnBorrowingBook(\''+bb.borrowing_book_id+'\')">返却</button></td></tr>');
 						}
-
-
-					//	$('#shain_list'+(i+1)).append('<input type="button" value="削除" id="delete'+(i+1)+'" onclick="deleteShain(\''+s.shain_id+'\')" >');
-
-
 
 					},
 					error : function(XMLHttpRequest, textStatus, errorThrown) {
