@@ -22,12 +22,12 @@ main {
     flex: 1;
 }
 nav {
-    width: 150px;
+    width: 250px;
     border-right: 1px solid #000000;
     min-height: 100vh;
 }
 
-#Title{
+#Title{s
 	width:35%;
 
 }

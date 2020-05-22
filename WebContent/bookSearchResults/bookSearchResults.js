@@ -107,10 +107,10 @@ function getSearchData () {
 				bookPublisher = json[i].bookPublisher
 				bookReturnDueDate = json[i].returnDueDate
 				if(bookIsBorrowing==0){
-					Borrowing = "<font color=\"green\">配架中</font>"
+					Borrowing = "<font color=\"green\" style=\"font-weight: bold;\">配架中</font>"
 					Element += '<tr>'
 				}else if(bookIsBorrowing==1){
-					Borrowing = "<font color=\"red\">貸出中</font>"
+					Borrowing = "<font color=\"red\" style=\"font-weight: bold;\">貸出中</font>"
 					Element += '<tr class="table-danger">'
 				}
 

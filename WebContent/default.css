@@ -20,7 +20,9 @@ header {
 	float:right;
 }
 
+#isUser{
 
+}
 
 header a{
 	margin:0 auto;
@@ -37,5 +39,8 @@ nav {
     height: 1000px;
     border-right: 1px solid #000000;
     background:#51a1a2;
+}
+.navButton{
+	width:100%;
 }
 
