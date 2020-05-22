@@ -30,6 +30,7 @@ var memberRegist = function() {
 					console.log('返却値', json);
 					// 登録完了のアラート
 					alert('登録が完了しました');
+					location.href = '../login.html';
 				},
 				error : function(XMLHttpRequest, textStatus, errorThrown) {
 					// サーバーとの通信に失敗した時の処理

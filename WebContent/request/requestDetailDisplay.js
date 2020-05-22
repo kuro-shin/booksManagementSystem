@@ -10,6 +10,7 @@ var autor;
 var publisher;
 var display = function() {
 	$('#requsetDetail').empty();
+	$('#buttonBox').empty();
 	// サーバーからデータを取得する
 
 	var parameter = location.search.substring(1, location.search.length);
@@ -46,23 +47,37 @@ var display = function() {
 			} else {
 				request.requestStatus = "申請中";
 				if (role == "manager") {
-					boxElemnt += '<button id = "approval">承認</button>'
+					boxElemnt += '<textarea id = "reason" placeholder="却下理由を記入(却下の場合は必須)" required></textarea>'
+						+ '<button id = "approval">承認</button>'
 						+ '<button id = "rejection">却下</button>'
-						+ '<textarea id = "reason" placeholder="却下理由を記入" required></textarea>'
 				}
 			}
 			$('#buttonBox').append(boxElemnt);
 			title = request.requestTitle;
 			autor = request.requestAuthor;
 			publisher = request.requestPublisher;
-			tableElemnt += '<tr> <td><a href="'+request.requestUrl+'">' + request.requestTitle + '</a></td><td>'
-					+ request.requestApplicantName + '</td>' + '</td><td>'
-					+ request.requestAuthor + '</td>' + '</td><td>'
-					+ request.requestPublisher + '</td>' + '</td><td>'
-					+ request.requestApplicantDate + '</td>' + '</td><td>'
-					+ request.requestUpdaterName + '</td>' + '</td><td>'
-					+ request.requestUpdateDate + '</td>' + '</td><td>'
-					+ request.requestStatus + '</td></tr>';
+			if(request.requestUrl === null){
+				tableElemnt += '<tr> <td>' + request.requestTitle + '</td><td>'
+				+ request.requestApplicantName + '</td>' + '<td>'
+				+ request.requestAuthor + '</td>' + '<td>'
+				+ request.requestPublisher + '</td>' + '<td>'
+				+ request.requestApplicantDate + '</td>' + '<td>'
+				+ request.requestUpdaterName + '</td>' + '<td>'
+				+ request.requestUpdateDate + '</td>' + '<td>'
+				+ request.requestStatus + '</td></tr>';
+
+			}else{
+				tableElemnt += '<tr> <td><a href="'+request.requestUrl+'">' + request.requestTitle + '</a></td><td>'
+				+ request.requestApplicantName + '</td>' + '<td>'
+				+ request.requestAuthor + '</td>' + '<td>'
+				+ request.requestPublisher + '</td>' + '<td>'
+				+ request.requestApplicantDate + '</td>' + '<td>'
+				+ request.requestUpdaterName + '</td>' + '<td>'
+				+ request.requestUpdateDate + '</td>' + '<td>'
+				+ request.requestStatus + '</td></tr>';
+
+			}
+
 
 			$('#requsetDetail').append(tableElemnt);
 		},
@@ -84,7 +99,11 @@ var approval= function(){
 var rejection= function(){
 	requestStatus = "2";
 	reason = $('#reason').val();
-	update();
+	if(reason == ""){
+		alert('却下理由を入力してください');
+	}else{
+		update();
+	}
 }
 var regist= function(){
 	requestStatus = "3";
@@ -106,7 +125,7 @@ var update = function(){
 	$.ajax({
 		type : 'POST',
 		dataType : 'json',
-		url : '/booksManagementSystem/RequestUpdateServlet',
+		url : '/booksManagementSystem/RequestUpdateServlet2',
 		data : requestQuery,
 		async : false,
 		success : function(json) {

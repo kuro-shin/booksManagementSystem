@@ -20,16 +20,16 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import connectDB.ConnectDb;
 
 /**
- * Servlet implementation class RequestUpdateServlet
+ * Servlet implementation class RequestUpdateServlet2
  */
-@WebServlet("/RequestUpdateServlet")
-public class RequestUpdateServlet extends HttpServlet {
+@WebServlet("/RequestUpdateServlet2")
+public class RequestUpdateServlet2 extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public RequestUpdateServlet() {
+    public RequestUpdateServlet2() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -64,7 +64,7 @@ public class RequestUpdateServlet extends HttpServlet {
 				"set \n" +
 				"STATUS = '"+requestStatus+"', \n" +
 				"REJECTED_REASON = '"+requestRejectReason+"', \n" +
-				"UPDATED_DATE ='"+requestUpdateDate+"' \n" +
+				"UPDATED_DATE ='"+requestUpdateDate+"', \n" +
 				"UPDATER_ID = '"+requestUpdaterId+"' \n" +
 				"where 1=1 \n" +
 				"and REQUEST_BOOK_ID = '"+requestId+"' "  ;
@@ -89,6 +89,5 @@ public class RequestUpdateServlet extends HttpServlet {
 		pw.append(new ObjectMapper().writeValueAsString("ok"));
 
 	}
-
 
 }

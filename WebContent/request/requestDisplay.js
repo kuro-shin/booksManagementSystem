@@ -35,11 +35,11 @@ var display = function() {
 					var a = '';
 					if (page > 1) {
 						a += '<a href="requestDisplay.html?/p' + (page - 1)
-								+ '">前へ</a>';
+								+ '" id="back">前へ</a>';
 					}
 					if (json.length == 21) {
 						a += '<a href="requestDisplay.html?/p' + (page + 1)
-								+ '">次へ</a>';
+								+ '" id="next">次へ</a>';
 					}
 					$('#switch').append(a);
 					var tableElemnt = '<table> <thead><tr><th>本の名前</th><th>申請者名</th><th>申請日</th><th>更新者名</th><th>更新日</th><th>ステータス</th><th>詳細</th></tr></thead><tbody>';
@@ -58,14 +58,27 @@ var display = function() {
 						}else{
 							request.requestStatus = "申請中";
 						}
-						tableElemnt += '<tr> <td><a href="'+request.requestUrl+'">' + request.requestTitle
-								+ '</a></td><td>' + request.requestApplicantName + '</td>'
-								+ '<td>' + request.requestApplicantDate + '</td>'
-								+ '<td>' + request.requestUpdaterName + '</td>'
-								+ '<td>' + request.requestUpdateDate + '</td>'
-								+ '<td>' + request.requestStatus + '</td>'
-								+ '<td><button id="detail'+ i+'" value="'+request.requestId+'">詳細</button></td></tr>'
-								;
+						if(request.requestUrl === null){
+							tableElemnt += '<tr> <td>' + request.requestTitle
+							+ '</td><td>' + request.requestApplicantName + '</td>'
+							+ '<td>' + request.requestApplicantDate + '</td>'
+							+ '<td>' + request.requestUpdaterName + '</td>'
+							+ '<td>' + request.requestUpdateDate + '</td>'
+							+ '<td>' + request.requestStatus + '</td>'
+							+ '<td><button id="detail'+ i+'" value="'+request.requestId+'">詳細</button></td></tr>'
+							;
+
+						}else{
+							tableElemnt += '<tr> <td><a href="'+request.requestUrl+'">' + request.requestTitle
+							+ '</a></td><td>' + request.requestApplicantName + '</td>'
+							+ '<td>' + request.requestApplicantDate + '</td>'
+							+ '<td>' + request.requestUpdaterName + '</td>'
+							+ '<td>' + request.requestUpdateDate + '</td>'
+							+ '<td>' + request.requestStatus + '</td>'
+							+ '<td><button id="detail'+ i+'" value="'+request.requestId+'">詳細</button></td></tr>'
+							;
+
+						}
 						count++;
 					}
 
