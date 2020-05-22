@@ -13,6 +13,7 @@ function login() {
 		url : '/booksManagementSystem/LoginServlet',
 		data : requestQuery,
 		success : function(json) {
+			console.log(json)
 			// サーバーとの通信に成功した時の処理
 			if(json.result==="OK"){
 				location.href='./index.html'
