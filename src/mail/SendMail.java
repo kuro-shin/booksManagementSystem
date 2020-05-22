@@ -1,4 +1,5 @@
 package mail;
+
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
@@ -18,18 +19,12 @@ import javax.mail.internet.MimeMessage;
 
 import connectDB.ConnectDb;
 
-/**
- * メールに関するユーティリティクラス.
- */
 public class SendMail {
 
-	/**
-	 * コンストラクタ.
-	 */
-	private SendMail() {
+	public SendMail() {
 	}
 
-	public static Map<String, String> getUserInfo(){
+	public Map<String, String> getUserInfo(){
 		String sql = "select MAIL, PASSWORD \n" +
 				"from EMPLOYEES \n" +
 				"where EMPLOYEE_ID = '9999' \n";
@@ -57,7 +52,7 @@ public class SendMail {
 
 
 	}
-	public static void main(final String[] args,String mailTo,String subject,String content) {
+	public void createMail(String mailTo,String subject,String content){
 		Map<String, String> userInfo = getUserInfo();
 		MailDataset mailDataset = new MailDataset();
 		mailDataset.fromName = "図書管理担当者";
@@ -73,13 +68,13 @@ public class SendMail {
 		mailDataset.subject = subject;
 		mailDataset.content = content;
 
-		boolean ret =SendMail.send(mailDataset);
+		boolean ret = send(mailDataset);
 	}
 
 	/**
 	 * データセット.
 	 */
-	public static class MailDataset {
+	public  class MailDataset {
 		/** 送信者の表示名. */
 		public String fromName;
 		/** 送信アドレス. */
@@ -111,7 +106,7 @@ public class SendMail {
 	 * @param mailDataset データセット
 	 * @return true:成功、false:失敗
 	 */
-	public static boolean send(final MailDataset mailDataset) {
+	public boolean send(final MailDataset mailDataset) {
 		// ----------------------------------
 		// 属性
 		//  参考URL) https://javaee.github.io/javamail/docs/api/com/sun/mail/smtp/package-summary.html

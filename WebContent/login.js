@@ -15,7 +15,7 @@ function login() {
 		success : function(json) {
 			// サーバーとの通信に成功した時の処理
 			if(json.result==="OK"){
-				alert("ログイン成功")
+				location.href='./index.html'
 			}else{
 				alert("ユーザーIDかパスワードが間違っています");
 			}
