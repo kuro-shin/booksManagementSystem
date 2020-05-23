@@ -48,13 +48,12 @@ function getSearchData () {
 			// DOM操作
 			var bookLength = json.length;
 			if(page!=1){
-				$('#pageButtonBack').append('<a href=\'bookSearchResults.html?q=/p'+(parseInt(page)-1)+'\' class="nav-link">前のページ</a>')
+				$('#pageButtonBack').append('<a href=\'bookSearchResults.html?q=/p'+(parseInt(page)-1)+'\'>前のページ</a>')
 			}
 
 			if(bookLength==21){
 				$('#pageButtonNext').append('<a href=\'bookSearchResults.html?q=/p'+(parseInt(page)+1)+'\'>次のページ</a>')
 				bookLength=20;
-
 			}
 			var Element = '<div class="table-responsive"><table id="booksData" class="table table-striped"><thead class="thead-lignt"><tr>'
 				+'<th class="title">書籍名</th>'
