@@ -1,31 +1,141 @@
+html{
 
+}
+body {
+    width: 900px;
+	min-width:1400px;
+    margin: 0 auto;
+	min-height:100vh;
+    display: flex;
+    flex-direction: column;
+    border: 1px solid #000000;
+overflow-y:hidden;
+}
+header {
+    height: 100px;
+    border-bottom: 1px solid #000000;
+}
+div {
+    display: flex;
+}
+main {
+    flex: 1;
+}
+nav {
+    width: 250px;
+    border-right: 1px solid #000000;
+    min-height: 100vh;
+}
+
+#Title{s
+	width:35%;
+
+}
+#Auther{
+	width:10%;
+}
+#Publisher{
+	width:10%;
+}
+#Genre{
+	width:8%;
+}
+#IsBorrowing{
+	width:8%;
+}
+#Borrow{
+	width:8%;
+}
+#ReturnDueDate{
+	width:12%;
+}
+#edit{
+	width:5%;
+}
+.IsBorrowing,.Genre,.ReturnDueDate,.title,.edit{
+	text-align:center;
+}
 .title{
-	width:150px;
+
 }
-.author{
-	width:100px;
+.input-group{
+	flex:1;
 }
-.publisher{
-	width:100px;
+
+#pageButtonNext{
+	float:right;
+	text-align:right;
+	width:200px;
 }
-.genre{
-	width:70px;
+#pageButtonBack{
+	float:left;
+	width:200px;
 }
-.situation{
-	width:70px;
+#userInput{
+	clear:both;
+    overflow-x: hidden;
+	overflow-y: scroll;
+    height: 85vh;
+    min-height: 85vh;
 }
 .borrow{
 	width:70px;
 }
-.return{
-	width:100px;
+.borrowButton{
+	margin:0 auto;
+}
+.editbutton{
+	height:50px;
+	text-align:center;
+	margin:0 auto;
+}
+table{
+	vertical-align:bottom;
+}
+table th {
+	text-align:center;
 }
 table td {
 	align:center;
-	/* 内部余白 */
-	padding: 6px;
-	/* 枠線 */
-	border: 1px solid #999;
-	/* 背景色 */
-	/* background-color:rgba(242,245,245,0.8); */
+	margin:0px 30px 0px 30px;
 }
+.findButton{
+	margin:0px;
+}
+#searchButton{
+	width:15vw;
+}
+
+/*
+table {
+	display:block;
+	border-collapse: collapse;
+	border-right: 1px solid #999;
+	text-align:center;
+}
+
+table th {
+	align:center;
+	padding: 10px;
+	border-top: 1px solid #fff;
+	color: #fff;
+	text-align: center;
+	vertical-align: top;
+	background-color: #555;
+	font-size:calc(7px + .5vw);
+}
+
+table td {
+	align:center;
+	padding: 6px;
+	border: 1px solid #999;
+}
+*/
+
+/*フッター*/
+/*
+footer {
+    border-top: 1px solid #000000;
+    height: 300px;
+}
+*/

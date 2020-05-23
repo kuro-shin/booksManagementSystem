@@ -5,7 +5,7 @@ var session = new Object();
 //session.employeeRole='manager';
 session.employeeId='0002';
 session.employeeName='現在次郎';
-session.employeeRole='user';
+session.employeeRole='manager';
 
 function display() {
 	 'use strict';
@@ -13,15 +13,21 @@ function display() {
 			if(session.employeeId!=null){
 				$('#userInformation').append('<p>社員ID:'+session.employeeId+'</p>');
 				$('#userInformation').append('<p>社員名:'+session.employeeName+'</p>');
-				$('#isUser').append('<button onclick="location.href=\'../index.html\'">TOPページへ</button>');
-				$('#isUser').append('<a href="../request/requestDisplay.html?/p1"><img src="images/46090.jpg" border="0">リクエスト一覧・申請</a>');
-				$('#isUser').append('<a href="../borrowingBooksDisplay/borrowingBooksDisplay.html"><img src="imag/8905.png" border="0">借本一覧</a>');
+
+				Element = "<table class=\"table\" style=\"margin-bottom: 0;\"><tr>";
+				Element += '<tr><td><button class="btn btn-light navButton" onclick="location.href=\'../request/requestDisplay.html\'">リクエスト一覧・申請</button></td></tr>'
+					+'<tr><td><button class="btn btn-ligh navButton" onclick="location.href=\'../borrowingBooksDisplay/borrowingBooksDisplay.html\'">借本一覧</button></td></tr></table>'
+				$('#isUser').html(Element);
 
 			}
 			if(session.employeeRole='manager'){
-				$('#isManager').append('<a href="../bookregistration/bookregistration.html"><img src="images/3291.png" border="0">書籍登録</a>');
-				$('#isManager').append('<a href="../deliquentPersonDisplay/deliquentPersonDisplay.html"><img src="images/45896.png" border="0">延滞者一覧</a>');
-				$('#isManager').append('<a href="../booksManagementSystem/newBookRegisration.html"><img src="images/25559.png" border="0">図書管理者登録</a>');
+				Element = "";
+				Element = "<table class=\"table\"><tr>";
+				Element+= '<tr><td><button class="btn btn-light navButton" onclick="location.href=\'../newBookRegisrationnewBookRegisration.html\'">書籍登録</button></td></tr>'
+					+'<tr><td><button class="btn btn-light navButton" onclick="location.href=\'../deliquentPersonDisplay/deliquentPersonDisplay.html\'">延滞者一覧</button></td></tr>'
+					+'<tr><td><button class="btn btn-light navButton" onclick="location.href=\'../newMemberRegistration/newMemberRegistration.html\'">図書管理者登録</button></td></tr></table>'
+
+				$('#isManager').html(Element)
 			}
 
 }
