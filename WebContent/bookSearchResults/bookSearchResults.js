@@ -56,14 +56,14 @@ function getSearchData () {
 				bookLength=20;
 
 			}
-			var Element = '<table id="booksData">'
-				+'<th>書籍名</th>'
-				+'<th>著者名</th>'
-				+'<th>出版社名</th>'
-				+'<th>ジャンル</th>'
-				+'<th>貸出状況</th>'
-				+'<th>貸出</th>'
-				+'<th>返却予定日</th>'
+			var Element = '<div class="table-responsive"><table id="booksData" class="table table-striped"><thead class="thead-lignt"><tr>'
+				+'<th class="title">書籍名</th>'
+				+'<th class="author">著者名</th>'
+				+'<th class="publisher">出版社名</th>'
+				+'<th class="genre">ジャンル</th>'
+				+'<th class="situation">貸出状況</th>'
+				+'<th class="borrow">貸出</th>'
+				+'<th class="return">返却予定日</th></tr></thead>'
 			for(var i=0;bookLength>i;i++){
 				console.log(json[i])
 				bookId = json[i].bookId
@@ -79,26 +79,26 @@ function getSearchData () {
 					Borrowing = "<font color=\"red\">貸出中</font>"
 				}
 				Element += '<tr>'
-						+'<td id="Title">'+bookTitle+'</td>'
+						+'<td id="Title" class="title">'+bookTitle+'</td>'
 						if(bookAuther=="none"){
 							bookAuther="";
 						}
-						Element += '<td id="Auther">'+bookAuther+'</td>'
-						+'<td id="Publisher">'+bookPublisher+'</td>'
-						+'<td>'+bookGenreName+'</td>'
-						+'<td>'+Borrowing+'</td>'
+						Element += '<td id="Auther" class="author">'+bookAuther+'</td>'
+						+'<td id="Publisher" class="publisher">'+bookPublisher+'</td>'
+						+'<td class="genre">'+bookGenreName+'</td>'
+						+'<td class="situation">'+Borrowing+'</td>'
 						if(bookIsBorrowing==0){
-							Element+='<td><input type="button" value="借りる" id="'+bookId+'" onclick=\"Borrow(this.id)\"></td>'
+							Element+='<td class="borrow"><input type="button" value="借りる" id="'+bookId+'" onclick=\"Borrow(this.id)\"></td>'
 						}else{
-							Element+='<td></td>'
+							Element+='<td class="borrow"></td>'
 						}
 						if(bookIsBorrowing==1){
-							Element += '<td>'+bookReturnDueDate+'</td>'
+							Element += '<td class="return">'+bookReturnDueDate+'</td>'
 						}
 
 						Element+='</tr>'
 			}
-			Element += '</table>'
+			Element += '</table></div>'
 				$('#userInput').append(Element);
 
 			console.log(json);
