@@ -3,24 +3,76 @@
 <head>
 <meta charset="UTF-8">
 <title>リクエスト申請</title>
-<link rel="stylesheet" type="text/css" href="../default.css">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
 <script type="text/javascript" src="../jquery-1.10.2.js"></script>
 <script type="text/javascript" src="../default.js"></script>
-<!--  <script type="text/javascript" src="sessionBasicInformation.js"></script> -->
+<script type="text/javascript" src="sessionBasicInformation.js"></script>
 <script type="text/javascript" src="requestAplication.js"></script>
 </head>
-<body>
-<header></header>
-<nav></nav>
-<main>
-<p>登録するユーザー情報を入力してください</p>
-<form name="requestApllication">
-<input type="text" id="requestTitle" placeholder="タイトル"  required>
-<input type="text" id="requestAuthor" placeholder="著者名" required>
-<input type="text" id="requestPublisher" placeholder="出版社" required>
-<input type="text" id="requestUrl" placeholder="参考url" >
+<body class="bg-light">
+<nav class="nav">
+		<div id="userInformation"></div>
+		<a>図書管理システム</a>
+		<button id="logoutButton" class="btn btn-primary">ログアウト</button>
+</nav>
+<div class="row">
+  <div class="col-3">
+    <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+      <a class="nav-link active" id="v-pills-home-tab" data-toggle="pill" href="#v-pills-home" role="tab" aria-controls="v-pills-home" aria-selected="true">ホーム</a>
+      <a class="nav-link" id="v-pills-profile-tab" data-toggle="pill" href="#v-pills-profile" role="tab" aria-controls="v-pills-profile" aria-selected="false">プロフィール</a>
+      <a class="nav-link" id="v-pills-messages-tab" data-toggle="pill" href="#v-pills-messages" role="tab" aria-controls="v-pills-messages" aria-selected="false">メッセージ</a>
+      <a class="nav-link" id="v-pills-settings-tab" data-toggle="pill" href="#v-pills-settings" role="tab" aria-controls="v-pills-settings" aria-selected="false">セッティング</a>
+    </div>
+  </div>
+  <div class="col-9">
+    <div class="tab-content" id="v-pills-tabContent">
+      <div class="tab-pane fade show active" id="v-pills-home" role="tabpanel" aria-labelledby="v-pills-home-tab">
+        <p>ホームの文章です。...</p>
+      </div>
+      <div class="tab-pane fade" id="v-pills-profile" role="tabpanel" aria-labelledby="v-pills-profile-tab">
+        <p>プロフィールの文章です。...</p>
+      </div>
+      <div class="tab-pane fade" id="v-pills-messages" role="tabpanel" aria-labelledby="v-pills-messages-tab">
+        <p>メッセージの文章です。...</p>
+      </div>
+      <div class="tab-pane fade" id="v-pills-settings" role="tabpanel" aria-labelledby="v-pills-settings-tab">
+        <p>セッティングの文章です。...</p>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="container">
+<div class="row">
+</div>
+<form name="requestApllication" class="was-validated">
+<p>リクエストする本の情報を入力してください</p>
+  <div class="form-row">
+    <div class="col-md-10 mb-3">
+      <label for="validationServer01">タイトル</label>
+      <input type="text" class="form-control is-invalid" id="requestTitle" placeholder="タイトル" required>
+    </div>
+    </div>
+    <div class="form-row">
+    <div class="col-md-10 mb-3">
+      <label for="validationServer02">著者名</label>
+      <input type="text" class="form-control is-invalid" id="requestAuthor" placeholder="著者名"  required>
+    </div>
+  </div>
+     <div class="form-row">
+    <div class="col-md-10 mb-3">
+      <label for="validationServer02">出版社</label>
+      <input type="text" class="form-control is-invalid" id="requestPublisher" placeholder="出版社" required>
+    </div>
+  </div>
+  <div class="form-row">
+    <div class="col-md-12 mb-3">
+      <label for="validationServer03">参考url</label>
+      <input type="text" class="form-control" id="requestUrl" placeholder="参考url">
+    </div>
+    </div>
+    <button id="requesutapplicationButton" class="btn btn-lg btn-primary btn-block">リクエスト</button>
 </form>
-<button id="requesutapplicationButton">リクエスト</button>
-</main>
+
+</div>
 </body>
 </html>
