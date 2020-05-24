@@ -19,7 +19,7 @@ function display() {
 	 if(session.employeeName!=null){
 	 			$('#userInformation').append('<p>社員ID:'+session.employeeId+'</p>');
 	 			$('#userInformation').append('<p>社員名:'+session.employeeName+'</p>');
-	 			$('main').append('<input type="text" id="searchWords" placeholder="書籍を検索"><button id="passSearchResult">検索</button>');
+	 			$('#main').append('<input type="text" id="searchWords" placeholder="書籍を検索"><button id="passSearchResult">検索</button>');
 				$('#isUser').append('<button onclick="location.href=\'./request/requestDetailDisplay.html\'">リクエスト一覧・申請</button>');
 				$('#isUser').append('<button onclick="location.href=\'./borrowingBooksDisplay/borrowingBooksDisplay.html\'">借本一覧</button>');
 		if(session.employeeRole=='manager'){
