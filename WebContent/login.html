@@ -4,27 +4,26 @@
 <meta charset="UTF-8" />
 <title>Template</title>
 <link rel="stylesheet" href="login.css" />
- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
 <script type="text/javascript" src="jquery-1.10.2.js"></script>
 <script type="text/javascript" src="login.js"></script>
 </head>
 <body class="text-center">
-
-		<div class="container">
-			<form class="form-signin">
-				<h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
-				<input type="text" id="js-login-id" class="form-control"
-					placeholder="ユーザーID" required autofocus> <input
-					type="password" id="js-login-pass" class="form-control"
-					placeholder="パスワード" required>
-				<button id="js-login-button"
-					class="btn btn-lg btn-primary btn-block" >ログイン</button>
-			</form>
-			<a href="./forgetpassword/forgetpassword.html">パスワードを忘れた方はこちら</a>
-			<p><a href="./newMemberRegistration/newMemberRegistration.html">新規会員登録</a></p>
+	<form class="form-signin">
+		<h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
+		<label  class="sr-only">ユーザーID:</label> <input
+			type="text" id="js-login-id" class="form-control"
+			placeholder="ユーザーID" required> <label
+			for="inputPassword" class="sr-only">パスワード:</label> <input
+			type="password" id="js-login-pass" class="form-control"
+			placeholder="パスワード" required>
+		<div class="checkbox mb-3">
 		</div>
-
+		<button id="js-login-button" class="btn btn-lg btn-primary btn-block" >ログイン</button>
+		<a href="./forgetpassword/forgetpassword.html">パスワードを忘れた方はこちら</a>
+	<p><a href="./newMemberRegistration/newMemberRegistration.html">新規登録はこちら</a></p>
+	</form>
 
 </body>
-
 </html>

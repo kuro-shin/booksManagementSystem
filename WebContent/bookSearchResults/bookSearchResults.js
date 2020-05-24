@@ -76,7 +76,6 @@ function getSearchData () {
 			if(bookLength==21){
 				$('#pageButtonNext').append('<a style=\"display:block; margin:0 0 0 auto;\" align=\"right\" href=\'bookSearchResults.html?'+search+'/p'+(parseInt(page)+1)+'\' class="nav-link">次のページ</a>')
 				bookLength=20;
-
 			}
 			var Element = '<table id="booksData" class="table table-hover" ><thead class="thead-dark"><tr>'
 				+'<th class="col-xs-1" id="Borrow">貸出</th>'
@@ -141,7 +140,7 @@ function getSearchData () {
 						}
 						Element+='</tr>'
 			}
-			Element += '</table>'
+			Element += '</table></div>'
 				$('#userInput').append(Element);
 
 			console.log(json);

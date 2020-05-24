@@ -78,8 +78,8 @@ nav {
     height: 85vh;
     min-height: 85vh;
 }
-#booksData{
-	width:100%;
+.borrow{
+	width:70px;
 }
 .borrowButton{
 	margin:0 auto;
