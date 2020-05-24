@@ -108,7 +108,7 @@ var rejection= function(){
 var regist= function(){
 	requestStatus = "3";
 	update();
-	location.href="../bookregistration/bookregistration.html?title="+title+"&autor="+autor+"&publisher="+publisher+"";
+	location.href="../bookregistration/bookregistration.html?title="+title+"&author="+autor+"&publisher="+publisher+"";
 }
 var update = function(){
 	var parameter = location.search.substring(1, location.search.length);

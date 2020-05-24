@@ -1,8 +1,26 @@
-function Registration(){
+function getValueFromRequest(){
+
+	//location.href="../bookregistration/bookregistration.html?title="+title+"&autor="+autor+"&publisher="+publisher+"";
+	//?title=aaa&autor=bbb&pulbisher=ccc
 	var parameter  = location.search.substring( 1, location.search.length );
 	parameter = decodeURIComponent( parameter );
-	syainId = parameter.split('=')[1];
+	//ページ数を取得
+	parameter.split('&').forEach(function( requestUrl ) {
 
+	    var requestType = requestUrl.split("=")[0];
+	    var requestValue = requestUrl.split("=")[1];
+	    if(requestType=="title"){
+	    	document.getElementById( "bookTitle" ).value = requestValue;
+	    }else if(requestType=="author"){
+	    	document.getElementById( "bookAuther" ).value = requestValue;
+	    }else if(requestType=="publisher"){
+	    	document.getElementById( "bookPublisher" ).value = requestValue;
+	    }
+	})
+
+
+}
+function Registration(){
 	var requestQuery = {
 		"bookTitle" : $('#bookTitle').val(),
 		"bookAuther" : $('#bookAuther').val(),
@@ -33,7 +51,6 @@ function Registration(){
 }
 
 function setGenreData(genre){
-	console.log(genre)
 	var genreList = []
 	var genreTag = "ジャンル:<select name=\"genre\" id=\"Genre\">";
 	for(var i=0;i<genre.length;i++){
@@ -55,6 +72,8 @@ function writeDocuments(){
 	inputBox += '<input type=\"button\" value=\"書籍登録\" onclick=\"Registration()\"></form>'
 
 	$('main').html(inputBox);
+
+	getValueFromRequest();
 }
 
 
@@ -62,6 +81,7 @@ $(document).ready(function() {
 
 	// ログインボタンを押したときのイベント
 	//$('#js-login-button').click(login);
+
 	writeDocuments();
 
 });
