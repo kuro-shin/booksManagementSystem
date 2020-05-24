@@ -1,54 +1,28 @@
+html,
 body {
-    font-size: 2rem;
-    margin: 0 auto;
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    border: 1px solid #000000;
+  height: 100%;
 }
-header {
-    height: 150px;
-    border-bottom: 1px solid #000000;
-}
-div {
-    display: flex;
-    flex: 1;
-}
-.main {
-    flex: 1;
-    display : flex;
-    flex-direction : column;
-    margin:auto;
-    background-color:#cccccc;
-    width:900px;
 
+body {
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-align: center;
+  align-items: center;
+  padding-top: 40px;
+  padding-bottom: 40px;
+  background-color: #f5f5f5;
 }
-form{
-	font-size:16px;
-	text-align:center;
+
+.form-signin {
+  width: 100%;
+  max-width: 330px;
+  padding: 15px;
+  margin: auto;
 }
-/* NGなら赤くする */
-form input:invalid {
-border : tomato 2px solid;
-}
-/* 操作中、入力値が正しい場合䛿、不正エラーを消す */
-form input:valid + .error {
-display : none;
-}
-/* OKなら、そ䛾他䛾テキストボックス以外を緑にする */
-form input:valid {
-border : seagreen 2px solid;
-}
-/* エラー䛾表示 */
-.error{
-color:white;
-background-color:tomato;
-}
-button{
-	flex: 1;
-	background-color:#8888ff;
-	width:100px;
-	height:50px;
-	margin:20px;
-    justify-content: center;
+.form-signin .form-control {
+  position: relative;
+  box-sizing: border-box;
+  height: auto;
+  padding: 10px;
+  font-size: 16px;
 }
