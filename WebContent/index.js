@@ -1,25 +1,29 @@
 var session = getSessionInformation();
 
-//var session = new Object();
-//session.employeeId='0001';
-//session.employeeName='未来太郎';
-//session.employeeRole='manager';
-//session.employeeId='0002';
-//session.employeeName='現在次郎';
-//session.employeeRole='user';
+// var session = new Object();
+// session.employeeId='0001';
+// session.employeeName='未来太郎';
+// session.employeeRole='manager';
+// session.employeeId='0002';
+// session.employeeName='現在次郎';
+// session.employeeRole='user';
 
 function display() {
 	 'use strict';
 	// if(session.employeeId!=null){
-//				location.href='./login.html';
-		//	}else{session.employeeId
+// location.href='./login.html';
+		// }else{session.employeeId
 	 console.log('session.employeeId:'+session.employeeId);
 	 console.log('session.employeeName:'+session.employeeName);
 	 console.log('session.employeeRole:'+session.employeeRole);
 	 if(session.employeeName!=null){
 	 			$('#userInformation').append('<p>社員ID:'+session.employeeId+'</p>');
 	 			$('#userInformation').append('<p>社員名:'+session.employeeName+'</p>');
-	 			$('main').append('<input type="text" id="searchWords" placeholder="書籍を検索"><button id="passSearchResult">検索</button>');
+	 			$('#main').append('<div class="input-group">'
+	 				     +' <input type="text" id="searchWords" class="form-control" placeholder="書籍名　著者名　出版社名を入力">'
+	 				     + '<div class="input-group-append">'
+	 				     +   '<!-- <button type="button" id="searchButton" class="findButton btn btn-secondary" onclick="passSearchResult()">書籍検索</button> -->'
+	 				     +   '<input type="button" style="width: 15vw;" id="searchButton" class="findButton btn btn-secondary" value="書籍検索" onclick="passSearchResult()"></div></div>');
 				$('#isUser').append('<button onclick="location.href=\'./request/requestDetailDisplay.html\'">リクエスト一覧・申請</button>');
 				$('#isUser').append('<button onclick="location.href=\'./borrowingBooksDisplay/borrowingBooksDisplay.html\'">借本一覧</button>');
 		if(session.employeeRole=='manager'){

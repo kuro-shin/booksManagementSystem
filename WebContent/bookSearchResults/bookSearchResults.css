@@ -11,23 +11,32 @@ body {
     border: 1px solid #000000;
 overflow-y:hidden;
 }
-header {
-    height: 100px;
-    border-bottom: 1px solid #000000;
-}
-div {
-    display: flex;
+.books {
+  display: flex;
 }
 main {
     flex: 1;
 }
-nav {
+nav{
+	min-height: 15vh;
+}
+nav div{
+    height:100%;
+}
+.userInformation{
+	width: 20%;
+}
+.input-group{
+	margin:0 100px;
+}
+.input-group
+#nav {
     width: 250px;
     border-right: 1px solid #000000;
     min-height: 100vh;
 }
 
-#Title{s
+#Title{
 	width:35%;
 
 }
