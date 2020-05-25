@@ -17,20 +17,10 @@ function setGenreData(genre,bookGenreName){
 	return genreTag;
 }
 
-function display() {
+function editDisplay() {
 	 'use strict';
 
-			if(session.employeeId!=null){
-				$('#userInformation').append('<p>社員ID:'+session.employeeId+'</p>');
-				$('#userInformation').append('<p>社員名:'+session.employeeName+'</p>');
-				$('#isUser').append('<button onclick="location.href=\'http://localhost:8080/booksManagementSystem/newBookRegisration.html\'">リクエスト一覧・申請</button>');
-				$('#isUser').append('<button onclick="location.href=\'http://localhost:8080/booksManagementSystem/newBookRegisration.html\'">借本一覧</button>');
-			}
-			if(session.employeeRole='manager'){
-				$('#isManager').append('<button onclick="location.href=\'http://localhost:8080/booksManagementSystem/newBookRegisration.html\'">書籍登録</button>');
-				$('#isManager').append('<button onclick="location.href=\'http://localhost:8080/booksManagementSystem/newBookRegisration.html\'">延滞者一覧</button>');
-				$('#isManager').append('<button onclick="location.href=\'http://localhost:8080/booksManagementSystem/newBookRegisration.html\'">図書管理者登録</button>');
-			}
+
 
 			var book_id = location.search.substring(3);
 			//セッション持ってくるようにするときは上の方
@@ -57,22 +47,19 @@ function display() {
 //							console.log("jsonからもらったb.bookGenre:"+b.bookGenre);
 
 						if(session.employeeRole=='manager'){
-						$('#editBookTable').append('<p>タイトル：<input type="text" id="bookTitle" value="'+b.bookTitle+'"></p>');
-						$('#editBookTable').append('<p>著者：<input type="text" id="bookAuther" value="'+b.bookAuther+'"></p>');
-						$('#editBookTable').append('<p>出版社：<input type="text" id="bookPublisher" value="'+b.bookPublisher+'"></p>');
-
-
-						$('#editBookTable').append('<p>ジャンル：<input type="text" id="bookGenre" value="'+b.bookGenreName+'"></p>');
-						//$('#editBookTable').append(setGenreData(genre,b.bookGenreName));//genre一覧をどこで持ってくるのか
-
+							var element='<form class="form-signin"><div class="form-row"><div class="col-md-12 mb-3">タイトル<input class="form-control" type="text" id="bookTitle" value="'+b.bookTitle+'"></div></div>'
+								+'<div class="form-row"><div class="col-md-12 mb-3">著者<input class="form-control" type="text" id="bookAuther" value="'+b.bookAuther+'"></div></div>'
+								+'<div class="form-row"><div class="col-md-12 mb-3">出版社<input class="form-control" type="text" id="bookPublisher" value="'+b.bookPublisher+'"></div></div>'
+								+'<div class="form-row"><div class="col-md-12 mb-3">ジャンル<input class="form-control" type="text" id="bookGenre" value="'+b.bookGenreName+'"></div></div>'
 						}
 
 						//TO DO ジャンルをDBから持ってきて選択タブで表示できるようにする
 
 
 
-						$('#editOrDelete').append('<button onclick="editBook(\''+b.bookId+'\')">書籍編集</button');
-						$('#editOrDelete').append('<button onclick="deleteBook(\''+b.bookId+'\')">書籍削除</button');
+						element += '<button class="btn btn-lg btn-info" onclick="editBook(\''+b.bookId+'\')">書籍編集</button>'
+						+'<button class="btn btn-lg btn-danger" onclick="deleteBook(\''+b.bookId+'\')">書籍削除</button></form>'
+						$('#editOrDelete').append(element);
 						}
 
 		},
@@ -160,7 +147,7 @@ function editBook(book_id){
 	$('#isManager').empty();
 	$('#editBookTable').empty();
 	$('#editOrDelete').empty();
-	display();// 再表示
+	editDisplay();// 再表示
 }
 
 
@@ -169,7 +156,7 @@ $(document).ready(function() {
 	// 初期表示用
 	//getSessionInfomation();
 	//executeAjax();
-	display();
+	editDisplay();
 
 
 });
