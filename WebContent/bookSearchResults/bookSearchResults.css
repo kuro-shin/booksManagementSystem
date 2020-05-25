@@ -24,9 +24,6 @@ nav div{
 .userInformation{
 	width: 20%;
 }
-.input-group{
-	margin:0 100px;
-}
 .input-group
 #nav {
     width: 250px;
@@ -66,7 +63,7 @@ nav div{
 
 }
 .input-group{
-
+	width:50%;
 }
 .a{
 	flex:1;
