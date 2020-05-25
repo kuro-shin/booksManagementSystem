@@ -1,4 +1,4 @@
-var session = getSessionInfomation();
+var session = getSessionInformation();
 var role = session.employeeRole;
 var name = session.employeeName;
 var employeeId = session.employeeId;
