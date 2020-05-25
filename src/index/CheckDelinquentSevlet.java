@@ -44,9 +44,8 @@ public class CheckDelinquentSevlet extends HttpServlet {
 
 
 		Map<String, String> conInfo = ConnectDb.loadDB();
-	//	Date date = new Date();
-  //      System.out.println(date.toString());
-
+//	Date date = new Date();
+//      System.out.println(date.toString());
 //      HttpSession session = request.getSession();
 //		String employeeId = (String) session.getAttribute("employeeId");
         String employeeId="0001"; //
