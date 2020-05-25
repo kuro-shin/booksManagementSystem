@@ -2,6 +2,7 @@ var session = getSessionInformation();
 var page;
 var count;
 var requestStatus;
+var employeeId =session.employeeId
 var requestDisplay = function() {
 	$('#requestTable').empty();
 	count = 0;
@@ -17,7 +18,7 @@ var requestDisplay = function() {
 
 	var requestQuery = {
 		requestStatus : requestStatus,
-		requestEmployeeId : session.employeeId,
+		requestEmployeeId : employeeId,
 		page : page
 	};
 
@@ -100,7 +101,7 @@ var search = function(){
 	getStatus = document.form.requestStatus;
 	var num = getStatus.selectedIndex;
 	requestStatus = getStatus.options[num].value;
-	display();
+	requestDisplay();
 }
 $(document).ready(function() {
 	requestDisplay();

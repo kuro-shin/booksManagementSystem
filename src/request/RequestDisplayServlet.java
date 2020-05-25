@@ -53,7 +53,7 @@ public class RequestDisplayServlet extends HttpServlet {
 		String sql;
 		// 実行するSQL文
 		if (requestStatus == null ) {
-			if (requestEmployeeId == null) {
+			if (requestEmployeeId == null||requestEmployeeId.equals("")) {
 				sql = "select*from( \n" + "select \n" + "AAA.RN, \n" + "RE.REQUEST_BOOK_ID, \n"
 						+ "RE.EMPLOYEE_ID, \n" + "EM.NAME, \n" + "RE.TITLE, \n" + "RE.PUBLISHER, \n" + "RE.AUTHER, \n"
 						+ "RE.URL, \n" + "RE.STATUS, \n" + "RE.REJECTED_REASON, \n" + "RE.REQUEST_DATE, \n"
@@ -81,7 +81,7 @@ public class RequestDisplayServlet extends HttpServlet {
 			}
 
 		} else {
-			if (requestEmployeeId == null) {
+			if (requestEmployeeId == null||requestEmployeeId.equals("")) {
 				sql = "select*from( \n" + "select \n" + "AAA.RN, \n" + "RE.REQUEST_BOOK_ID, \n"
 						+ "RE.EMPLOYEE_ID, \n" + "EM.NAME, \n" + "RE.TITLE, \n" + "RE.PUBLISHER, \n" + "RE.AUTHER, \n"
 						+ "RE.URL, \n" + "RE.STATUS, \n" + "RE.REJECTED_REASON, \n" + "RE.REQUEST_DATE, \n"
