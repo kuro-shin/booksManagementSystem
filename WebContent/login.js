@@ -1,5 +1,3 @@
-var session = getSessionInformation();
-
 /* ログインファンクション */
 function login() {
 	// 入力されたユーザーIDとパスワード
