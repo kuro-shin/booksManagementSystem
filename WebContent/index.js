@@ -83,7 +83,6 @@ function passSearchResult() {
 
 $(document).ready(function() {
 
-	session = getSessionInformation();
 	display();
 	checkDelinquent();
 	 $('#passSearchResult').click(passSearchResult);

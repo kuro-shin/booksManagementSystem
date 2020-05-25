@@ -71,6 +71,10 @@ function display() {
 
 function returnBorrowingBook(id){
 	 $('#borrowingBooksBody').empty();
+	 $('#userInformation').empty();
+	 $('#isUser').empty();
+	 $('#isManager').empty();
+
 	var requestQuery = {
 	q : id
 };
