@@ -61,7 +61,7 @@ public class NewMemberRegistrationServlet extends HttpServlet {
 		String registLoginPassword = Hmac.getHmac(request.getParameter("registLoginPassword"));
 		String registLoginRole = request.getParameter("registLoginRole");
 		String createDay = sdf.format(cal.getTime());
-		System.out.println(registLoginPassword);
+		System.out.println("registLoginRole:"+registLoginRole);
 		if (registLoginRole == "" || registLoginRole == null) {
 			registLoginRole = "user";
 		}
