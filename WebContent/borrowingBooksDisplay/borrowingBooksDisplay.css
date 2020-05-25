@@ -1,0 +1,113 @@
+html{
+
+}
+body {
+    width: 900px;
+	min-width:1400px;
+    margin: 0 auto;
+	min-height:100vh;
+    display: flex;
+    flex-direction: column;
+    border: 1px solid #000000;
+overflow-y:hidden;
+}
+.books {
+  display: flex;
+}
+nav{
+	min-height: 15vh;
+}
+nav div{
+    height:100%;
+}
+.userInformation{
+	width: 20%;
+}
+.input-group{
+	margin:0 100px;
+}
+.input-group
+#nav {
+    width: 250px;
+    border-right: 1px solid #000000;
+    min-height: 100vh;
+}
+
+#Title{
+	width:35%;
+
+}
+#Auther{
+	width:10%;
+}
+#Publisher{
+	width:10%;
+}
+#Genre{
+	width:8%;
+}
+#IsBorrowing{
+	width:8%;
+}
+#Borrow{
+	width:8%;
+}
+#ReturnDueDate{
+	width:12%;
+}
+#edit{
+	width:5%;
+}
+.IsBorrowing,.Genre,.ReturnDueDate,.title,.edit{
+	text-align:center;
+}
+.title{
+
+}
+.input-group{
+	flex:1;
+}
+
+#pageButtonNext{
+	float:right;
+	text-align:right;
+	width:200px;
+}
+#pageButtonBack{
+	float:left;
+	width:200px;
+}
+#userInput{
+	clear:both;
+    overflow-x: hidden;
+	overflow-y: scroll;
+    height: 85vh;
+    min-height: 85vh;
+}
+.borrow{
+	width:70px;
+}
+.borrowButton{
+	margin:0 auto;
+}
+.editbutton{
+	height:50px;
+	text-align:center;
+	margin:0 auto;
+}
+table{
+	vertical-align:bottom;
+}
+table th {
+	text-align:center;
+}
+table td {
+	align:center;
+	margin:0px 30px 0px 30px;
+}
+.findButton{
+	margin:0px;
+}
+#searchButton{
+	width:15vw;
+}@CHARSET "UTF-8";
