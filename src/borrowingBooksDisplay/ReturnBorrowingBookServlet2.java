@@ -44,7 +44,7 @@ public class ReturnBorrowingBookServlet2 extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		String q = request.getParameter("q");
-		String book_id=SearchBorrowingBook.SearchBorrowingBook(q);
+		String book_id=SearchBorrowingBook.searchBorrowingBook(q);
 		// JDBCドライバの準備
 		Map<String, String> conInfo = ConnectDb.loadDB();
 

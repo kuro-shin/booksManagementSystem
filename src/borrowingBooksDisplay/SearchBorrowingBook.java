@@ -9,9 +9,9 @@ import java.util.Map;
 import connectDB.ConnectDb;
 
 public class SearchBorrowingBook {
-	public static String SearchBorrowingBook(String borrowingBookId) {
+	public static String searchBorrowingBook(String borrowingBookId) {
 		String genreId = null;
-		String sql = "select BOOK_ID \n" + "from BORROWING \n" + "where GENRE_NAME = '" + borrowingBookId + "'";
+		String sql = "select BOOK_ID \n" + "from BORROWING_BOOKS \n" + "where BORROWING_BOOK_ID = '" + borrowingBookId + "'";
 
 		// DBのURL,ID,PASSを取得
 		Map<String, String> conInfo = ConnectDb.loadDB();
@@ -26,7 +26,7 @@ public class SearchBorrowingBook {
 				ResultSet rs1 = stmt.executeQuery(sql);) {
 			// SQL実行結果を保持している変数rsから情報を取得
 			if (rs1.next()) {
-				genreId = rs1.getString("GENRE_ID");
+				genreId = rs1.getString("BOOK_ID");
 			}
 			System.out.println(genreId);
 			return genreId;
