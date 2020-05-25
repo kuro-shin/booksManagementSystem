@@ -95,6 +95,7 @@ function logout() {
 			alert("ログアウトしました");
 			location.href="./login.html"
 
+
 		},
 		error:function(XMLHttpRequest, textStatus, errorThrown){
 			// サーバーとの通信に失敗した時の処理
@@ -103,7 +104,6 @@ function logout() {
 		}
 	});
 }
-
 $(document).ready(function() {
 
 	session = getSessionInformation();

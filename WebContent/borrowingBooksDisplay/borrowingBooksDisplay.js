@@ -59,6 +59,8 @@ function borrwingDisplay() {
 
 function returnBorrowingBook(id){
 	 $('#borrowingBooksBody').empty();
+	 $('#userInformation').empty();
+	 $('#logout').empty();
 	var requestQuery = {
 	q : id
 };
@@ -84,6 +86,7 @@ function returnBorrowingBook(id){
 		}
 	});
 	display();// 再表示
+	display2();
 }
 
 function checkDelinquent() {
@@ -120,6 +123,7 @@ function checkDelinquent() {
 $(document).ready(function() {
 	// 初期表示用
 	borrwingDisplay();
+
 	checkDelinquent();
 
 

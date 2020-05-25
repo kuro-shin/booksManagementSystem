@@ -24,18 +24,9 @@
 			<div class="navbar-header userInformation">
 				<div id="userInformation"></div>
 			</div>
-			<div class="input-group">
-				<input type="text" id="searchWords" class="form-control"
-					placeholder="書籍名　著者名　出版社名を入力">
-				<div class="input-group-append">
-					<!-- <button type="button" id="searchButton" class="findButton btn btn-secondary" onclick="passSearchResult()">書籍検索</button> -->
-					<input type="button" style="width: 15vw;" id="searchButton"
-						class="findButton btn btn-secondary" value="書籍検索"
-						onclick="passSearchResult()">
-				</div>
-			</div>
-			<div id="logout" class="navbar-text navbar-right">
-			</div>
+
+			<a class="navbar-brand" href="../index.html">図書管理システム</a>
+			<div id="logout" class="navbar-text navbar-right"></div>
 		</div>
 	</nav>
 	<div class="books">
@@ -46,7 +37,16 @@
 		<div>
 			<div class="navbar navbar-light">
 				<div id="pageButtonBack"></div>
-
+				<div class="input-group">
+					<input type="text" id="searchWords" class="form-control"
+						placeholder="書籍名　著者名　出版社名を入力">
+					<div class="input-group-append">
+						<!-- <button type="button" id="searchButton" class="findButton btn btn-secondary" onclick="passSearchResult()">書籍検索</button> -->
+						<input type="button" style="width: 15vw;" id="searchButton"
+							class="findButton btn btn-secondary" value="書籍検索"
+							onclick="passSearchResult()">
+					</div>
+				</div>
 
 
 				<div id="pageButtonNext"></div>
