@@ -11,15 +11,13 @@ function getSessionInformation() {
 		success : function(json) {
 			// サーバーとの通信に成功した時の処理
 			// 確認のために返却値を出力
-
 			session.employeeId=json.employeeId;
 			session.employeeName=json.employeeName;
 			session.employeeRole=json.employeeRole;
-			if(json.employeeId==null){
-				alert('Session情報が入っていません');
-				location.href='./login.html';
-			}
-
+//			if(json.employeeId==null){
+//				//alert('Session情報が入っていません');
+//				//location.href='./login.html';
+//			}
 		},
 		error : function(XMLHttpRequest, textStatus, errorThrown) {
 			// サーバーとの通信に失敗した時の処理
