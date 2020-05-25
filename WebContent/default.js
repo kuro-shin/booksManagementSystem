@@ -16,7 +16,7 @@ function display() {
 
 				Element = "<table class=\"table\" style=\"margin-bottom: 0;\"><tr>";
 				Element += '<tr><td><button class="btn btn-light navButton" onclick="location.href=\'../request/requestDisplay.html\'">リクエスト一覧・申請</button></td></tr>'
-					+'<tr><td><button class="btn btn-ligh navButton" onclick="location.href=\'../borrowingBooksDisplay/borrowingBooksDisplay.html\'">借本一覧</button></td></tr></table>'
+					+'<tr><td><button class="btn btn-light navButton" onclick="location.href=\'../borrowingBooksDisplay/borrowingBooksDisplay.html\'">借本一覧</button></td></tr></table>'
 				$('#isUser').html(Element);
 
 			}
