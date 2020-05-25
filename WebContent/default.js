@@ -1,4 +1,4 @@
-var session = getSessionInfomation();
+var session = getSessionInformation();
 function logout() {
 	// 入力されたユーザーIDとパスワード
 	var requestQuery = {
@@ -55,5 +55,6 @@ $(document).ready(function() {
 	//getSessionInfomation();
 	//executeAjax();
 	display();
+	$('#logoutButton').click(logout);
 
 });
