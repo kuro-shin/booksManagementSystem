@@ -35,14 +35,14 @@ var display = function() {
 					var a = '';
 					if (page > 1) {
 						a += '<a href="requestDisplay.html?/p' + (page - 1)
-								+ '" id="back">前へ</a>';
+								+ '" id="back" class="nav-link>前へ</a>';
 					}
 					if (json.length == 21) {
 						a += '<a href="requestDisplay.html?/p' + (page + 1)
 								+ '" id="next">次へ</a>';
 					}
 					$('#switch').append(a);
-					var tableElemnt = '<table> <thead><tr><th>本の名前</th><th>申請者名</th><th>申請日</th><th>更新者名</th><th>更新日</th><th>ステータス</th><th>詳細</th></tr></thead><tbody>';
+					var tableElemnt = '<table class="table table-striped"> <thead class="thead-lignt"><tr><th>本の名前</th><th>申請者名</th><th>申請日</th><th>更新者名</th><th>更新日</th><th>ステータス</th><th>詳細</th></tr></thead><tbody>';
 					for (var i = 0; i < json.length; i++) {
 						var request = json[i];
 						if(request.requestUpdaterName === null){

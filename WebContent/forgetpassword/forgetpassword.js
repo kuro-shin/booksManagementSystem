@@ -69,14 +69,14 @@ function reSendAuthCode(){
 				console.log(json)
 				if(json.result==="OK"){
 					console.log("OK");
-					Element = '';
-					Element += '<p>認証コード:<input type=\"text\" id=\"authCode\"></p>'
-						+ '<p>新しいパスワード:<input type=\"password\" id=\"newPassword\"></p>'
+					Element = '<form class="form-signin">';
+					Element += '<p>認証コード:<input type=\"text\" id=\"authCode\" class="form-control"></p>'
+						+ '<p>新しいパスワード:<input type=\"password\" id=\"newPassword\" class="form-control"></p>'
 						+ '<p>新しいパスワード(確認):<input type=\"password\" id=\"newPasswordConfirm\"></p>'
 
-						+ '<input type=\"button\" id=\"changePassworde\" value=\"パスワード変更\" onclick=\"changePassword()\"><br>'
-						+ '<input type=\"button\" id=\"sendAuthCode\" value=\"認証コード再送信\" onclick=\"reSendAuthCode()\"><br>'
-						+ '<input type=\"button\" id=\"cancel\" value=\"キャンセル\" onclick=\"location.reload()\">'
+						+ '<input type=\"button\" id=\"changePassworde\" value=\"パスワード変更\" onclick=\"changePassword()\" class="btn btn-lg btn-primary btn-block"><br>'
+						+ '<input type=\"button\" id=\"sendAuthCode\" value=\"認証コード再送信\" onclick=\"reSendAuthCode()\" class="btn btn-lg btn-primary btn-block"><br>'
+						+ '<input type=\"button\" id=\"cancel\" value=\"キャンセル\" onclick=\"location.reload()\" class="btn btn-lg btn-primary btn-block"></form>'
 
 				$('#userInput').html(Element)
 				}else{
@@ -109,13 +109,13 @@ function sendAuthCode(){
 				console.log(json)
 				if(json.result==="OK"){
 					console.log("OK");
-					Element = '';
-					Element += '<p>認証コード:<input type=\"text\" id=\"authCode\"></p>'
-						+ '<p>新しいパスワード:<input type=\"password\" id=\"newPassword\"></p>'
-						+ '<p>新しいパスワード(確認):<input type=\"password\" id=\"newPasswordConfirm\"></p>'
-						+ '<input type=\"button\" id=\"changePassworde\" value=\"パスワード変更\" onclick=\"changePassword()\"><br>'
-						+ '<input type=\"button\" id=\"sendAuthCode\" value=\"認証コード再送信\" onclick=\"reSendAuthCode()\"><br>'
-						+ '<input type=\"button\" id=\"cancel\" value=\"キャンセル\" onclick=\"location.reload()\">'
+					Element = '<form class="form-signin">';
+					Element += '<p>認証コード:<input type=\"text\" id=\"authCode\" class="form-control"></p>'
+						+ '<p>新しいパスワード:<input type=\"password\" id=\"newPassword\" class="form-control"></p>'
+						+ '<p>新しいパスワード(確認):<input type=\"password\" id=\"newPasswordConfirm\" class="form-control"></p>'
+						+ '<input type=\"button\" id=\"changePassworde\" value=\"パスワード変更\" onclick=\"changePassword()\" class="btn btn-lg btn-primary btn-block"><br>'
+						+ '<input type=\"button\" id=\"sendAuthCode\" value=\"認証コード再送信\" onclick=\"reSendAuthCode()\" class="btn btn-lg btn-primary btn-block"><br>'
+						+ '<input type=\"button\" id=\"cancel\" value=\"キャンセル\" onclick=\"location.reload()\" class="btn btn-lg btn-primary btn-block"></form>'
 
 
 				$('#userInput').html(Element)
@@ -133,11 +133,11 @@ function sendAuthCode(){
 }
 
 function displayInput(){
-	Element = '';
-	Element += '<p>社員ID:<input type=\"text\" id=\"employeeId\"></p>'
-			+ '<p>氏名:<input type=\"text\" id=\"employeeName\"></p>'
+	Element = '<form class="form-signin">';
+	Element += '<label>社員ID:</label><input type=\"text\" id=\"employeeId\" class="form-control">'
+			+ '<p>氏名:<input type=\"text\" id=\"employeeName\" class="form-control"></p>'
 			+ '<input type=\"button\" id=\"sendAuthCode\" value=\"認証コード送信\" onclick=\"sendAuthCode()\"><br>'
-			+ '<input type=\"button\" id=\"cancel\" value=\"キャンセル\" onclick=\"location.href=\'/booksManagementSystem/login.html\'\">'
+			+ '<input type=\"button\" id=\"cancel\" value=\"キャンセル\" onclick=\"location.href=\'/booksManagementSystem/login.html\'\"></form>'
 
 	$('#userInput').append(Element)
 }

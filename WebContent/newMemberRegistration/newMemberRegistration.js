@@ -1,3 +1,4 @@
+
 var session = getSessionInfomation();
 var role = session.employeeIRole;
 var name = session.employeeName;
@@ -20,7 +21,7 @@ var memberRegist = function() {
 			registEmployeeNameKana :registEmployeeNameKana,
 			registEmployeeEmail :registEmployeeEmail,
 			registLoginPassword :registLoginPassword,
-			registLoginRole :role
+			registLoginRole :role,
 	};
 
 	$.ajax({
