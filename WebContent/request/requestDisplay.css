@@ -1,96 +1,112 @@
+html{
+
+}
 body {
-    width: auto 0;
-	min-width:900px;
+    width: 900px;
+	min-width:1400px;
     margin: 0 auto;
-    min-height: 100vh;
+	min-height:100vh;
     display: flex;
     flex-direction: column;
     border: 1px solid #000000;
+overflow-y:hidden;
 }
-header {
-    height: 150px;
-    border-bottom: 1px solid #000000;
+.books {
+  display: flex;
 }
-div {
-    display: flex;
+.main {
     flex: 1;
 }
-main {
-    flex: 1;
+nav{
 }
-nav {
-    width: 150px;
-    border-right: 1px solid #000000;
+nav div{
+    height:100%;
 }
-#Title,#Auther,#Publisher{
-	font-size:1.5vh;
+.userInformation{
+	width: 20%;
 }
-#next{
-	float:right;
+.input-group{
+	margin:0 100px;
 }
-#back{
-	float:left;
+.box{
+	flex;
 }
-#requestTable{
-	clear:both;
-}
-#booksData{
-	width:100%;
-}
-table {
-	display:block;
 
-	border-collapse: collapse;
-	border-right: 1px solid #999;
+#Title{
+	width:35%;
+
+}
+#Auther{
+	width:10%;
+}
+#Publisher{
+	width:10%;
+}
+#Genre{
+	width:8%;
+}
+#IsBorrowing{
+	width:8%;
+}
+#Borrow{
+	width:8%;
+}
+#ReturnDueDate{
+	width:12%;
+}
+#edit{
+	width:5%;
+}
+.IsBorrowing,.Genre,.ReturnDueDate,.title,.edit{
 	text-align:center;
 }
-
-table th {
-	align:center;
-	/* 内部余白 */
-	padding: 10px;
-	/* 枠線 */
-	border-top: 1px solid #fff;
-	/* 文字色 */
-	color: #fff;
-	/* 文字表示 */
-	text-align: center;
-	vertical-align: top;
-	/* 背景色 */
-	background-color: #555;
-	font-size:calc(7px + .5vw);
-
+.title{
 
 }
+.input-group{
+	flex:1;
+}
 
+#pageButtonNext{
+	float:right;
+	text-align:right;
+	width:200px;
+}
+#pageButtonBack{
+	float:left;
+	width:200px;
+}
+#userInput{
+	clear:both;
+    overflow-x: hidden;
+	overflow-y: scroll;
+    height: 85vh;
+    min-height: 85vh;
+}
+.borrow{
+	width:70px;
+}
+.borrowButton{
+	margin:0 auto;
+}
+.editbutton{
+	height:50px;
+	text-align:center;
+	margin:0 auto;
+}
+table{
+	vertical-align:bottom;
+}
+table th {
+	text-align:center;
+}
 table td {
 	align:center;
-	/* 内部余白 */
-	padding: 6px;
-	/* 枠線 */
-	border: 1px solid #999;
-	/* 背景色 */
-	/* background-color:rgba(242,245,245,0.8); */
+	margin:0px 30px 0px 30px;
 }
-
-/*フッター*/
-/*
-footer {
-    border-top: 1px solid #000000;
-    height: 300px;
+.findButton{
+	margin:0px;
 }
-*/
-
-/*レスポンシブ対応*/
-@media screen and (max-width: 900px) {
-    body,
-    nav {
-        width: 100%;
-    }
-    nav {
-        border-bottom: 1px solid #000000;
-    }
-    div {
-        flex-direction: column;
-    }
-}@CHARSET "UTF-8";
+#searchButton{
+	width:15vw;
+}

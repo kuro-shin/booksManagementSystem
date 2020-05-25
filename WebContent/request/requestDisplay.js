@@ -1,15 +1,12 @@
-var session = getSessionInfomation();
-var role = session.employeeRole;
-var name = session.employeeName;
-var employeeId = session.employeeId;
+var session = getSessionInformation();
 var page;
 var count;
 var requestStatus;
-var display = function() {
+var requestDisplay = function() {
 	$('#requestTable').empty();
 	count = 0;
 	// サーバーからデータを取得する
-	if (role == "manager") {
+	if (session.employeeRole == "manager") {
 		employeeId = null;
 	}
 	var parameter = location.search.substring(1, location.search.length);
@@ -20,7 +17,7 @@ var display = function() {
 
 	var requestQuery = {
 		requestStatus : requestStatus,
-		requestEmployeeId : employeeId,
+		requestEmployeeId : session.employeeId,
 		page : page
 	};
 
@@ -42,7 +39,7 @@ var display = function() {
 								+ '" id="next">次へ</a>';
 					}
 					$('#switch').append(a);
-					var tableElemnt = '<table class="table table-striped"> <thead class="thead-lignt"><tr><th>本の名前</th><th>申請者名</th><th>申請日</th><th>更新者名</th><th>更新日</th><th>ステータス</th><th>詳細</th></tr></thead><tbody>';
+					var tableElemnt = '<table class="table table-hover""> <thead class="thead-dark"><tr><th>本の名前</th><th>申請者名</th><th>申請日</th><th>更新者名</th><th>更新日</th><th>ステータス</th><th>詳細</th></tr></thead><tbody>';
 					for (var i = 0; i < json.length; i++) {
 						var request = json[i];
 						if(request.requestUpdaterName === null){
@@ -65,7 +62,7 @@ var display = function() {
 							+ '<td>' + request.requestUpdaterName + '</td>'
 							+ '<td>' + request.requestUpdateDate + '</td>'
 							+ '<td>' + request.requestStatus + '</td>'
-							+ '<td><button id="detail'+ i+'" value="'+request.requestId+'">詳細</button></td></tr>'
+							+ '<td><button class="findButton btn btn-secondary" id="detail'+ i+'" value="'+request.requestId+'">詳細</button></td></tr>'
 							;
 
 						}else{
@@ -75,7 +72,7 @@ var display = function() {
 							+ '<td>' + request.requestUpdaterName + '</td>'
 							+ '<td>' + request.requestUpdateDate + '</td>'
 							+ '<td>' + request.requestStatus + '</td>'
-							+ '<td><button id="detail'+ i+'" value="'+request.requestId+'">詳細</button></td></tr>'
+							+ '<td><button  class="findButton btn btn-secondary" id="detail'+ i+'" value="'+request.requestId+'">詳細</button></td></tr>'
 							;
 
 						}
@@ -106,6 +103,6 @@ var search = function(){
 	display();
 }
 $(document).ready(function() {
-	display();
+	requestDisplay();
 	$('#requestStatusButton').click(search);
 });

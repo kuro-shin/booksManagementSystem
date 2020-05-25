@@ -47,9 +47,9 @@ var display = function() {
 			} else {
 				request.requestStatus = "申請中";
 				if (role == "manager") {
-					boxElemnt += '<textarea id = "reason" placeholder="却下理由を記入(却下の場合は必須)" required></textarea>'
-						+ '<button id = "approval">承認</button>'
-						+ '<button id = "rejection">却下</button>'
+					boxElemnt += '<form class="form-signin was-validated"><div class="form-row"><div class="col-md-12 mb-3"><textarea id = "reason" placeholder="却下理由を記入(却下の場合は必須)" required></textarea></div></div>'
+						+ '<button class="btn btn-lg btn-succes btn-block" id = "approval">承認</button>'
+						+ '<button class="btn btn-lg btn-succes btn-danger"id = "rejection">却下</button></form>'
 				}
 			}
 			$('#buttonBox').append(boxElemnt);

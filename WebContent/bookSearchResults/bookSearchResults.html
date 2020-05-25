@@ -12,8 +12,9 @@
 	href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
 <script type="text/javascript" src="../jquery-1.10.2.js"></script>
 
-<script type="text/javascript" src="../default.js"></script>
+
 <script type="text/javascript" src="../sessionBasicInformation.js"></script>
+<script type="text/javascript" src="../default.js"></script>
 <script type="text/javascript" src="bookSearchResults.js"></script>
 
 </head>
@@ -23,6 +24,7 @@
 			<div class="navbar-header userInformation">
 				<div id="userInformation"></div>
 			</div>
+
 			<a class="navbar-brand" href="../index.html">図書管理システム</a>
 			<div id="logout" class="navbar-text navbar-right"></div>
 		</div>
@@ -33,9 +35,9 @@
 			<div id="isManager"></div>
 		</div>
 		<div>
-			<div class="navbar navbar-light">
-				<div id="pageButtonBack"></div>
-				<div class="input-group">
+			<div class="navbar navbar-row navbar-light">
+				<div id="pageButtonBack"class="col-md-2" ></div>
+				<div class="input-group col-md-8">
 					<input type="text" id="searchWords" class="form-control"
 						placeholder="書籍名　著者名　出版社名を入力">
 					<div class="input-group-append">
@@ -47,7 +49,7 @@
 				</div>
 
 
-				<div id="pageButtonNext"></div>
+				<div id="pageButtonNext" class="col-md-2"></div>
 			</div>
 			<div id="userInput"></div>
 		</div>

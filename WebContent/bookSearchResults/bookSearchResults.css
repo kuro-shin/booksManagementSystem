@@ -14,9 +14,7 @@ overflow-y:hidden;
 .books {
   display: flex;
 }
-main {
-    flex: 1;
-}
+
 nav{
 	min-height: 15vh;
 }
@@ -25,9 +23,6 @@ nav div{
 }
 .userInformation{
 	width: 20%;
-}
-.input-group{
-	margin:0 100px;
 }
 .input-group
 #nav {
@@ -68,6 +63,9 @@ nav div{
 
 }
 .input-group{
+	width:50%;
+}
+.a{
 	flex:1;
 }
 
@@ -114,7 +112,9 @@ table td {
 #searchButton{
 	width:15vw;
 }
-
+.navButton{
+	width:100%;
+}
 /*
 table {
 	display:block;

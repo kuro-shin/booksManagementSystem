@@ -80,7 +80,6 @@ function passSearchResult() {
 	location.href=url;
 
 }
-
 function logout() {
 	// 入力されたユーザーIDとパスワード
 	var requestQuery = {
@@ -95,6 +94,7 @@ function logout() {
 		success : function(json) {
 			alert("ログアウトしました");
 			location.href="./login.html"
+
 
 		},
 		error:function(XMLHttpRequest, textStatus, errorThrown){
