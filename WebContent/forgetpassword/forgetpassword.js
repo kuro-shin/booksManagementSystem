@@ -136,7 +136,7 @@ function displayInput(){
 	Element = '<form class="form-signin"><div class="form-row"><div class="col-md-12 mb-3">';
 	Element += '<label>社員ID</label><input type=\"text\" id=\"employeeId\" class="form-control"></div></div>'
 			+ '<div class="form-row"><div class="col-md-12 mb-3"><label>名前</label><input type=\"text\" id=\"employeeName\" class="form-control"></div></div>'
-			+ '<input type=\"button\" style="width: 30vw;" id=\"sendAuthCode\" value=\"認証コード送信\" class="findButton btn btn-danger" onclick=\"sendAuthCode()\"><br>'
+			+ '<input type=\"button\" style="width: 15vw;" id=\"sendAuthCode\" value=\"認証コード送信\" class="findButton btn btn-danger" onclick=\"sendAuthCode()\"><br>'
 			+ '<input type=\"button\" style="width: 15vw;" id=\"cancel\" class="findButton btn btn-secondary" value=\"キャンセル\" onclick=\"location.href=\'/booksManagementSystem/login.html\'\"></form>'
 
 	$('#userInput').append(Element)
