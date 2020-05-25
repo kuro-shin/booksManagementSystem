@@ -37,7 +37,7 @@ function display() {
 				$('#isUser').html(Element);
 
 			}
-			if(session.employeeRole='manager'){
+			if(session.employeeRole=='manager'){
 				Element = "";
 				Element = "<table class=\"table\"><tr>";
 				Element+= '<tr><td><button class="btn btn-light navButton" onclick="location.href=\'../bookregistration/bookregistration.html\'">書籍登録</button></td></tr>'
