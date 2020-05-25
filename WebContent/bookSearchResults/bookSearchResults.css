@@ -14,9 +14,7 @@ overflow-y:hidden;
 .books {
   display: flex;
 }
-main {
-    flex: 1;
-}
+
 nav{
 	min-height: 15vh;
 }
@@ -68,6 +66,9 @@ nav div{
 
 }
 .input-group{
+
+}
+.a{
 	flex:1;
 }
 

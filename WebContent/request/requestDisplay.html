@@ -3,7 +3,6 @@
 <head>
 <meta charset="UTF-8">
 <title>リクエスト一覧</title>
-<link rel="stylesheet" type="text/css" href="../default.css">
 <link rel="stylesheet"
 	href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
 <script type="text/javascript" src="../jquery-1.10.2.js"></script>
@@ -12,28 +11,44 @@
 <script type="text/javascript" src="requestDisplay.js"></script>
 </head>
 <body>
-	<header>
-		<div id="userInformation"></div>
-		<a>図書管理システム</a>
-		<button id="logoutButton" class="btn btn-primary">ログアウト</button>
-	</header>
-	<nav>
-		<div id="isUser"></div>
-		<div id="isManager"></div>
+	<nav class="navbar navbar-default bg-light">
+		<div class="container-fluid">
+			<div class="navbar-header">
+				<div id="userInformation"></div>
+			</div>
+			<a class="navbar-brand" href="../index.html">図書管理システム</a>
+			<div id="logout" class="navbar-text navbar-right">
+			</div>
+		</div>
 	</nav>
-	<div>
+		<div class="books">
+		<div id="nav">
+			<div id="isUser"></div>
+			<div id="isManager"></div>
+			</div>
+
+	<div class="main">
+	<nav class="navbar navbar-default">
+	<div class="input-group">
 	<form name="form">
-		<select name="requestStatus">
+		<select name="requestStatus" class="form-control">
 			<option value="0">申請中</option>
 			<option value="1">承認</option>
 			<option value="2">却下</option>
 			<option value="3">登録済み</option>
 		</select>
 	</form>
-	<button id="requestStatusButton">検索</button>
+	<button id="requestStatusButton" class="findButton btn btn-secondary">検索</button>
+	</div>
+	<div>
 	<a href="requestApplication.html">リクエスト申請ページへ</a>
-	<div id="switch"></div>
+	</div>
+	</nav>
+		<div class="a">
+	<div id="switch" class="navbar navbar-light"></div>
 	<div id="requestTable"></div>
+	</div>
+	</div>
 	</div>
 </body>
 </html>
