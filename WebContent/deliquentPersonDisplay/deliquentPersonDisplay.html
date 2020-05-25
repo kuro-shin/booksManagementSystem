@@ -3,39 +3,45 @@
 <head>
 <meta http-equiv="content-type" content="text/html; charset=utf-8" />
 <title>booksManagementSystem</title>
-<link rel="stylesheet" type="text/css" href="../default.css">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
 <script type="text/javascript" src="../jquery-1.10.2.js"></script>
-<!--  <script type="text/javascript" src="sessionBasicInformation.js"></script> -->
+<script type="text/javascript" src="../sessionBasicInformation.js"></script>
+<script type="text/javascript" src="../default.js"></script>
 <script type="text/javascript" src="deliquentPersonDisplay.js"></script>
 
 </head>
 
 <body>
 <body>
-	<header>
-		<div id="userInformation"></div>
-		<a>図書管理システム</a>
-		<button id="logoutButton">ログアウト</button>
-	</header>
-	<div>
-		<nav>
+	<nav class="navbar navbar-default bg-light">
+		<div class="container-fluid">
+			<div class="navbar-header">
+				<div id="userInformation"></div>
+			</div>
+			<a class="navbar-brand" href="../index.html">図書管理システム</a>
+			<div id="logout" class="navbar-text navbar-right">
+			</div>
+		</div>
+	</nav>
+	<div class="books row">
+		<div id="nav" class="col-md-2">
 			<div id="isUser"></div>
 			<div id="isManager"></div>
-		</nav>
-		<main>
-		<table id=deliquentPersonTable>
-			<thead>
+			</div>
+		<div class="main col-md-10">
+		<table id=deliquentPersonTable class="table table-hover">
+			<thead class="thead-dark">
 				<tr>
-					<th>未返却者</th>
-					<th>返却期限</th>
-					<th>本の名前</th>
-					<th>著者</th>
-					<th>出版社</th>
+					<th class="col-xs-2">未返却者</th>
+					<th class="col-xs-3">返却期限</th>
+					<th class="col-xs-3">本の名前</th>
+					<th class="col-xs-2">著者</th>
+					<th class="col-xs-2">出版社</th>
 				</tr>
 			</thead>
 			<tbody id="deliquentPersonBody"></tbody>
 		</table>
-		</main>
+		</div>
 	</div>
 </body>
 

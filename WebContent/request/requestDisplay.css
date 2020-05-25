@@ -110,3 +110,9 @@ table td {
 #searchButton{
 	width:15vw;
 }
+.navButton{
+	width:100%;
+}
+.form-row{
+	margin:0 auto;
+}

@@ -1,53 +1,55 @@
+html{
+
+}
 body {
-    font-size: 2rem;
     width: 900px;
+	min-width:1400px;
     margin: 0 auto;
-    min-height: 100vh;
+	min-height:100vh;
     display: flex;
     flex-direction: column;
-    border: 1px solid #000000;
+overflow-y:hidden;
 }
-header {
-    height: 150px;
-    border-bottom: 1px solid #000000;
-    background:#51a1a2;
+.books {
+  display: flex;
 }
-
-#userInformation{
-	font-size:15px;
+nav{
+	min-height: 15vh;
 }
-
-#logoutButton{
-	float:right;
+nav div{
+    height:100%;
 }
-
-
-
-header a{
-	margin:0 auto;
+.userInformation{
+	width: 20%;
 }
-
-div {display: block;}
-main {
-    flex: 1;
+.input-group{
+	margin:0 100px;
 }
-nav {
-    width: 150px;
-    height: 1000px;
-    border-right: 1px solid #000000;
-    background:#51a1a2;
-    float: left;
+.input-group
+#nav {
+    width: 250px;
+    min-height: 100vh;
 }
 
-@media screen and (max-width: 900px) {
-    body,
-    nav {
-        width: 100%;
-    }
-    nav {
-        border-bottom: 1px solid #000000;
-    }
-    div {
-        flex-direction: column;
-    }
+.findButton{
+	margin:0px;
 }
+#searchButton{
+	width:15vw;
+}
+.form-signin {
+  width: 100%;
+  max-width: 330px;
+  padding: 15px;
+  margin: auto;
+}
+.form-signin .form-control {
+  position: relative;
+  box-sizing: border-box;
+  height: auto;
+  padding: 10px;
+  font-size: 16px;
+}
+.navButton{
+	width:100%;
+}@CHARSET "UTF-8";

@@ -71,7 +71,7 @@ function writeDocuments(){
 	inputBox += setGenreData(genre);
 	inputBox += '<input type=\"button\" value=\"書籍登録\" class="btn btn-lg btn-primary btn-block" onclick=\"Registration()\"></form>'
 
-	$('main').html(inputBox);
+	$('#userInput').html(inputBox);
 
 	getValueFromRequest();
 }

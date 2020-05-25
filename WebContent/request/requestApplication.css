@@ -46,3 +46,9 @@ border : seagreen 2px solid;
 color:white;
 background-color:tomato;
 }
+.navButton{
+	width:100%;
+}
+.row{
+	margin:0 auto;
+}

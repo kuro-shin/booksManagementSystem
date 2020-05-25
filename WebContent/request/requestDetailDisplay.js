@@ -8,7 +8,7 @@ var reason;
 var title;
 var autor;
 var publisher;
-var display = function() {
+var detailDisplay = function() {
 	$('#requsetDetail').empty();
 	$('#buttonBox').empty();
 	// サーバーからデータを取得する
@@ -147,5 +147,5 @@ var update = function(){
 	}
 
 $(document).ready(function() {
-	display();
+	detailDisplay();
 })

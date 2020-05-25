@@ -9,20 +9,29 @@
 <script type="text/javascript" src="../default.js"></script>
 <script type="text/javascript" src="requestAplication.js"></script>
 </head>
-<body class="bg-light">
-<nav class="nav">
-		<div id="userInformation"></div>
-		<a>図書管理システム</a>
-		<button id="logoutButton" class="btn btn-primary">ログアウト</button>
-</nav>
+<body>
+	<nav class="navbar navbar-default bg-light">
+		<div class="container-fluid">
+			<div class="navbar-header">
+				<div id="userInformation"></div>
+			</div>
+			<a class="navbar-brand" href="../index.html">図書管理システム</a>
+			<div id="logout" class="navbar-text navbar-right">
+			</div>
+		</div>
+	</nav>
+<div class="books row">
+		<div id="nav" class="col-md-2">
+			<div id="isUser"></div>
+			<div id="isManager"></div>
+			</div>
 
-
-<div class="container">
+<div class="container col-md-10">
 <div class="row">
-</div>
+
 <form name="requestApllication" class="was-validated">
 <p>リクエストする本の情報を入力してください</p>
-  <div class="form-row">
+  <div class="form-row col-md-10">
     <div class="col-md-10 mb-3">
       <label for="validationServer01">タイトル</label>
       <input type="text" class="form-control is-invalid" id="requestTitle" placeholder="タイトル" required>
@@ -48,7 +57,8 @@
     </div>
     <button id="requesutapplicationButton" class="btn btn-lg btn-primary btn-block">リクエスト</button>
 </form>
-
+</div>
+</div>
 </div>
 </body>
 </html>
