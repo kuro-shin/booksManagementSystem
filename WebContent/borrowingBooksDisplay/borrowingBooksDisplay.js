@@ -19,7 +19,7 @@ function isDeliquentYMD(return_due_date){
 }
 
 
-function display2() {
+function borrwingDisplay() {
 	 'use strict';
 
 			 var requestQuery = 1;
@@ -122,7 +122,8 @@ function checkDelinquent() {
 
 $(document).ready(function() {
 	// 初期表示用
-	display2();
+	borrwingDisplay();
+
 	checkDelinquent();
 
 

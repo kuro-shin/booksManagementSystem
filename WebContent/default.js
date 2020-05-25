@@ -55,5 +55,6 @@ $(document).ready(function() {
 	//getSessionInfomation();
 	//executeAjax();
 	display();
+	$('#logoutButton').click(logout);
 
 });
