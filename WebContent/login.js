@@ -1,10 +1,5 @@
 var session = getSessionInformation();
-function loginCheck(){
-	if(session.employeeId!=null){
-		location.href='index.html';
-	}
 
-}
 /* ログインファンクション */
 function login() {
 	// 入力されたユーザーIDとパスワード
@@ -36,7 +31,6 @@ function login() {
 	});
 }
 $(document).ready(function() {
-	loginCheck();
 	// ログインボタンを押したときのイベント
 	$('#js-login-button').click(login);
 
