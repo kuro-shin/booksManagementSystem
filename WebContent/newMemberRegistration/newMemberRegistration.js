@@ -1,4 +1,3 @@
-
 var session = getSessionInformation();
 var role = session.employeeRole;
 var name = session.employeeName;
@@ -34,7 +33,11 @@ var memberRegist = function() {
 					// サーバーとの通信に成功した時の処理
 					// 登録完了のアラート
 					alert('登録が完了しました');
-					location.href = '../login.html';
+//					if(role=='manager'){
+//					location.href = '../index.html';
+//					}else{
+//					location.href='../login.html';
+//					}
 				},
 				error : function(XMLHttpRequest, textStatus, errorThrown) {
 					// サーバーとの通信に失敗した時の処理
