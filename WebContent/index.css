@@ -1,13 +1,23 @@
+b{
+	margin:auto;
+	width:1400px;
+}
 .top-page {
   width: 100%;
   max-width: 500px;
   padding: 15px;
   margin: 100px auto;
 }
-.isUser{
-	padding: 20px;
+
+#isUser{
+	margin-top:20px;
+	display:flex;
 }
-.isManager{
-	padding: 20px;
+#isManager{
+	display:flex;
+}
+.navButton{
+	flex:1;
+	margin:5px;
 }
 @CHARSET "UTF-8";
