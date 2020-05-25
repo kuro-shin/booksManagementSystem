@@ -23,13 +23,13 @@ function display() {
 	 				     +' <input type="text" id="searchWords" class="form-control" placeholder="書籍名　著者名　出版社名を入力">'
 	 				     + '<div class="input-group-append">'
 	 				     +   '<!-- <button type="button" id="searchButton" class="findButton btn btn-secondary" onclick="passSearchResult()">書籍検索</button> -->'
-	 				     +   '<input type="button" style="width: 15vw;" id="searchButton" class="findButton btn btn-secondary" value="書籍検索" onclick="passSearchResult()"></div></div>');
-				$('#isUser').append('<button onclick="location.href=\'./request/requestDetailDisplay.html\'">リクエスト一覧・申請</button>');
-				$('#isUser').append('<button onclick="location.href=\'./borrowingBooksDisplay/borrowingBooksDisplay.html\'">借本一覧</button>');
+	 				     +   '<input type="button" style="width: 10vw;" id="searchButton" class="findButton btn btn-secondary" value="書籍検索" onclick="passSearchResult()"></div></div>');
+				$('#isUser').append('<button class="btn btn-light navButton"  onclick="location.href=\'./request/requestDetailDisplay.html\'">リクエスト一覧・申請</button>');
+				$('#isUser').append('<button class="btn btn-light navButton"  onclick="location.href=\'./borrowingBooksDisplay/borrowingBooksDisplay.html\'">借本一覧</button>');
 		if(session.employeeRole=='manager'){
-				$('#isManager').append('<button onclick="location.href=\'./bookregistration/bookregistration.html\'">書籍登録</button>');
-				$('#isManager').append('<button onclick="location.href=\'./deliquentPersonDisplay/deliquentPersonDisplay.html\'">延滞者一覧</button>');
-				$('#isManager').append('<button onclick="location.href=\'./newMemberRegistration/newMemberRegistration.html\'">図書管理者登録</button>');
+				$('#isManager').append('<button class="btn btn-light navButton"  onclick="location.href=\'./bookregistration/bookregistration.html\'">書籍登録</button>');
+				$('#isManager').append('<button class="btn btn-light navButton" onclick="location.href=\'./deliquentPersonDisplay/deliquentPersonDisplay.html\'">延滞者一覧</button>');
+				$('#isManager').append('<button class="btn btn-light navButton"  onclick="location.href=\'./newMemberRegistration/newMemberRegistration.html\'">図書管理者登録</button>');
 			}
 			}
 }

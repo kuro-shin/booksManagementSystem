@@ -1,0 +1,13 @@
+.top-page {
+  width: 100%;
+  max-width: 500px;
+  padding: 15px;
+  margin: 100px auto;
+}
+.isUser{
+	padding: 20px;
+}
+.isManager{
+	padding: 20px;
+}
+@CHARSET "UTF-8";
