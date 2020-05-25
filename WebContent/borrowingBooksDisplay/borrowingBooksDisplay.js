@@ -1,24 +1,5 @@
 var session = getSessionInformation();
 
-function isDeliquentYMD(return_due_date){
-  var dt = new Date();
-  var y = dt.getFullYear();
-  var m = ("00" + (dt.getMonth()+1)).slice(-2);
-  var d = ("00" + dt.getDate()).slice(-2);
-  var today = y + m + d ;
-
-  var result = "<p ";
-  if(return_due_date<today){
-	  result += "class=\"isisDeliquentYMD\">";
-  }else{
-	  result += "class=\"isSafeYMD\">";
-  }
-  result += return_due_date;
-  result += "</p>";
-  return result;
-}
-
-
 function borrwingDisplay() {
 	 'use strict';
 
@@ -39,7 +20,6 @@ function borrwingDisplay() {
 						$('#bb_list'+(i+1)).append('<td class="align-middle title">'+bb.title+'</td><td class="align-middle">'+bb.author+'</td><td>'
 
 								+bb.publisher+'</td><td class="align-middle">'+bb.return_due_date+'</td>'+
-								//+bb.publisher+'</td><td>'+isDeliquentYMD(bb.return_due_date)+'</td>'+
 
 								'<td class="align-middle"><button class="btn btn-danger" onclick="returnBorrowingBook(\''+bb.borrowing_book_id+'\')">返却</button></td></tr>');
 						}
