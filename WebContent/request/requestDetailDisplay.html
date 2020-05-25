@@ -3,15 +3,32 @@
 <head>
 <meta charset="UTF-8">
 <title>リクエスト詳細</title>
-<link rel="stylesheet" type="text/css" href="../default.css">
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
 <script type="text/javascript" src="../jquery-1.10.2.js"></script>
+<script type="text/javascript" src="../sessionBasicInformation.js"></script>
 <script type="text/javascript" src="../default.js"></script>
-<!--  <script type="text/javascript" src="sessionBasicInformation.js"></script> -->
 <script type="text/javascript" src="requestDetailDisplay.js"></script>
 </head>
 <body>
-<table>
- <thead>
+<nav class="navbar navbar-default bg-light">
+		<div class="container-fluid">
+			<div class="navbar-header">
+				<div id="userInformation"></div>
+			</div>
+			<a class="navbar-brand" href="../index.html">図書管理システム</a>
+			<div id="logout" class="navbar-text navbar-right">
+			</div>
+		</div>
+	</nav>
+		<div class="books">
+		<div id="nav">
+			<div id="isUser"></div>
+			<div id="isManager"></div>
+			</div>
+			<div>
+<table class="table table-hover">
+ <thead class="thead-dark">
  <tr>
 						<th>本の名前</th>
 						<th>著者名</th>
@@ -27,5 +44,6 @@
 				</tbody>
  </table>
  <div id = "buttonBox"></div>
+ </div>
 </body>
 </html>
