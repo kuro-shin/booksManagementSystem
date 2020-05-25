@@ -41,7 +41,7 @@ function borrwingDisplay() {
 								+bb.publisher+'</td><td class="align-middle">'+bb.return_due_date+'</td>'+
 								//+bb.publisher+'</td><td>'+isDeliquentYMD(bb.return_due_date)+'</td>'+
 
-								'<td class="align-middle"><button onclick="returnBorrowingBook(\''+bb.borrowing_book_id+'\')">返却</button></td></tr>');
+								'<td class="align-middle"><button class="btn btn-danger" onclick="returnBorrowingBook(\''+bb.borrowing_book_id+'\')">返却</button></td></tr>');
 						}
 
 					},
