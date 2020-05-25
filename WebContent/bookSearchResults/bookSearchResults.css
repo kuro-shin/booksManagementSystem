@@ -115,7 +115,9 @@ table td {
 #searchButton{
 	width:15vw;
 }
-
+.navButton{
+	width:100%;
+}
 /*
 table {
 	display:block;
