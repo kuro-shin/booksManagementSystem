@@ -1,7 +1,7 @@
-//var session = getSessionInfomation();
-var role; // = session.employeeRole;
-var name; // session.employeeName;
-var employeeId; // = session.employeeId;
+var session = getSessionInfomation();
+var role = session.employeeRole;
+var name = session.employeeName;
+var employeeId = session.employeeId;
 var page;
 var count;
 var requestStatus;

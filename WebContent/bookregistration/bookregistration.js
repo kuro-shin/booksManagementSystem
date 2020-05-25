@@ -52,7 +52,7 @@ function Registration(){
 
 function setGenreData(genre){
 	var genreList = []
-	var genreTag = "ジャンル:<select name=\"genre\" id=\"Genre\">";
+	var genreTag = "ジャンル<select name=\"genre\" id=\"Genre\" class=\"form-control\">";
 	for(var i=0;i<genre.length;i++){
 		genreList.push(genre[i].genreName)
 		genreTag += '<option value="'+genre[i].genreName+'">'+genre[i].genreName+'</option>';
@@ -65,11 +65,11 @@ function writeDocuments(){
 	var genre = getGenreData();
 
 	var inputBox = '';
-	inputBox += '<form>タイトル:<input type=\"text\" placeholder=\"タイトル\" id=\"bookTitle\" required><br>'
-			 + '著者名:<input type=\"text\" placeholder=\"著者名\" id=\"bookAuther\" required><br>'
-			 + '出版社:<input type=\"text\" placeholder=\"出版社\" id=\"bookPublisher\" required><br>'
+	inputBox += '<form class="form-signin was-validated"><div class="form-row"><div class="col-md-12 mb-3">タイトル<input type=\"text\" class="form-control is-invalid" placeholder=\"タイトル\" id=\"bookTitle\" required></div></div>'
+			 + '<div class="form-row"><div class="col-md-12 mb-3">著者名<input type=\"text\" class="form-control is-invalid" placeholder=\"著者名\" id=\"bookAuther\" required></div></div>'
+			 + '<div class="form-row"><div class="col-md-12 mb-3">出版社<input type=\"text\" class="form-control is-invalid" placeholder=\"出版社\" id=\"bookPublisher\" required></div></div>'
 	inputBox += setGenreData(genre);
-	inputBox += '<input type=\"button\" value=\"書籍登録\" onclick=\"Registration()\"></form>'
+	inputBox += '<input type=\"button\" value=\"書籍登録\" class="btn btn-lg btn-primary btn-block" onclick=\"Registration()\"></form>'
 
 	$('main').html(inputBox);
 

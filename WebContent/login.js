@@ -1,3 +1,4 @@
+var session = getSessionInformation();
 
 /* ログインファンクション */
 function login() {
@@ -30,7 +31,6 @@ function login() {
 	});
 }
 $(document).ready(function() {
-
 	// ログインボタンを押したときのイベント
 	$('#js-login-button').click(login);
 

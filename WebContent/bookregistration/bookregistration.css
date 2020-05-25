@@ -1,53 +1,54 @@
+html{
+
+}
 body {
     width: 900px;
+	min-width:1400px;
     margin: 0 auto;
-    min-height: 100vh;
+	min-height:100vh;
     display: flex;
     flex-direction: column;
     border: 1px solid #000000;
+overflow-y:hidden;
 }
-header {
-    height: 150px;
-    border-bottom: 1px solid #000000;
+.books {
+  display: flex;
 }
-div {
-    display: flex;
-    flex: 1;
+nav{
+	min-height: 15vh;
 }
-input{
-
+nav div{
+    height:100%;
 }
-main {
-    flex: 1;
+.userInformation{
+	width: 20%;
 }
-nav {
-    width: 150px;
+.input-group{
+	margin:0 100px;
+}
+.input-group
+#nav {
+    width: 250px;
     border-right: 1px solid #000000;
+    min-height: 100vh;
 }
 
-form {
-	font-size:16px;
-	text-align:center;
+.findButton{
+	margin:0px;
 }
-
-/*フッター*/
-/*
-footer {
-    border-top: 1px solid #000000;
-    height: 300px;
+#searchButton{
+	width:15vw;
 }
-*/
-
-/*レスポンシブ対応*/
-@media screen and (max-width: 900px) {
-    body,
-    nav {
-        width: 100%;
-    }
-    nav {
-        border-bottom: 1px solid #000000;
-    }
-    div {
-        flex-direction: column;
-    }
+.form-signin {
+  width: 100%;
+  max-width: 330px;
+  padding: 15px;
+  margin: auto;
 }
+.form-signin .form-control {
+  position: relative;
+  box-sizing: border-box;
+  height: auto;
+  padding: 10px;
+  font-size: 16px;
+}@CHARSET "UTF-8";

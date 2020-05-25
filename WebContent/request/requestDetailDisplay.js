@@ -1,7 +1,7 @@
-//var session = getSessionInfomation();
-var role ="manager"; // = session.employeeRole;
-var name; // session.employeeName;
-var employeeId = "0001"; // = session.employeeId;
+var session = getSessionInformation();
+var role  = session.employeeRole;
+var name = session.employeeName;
+var employeeId  = session.employeeId;
 var page = 1;
 var requestStatus;
 var reason;
