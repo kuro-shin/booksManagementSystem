@@ -1,4 +1,4 @@
-var session = getSessionInfomation();
+var session = getSessionInformation();
 function logout() {
 	// 入力されたユーザーIDとパスワード
 	var requestQuery = {
