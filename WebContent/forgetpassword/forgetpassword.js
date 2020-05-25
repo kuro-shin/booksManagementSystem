@@ -109,13 +109,13 @@ function sendAuthCode(){
 				console.log(json)
 				if(json.result==="OK"){
 					console.log("OK");
-					Element = '<form class="form-signin"><div class="form-row"><div class="col-md-12 mb-3">';
-					Element += '<label>認証コード:</label><input type=\"text\" id=\"authCode\" class="form-control"></div></div>'
-						+ '<div class="form-row"><div class="col-md-12 mb-3"><label>新しいパスワード:</label><input type=\"password\" id=\"newPassword\" class="form-control"></div></div>'
-						+ '<div class="form-row"><div class="col-md-12 mb-3"><label>新しいパスワード(確認):</label><input type=\"password\" id=\"newPasswordConfirm\" class="form-control"></div></div>'
+					Element = '<form class="form-signin is-validated"><div class="form-row"><div class="col-md-12 mb-3">';
+					Element += '<label>認証コード:</label><input type=\"text\" id=\"authCode\" class="form-control was-invalid"></div></div>'
+						+ '<div class="form-row"><div class="col-md-12 mb-3"><label>新しいパスワード:</label><input type=\"password\" id=\"newPassword\" class="form-control is-invalid"></div></div>'
+						+ '<div class="form-row"><div class="col-md-12 mb-3"><label>新しいパスワード(確認):</label><input type=\"password\" id=\"newPasswordConfirm\" class="form-control  is-invalid"></div></div>'
 						+ '<input type=\"button\" style="width: 15vw;" id=\"changePassworde\" value=\"パスワード変更\" onclick=\"changePassword()\" class="btn btn-lg btn-primary btn-block">'
-						+ '<input type=\"button\" style="width: 15vw;" id=\"sendAuthCode\" value=\"認証コード再送信\" onclick=\"reSendAuthCode()\" class="btn btn-lg btn-primary btn-block">'
-						+ '<input type=\"button\" style="width: 15vw;" id=\"cancel\" value=\"キャンセル\" onclick=\"location.reload()\" class="btn btn-lg btn-primary btn-block"></form>'
+						+ '<input type=\"button\" style="width: 15vw;" id=\"sendAuthCode\" value=\"認証コード再送信\" onclick=\"reSendAuthCode()\" class="btn btn-lg btn-success btn-block">'
+						+ '<input type=\"button\" style="width: 15vw;" id=\"cancel\" value=\"キャンセル\" onclick=\"location.reload()\" class="btn btn-lg btn-secondary btn-block"></form>'
 
 
 				$('#userInput').html(Element)
@@ -133,10 +133,10 @@ function sendAuthCode(){
 }
 
 function displayInput(){
-	Element = '<form class="form-signin"><div class="form-row"><div class="col-md-12 mb-3">';
-	Element += '<label>社員ID</label><input type=\"text\" id=\"employeeId\" class="form-control"></div></div>'
-			+ '<div class="form-row"><div class="col-md-12 mb-3"><label>名前</label><input type=\"text\" id=\"employeeName\" class="form-control"></div></div>'
-			+ '<input type=\"button\" style="width: 15vw;" id=\"sendAuthCode\" value=\"認証コード送信\" class="findButton btn btn-danger" onclick=\"sendAuthCode()\"><br>'
+	Element = '<form class="form-signin is-validated"><div class="form-row"><div class="col-md-12 mb-3">';
+	Element += '<label>社員ID</label><input type=\"text\" id=\"employeeId\" class="form-control is-invalid"></div></div>'
+			+ '<div class="form-row"><div class="col-md-12 mb-3"><label>名前</label><input type=\"text\" id=\"employeeName\" class="form-control is-invalid"></div></div>'
+			+ '<input type=\"button\" style="width: 15vw;" id=\"sendAuthCode\" value=\"認証コード送信\" class="findButton btn btn-success">'
 			+ '<input type=\"button\" style="width: 15vw;" id=\"cancel\" class="findButton btn btn-secondary" value=\"キャンセル\" onclick=\"location.href=\'/booksManagementSystem/login.html\'\"></form>'
 
 	$('#userInput').append(Element)
@@ -146,4 +146,5 @@ $(document).ready(function () {
 	'use strict';
 	// 初期表示用
 	displayInput();
+	$('#sendAuthCode').click(sendAuthCode);
 });
