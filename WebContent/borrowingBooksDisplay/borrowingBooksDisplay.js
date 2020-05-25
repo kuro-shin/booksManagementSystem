@@ -1,6 +1,6 @@
 var session = getSessionInformation();
 
-function borrwingDisplay() {
+function borrowingDisplay() {
 	 'use strict';
 
 			 var requestQuery = 1;
@@ -89,7 +89,7 @@ function returnBorrowingBook(id){
 	});
 
 	display();// 再表示
-	display2();
+	borrowingDisplay();
 }
 
 function checkDelinquent() {
@@ -125,7 +125,7 @@ function checkDelinquent() {
 
 $(document).ready(function() {
 	// 初期表示用
-	borrwingDisplay();
+	borrowingDisplay();
 
 	checkDelinquent();
 
