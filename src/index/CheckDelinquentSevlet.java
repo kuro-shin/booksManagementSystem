@@ -83,6 +83,7 @@ public class CheckDelinquentSevlet extends HttpServlet {
 				"from \n" +
 				"BORROWING_BOOKS \n" +
 				"where 1=1 \n" +
+				"and IS_RETURNED = 0" +
 				"and RETURN_DUE_DATE<"+createDay+" "+
 				"and EMPLOYEE_ID='"+employeeId+"' ";
 		//System.out.println(sql);
