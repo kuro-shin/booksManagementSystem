@@ -19,6 +19,7 @@ function display() {
 	 if(session.employeeName!=null){
 	 			$('#userInformation').append('<p>社員ID:'+session.employeeId+'</p>');
 	 			$('#userInformation').append('<p>社員名:'+session.employeeName+'</p>');
+	 			$('#logout').append('<button id="logoutButton" class="btn btn-primary btn-block">ログアウト</button>');
 	 			$('#main').append('<div class="input-group">'
 	 				     +' <input type="text" id="searchWords" class="form-control" placeholder="書籍名　著者名　出版社名を入力">'
 	 				     + '<div class="input-group-append">'
