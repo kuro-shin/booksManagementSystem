@@ -131,8 +131,6 @@ function checkDelinquent() {
 
 $(document).ready(function() {
 	// 初期表示用
-	//getSessionInfomation();
-	//executeAjax();
 	display();
 	checkDelinquent();
 
