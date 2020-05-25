@@ -29,6 +29,7 @@ function display() {
 			if(session.employeeId!=null){
 				$('#userInformation').append('<p>社員ID:'+session.employeeId+'</p>');
 				$('#userInformation').append('<p>社員名:'+session.employeeName+'</p>');
+				$('#logout').append('<button id="logoutButton" class="btn btn-primary btn-block">ログアウト</button>');
 
 				Element = "<table class=\"table\" style=\"margin-bottom: 0;\"><tr>";
 				Element += '<tr><td><button class="btn btn-light navButton" onclick="location.href=\'../request/requestDisplay.html?/p1\'">リクエスト一覧・申請</button></td></tr>'

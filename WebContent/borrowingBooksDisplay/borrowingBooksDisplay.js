@@ -48,12 +48,12 @@ function display() {
 
 
 						$('#borrowingBooksBody').append('<tr id="bb_list'+(i+1)+'">');
-						$('#bb_list'+(i+1)).append('<td>'+bb.title+'</td><td>'+bb.author+'</td><td>'
+						$('#bb_list'+(i+1)).append('<td class="align-middle title">'+bb.title+'</td><td class="align-middle">'+bb.author+'</td><td>'
 
-								+bb.publisher+'</td><td>'+bb.return_due_date+'</td>'+
+								+bb.publisher+'</td><td class="align-middle">'+bb.return_due_date+'</td>'+
 								//+bb.publisher+'</td><td>'+isDeliquentYMD(bb.return_due_date)+'</td>'+
 
-								'<td><button onclick="returnBorrowingBook(\''+bb.borrowing_book_id+'\')">返却</button></td></tr>');
+								'<td class="align-middle"><button onclick="returnBorrowingBook(\''+bb.borrowing_book_id+'\')">返却</button></td></tr>');
 						}
 
 					},
