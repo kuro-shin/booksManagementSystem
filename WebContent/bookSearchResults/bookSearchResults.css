@@ -82,8 +82,8 @@ nav div{
 	clear:both;
     overflow-x: hidden;
 	overflow-y: scroll;
-    height: 85vh;
-    min-height: 85vh;
+    height: 75vh;
+    min-height: 75vh;
 }
 .borrow{
 	width:70px;

@@ -36,7 +36,7 @@ var display = function() {
 				request.requestUpdateDate = "未更新";
 			}
 			if (request.requestStatus == 1) {
-				boxElemnt += '<button id = "regist">登録</button>';
+				boxElemnt += '<button id = "regist" class="btn btn-primary">登録</button>';
 				request.requestStatus = "承認";
 			} else if (request.requestStatus == 2) {
 				boxElemnt = '<p>却下理由</p>' + '<p>'
@@ -47,9 +47,9 @@ var display = function() {
 			} else {
 				request.requestStatus = "申請中";
 				if (role == "manager") {
-					boxElemnt += '<form class="form-signin was-validated"><div class="form-row"><div class="col-md-12 mb-3"><textarea id = "reason" placeholder="却下理由を記入(却下の場合は必須)" required></textarea></div></div>'
-						+ '<button class="btn btn-lg btn-succes btn-block" id = "approval">承認</button>'
-						+ '<button class="btn btn-lg btn-succes btn-danger"id = "rejection">却下</button></form>'
+					boxElemnt += '<form class="form-signin was-validated"><div class="form-row"><div class="col-md-12 mb-3"><textarea class="form-control col-md-5" id = "reason" placeholder="却下理由を記入(却下の場合は必須)" required></textarea></div></div>'
+						+ '<button class="btn btn-lg btn-success" id = "approval">承認</button>'
+						+ '<button class="btn btn-lg  btn-danger"id = "rejection">却下</button></form>'
 				}
 			}
 			$('#buttonBox').append(boxElemnt);
