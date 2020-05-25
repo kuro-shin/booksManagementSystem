@@ -1,12 +1,4 @@
-//var session = getSessionInfomation();
-var session = new Object();
-session.employeeId='0001';
-session.employeeName='未来太郎';
-session.employeeRole='manager';
-//session.employeeId='0002';
-//session.employeeName='現在次郎';
-//session.employeeRole='user';
-
+var session = getSessionInformation();
 
 function setGenreData(genre,bookGenreName){
 	console.log(genre)
@@ -40,9 +32,9 @@ function display() {
 				$('#isManager').append('<button onclick="location.href=\'http://localhost:8080/booksManagementSystem/newBookRegisration.html\'">図書管理者登録</button>');
 			}
 
-			//var book_id = location.search.substring(3);
+			var book_id = location.search.substring(3);
 			//セッション持ってくるようにするときは上の方
-			var book_id = 'BK000193';
+
 			var requestQuery = {
 					book_id : book_id
 				};
