@@ -25,6 +25,6 @@ $(document).ready(function() {
 	// 初期表示用
 	//getSessionInfomation();
 	//executeAjax();
-	$(logoutButton).click(logout);
+	$('#logoutButton').click(logout);
 
 });
