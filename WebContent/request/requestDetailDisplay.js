@@ -135,7 +135,7 @@ var update = function(){
 			alert('更新しました');
 			$('#requsetDetail').empty();
 			$('#buttonBox').empty();
-			display();
+			detailDisplay();
 
 		},
 		error : function(XMLHttpRequest, textStatus, errorThrown) {
