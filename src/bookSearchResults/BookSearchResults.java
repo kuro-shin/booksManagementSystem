@@ -81,26 +81,26 @@ public class BookSearchResults extends HttpServlet {
 
 		String sql = "select * from ( \n" +
 				" \n" +
-				"select ROWNUM as rn, BK.BOOK_ID, BK.TITLE, BK.PUBLISHER, BK.AUTHER, GE.GENRE_NAME, BK.IS_BORROWING, BB.RETURN_DUE_DATE \n" +
+				"select ROWNUM as rn, BK.BOOK_ID, BK.TITLE, BK.PUBLISHER, BK.AUTHER, GE.GENRE_NAME, BK.IS_BORROWING, BKS.RETURN_DUE_DATE--, BBS.IS_RETURNED \n" +
 				"from \n" +
 				"	( \n" +
-				"	select BK.BOOK_ID from \n" +
+				"select distinct BK.BOOK_ID , MAX(BB.RETURN_DUE_DATE) as RETURN_DUE_DATE from \n" +
 				"	BOOKS BK, \n" +
 				"	GENRES GE, \n" +
 				"	BORROWING_BOOKS BB \n" +
+				"	 \n" +
 				"	where 1=1 \n" +
 				"	and GE.GENRE_ID = BK.GENRE_ID \n" +
 				"	and BB.BOOK_ID(+)=BK.BOOK_ID \n" +
-				"	 \n" +
+				"	group by BK.BOOK_ID \n" +
 				"	order by BK.BOOK_ID \n" +
 				"	) BKS, \n" +
 				"	BOOKS BK, \n" +
-				"	GENRES GE, \n" +
-				"	(select BOOK_ID,RETURN_DUE_DATE, MIN(IS_RETURNED) as IS_RETURNED from BORROWING_BOOKS group by book_id, RETURN_DUE_DATE) BB \n" +
+				"	GENRES GE \n" +
+				"	--(select BOOK_ID,RETURN_DUE_DATE, MIN(IS_RETURNED) as IS_RETURNED from BORROWING_BOOKS group by book_id, RETURN_DUE_DATE order by book_id) BBS \n" +
 				"	where 1=1 \n" +
 				"	and BKS.BOOK_ID = BK.BOOK_ID \n" +
-				"	and GE.GENRE_ID = BK.GENRE_ID \n" +
-				"	and BB.BOOK_ID(+)=BK.BOOK_ID \n";
+				"	and GE.GENRE_ID = BK.GENRE_ID \n";
 		String searchWord = null;
 		for(int i=0;i<searchWordLength;i++){
 			searchWord = searchWordList.get(i);
