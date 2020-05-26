@@ -49,8 +49,7 @@ public class BorrowBookServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		response.setContentType("text/html; charset=UTF-8");
 		HttpSession session = request.getSession(true);
-		//String employeeId = (String) session.getAttribute("employeeId");
-		String employeeId = "0001";
+		String employeeId = (String) session.getAttribute("employeeId");
 		//一覧表示、追加、編集、削除のどのリクエストかを判断
 		String bookId = request.getParameter("bookId");
 		int borrowingNum = Integer.parseInt(GetBorrowingBooksNumber.get(employeeId));
