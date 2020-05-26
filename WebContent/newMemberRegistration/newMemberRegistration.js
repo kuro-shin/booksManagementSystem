@@ -33,11 +33,7 @@ var memberRegist = function() {
 					// サーバーとの通信に成功した時の処理
 					// 登録完了のアラート
 					alert('登録が完了しました');
-//					if(role=='manager'){
-//					location.href = '../index.html';
-//					}else{
-//					location.href='../login.html';
-//					}
+					location.href='../login.html';
 				},
 				error : function(XMLHttpRequest, textStatus, errorThrown) {
 					// サーバーとの通信に失敗した時の処理
